@@ -60,49 +60,54 @@ export default function ResearchSection() {
   ];
 
   return (
-    <section id="research" className="py-20 bg-white">
+    <section id="research" className="py-20 bg-gradient-to-b from-slate-800 to-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Research
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent ml-3">
+            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent ml-3">
               History
             </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             これまでの研究成果と受賞歴
           </p>
         </div>
 
         {/* Awards Section */}
         <div className="mb-16">
-          <h3 className="text-3xl font-bold text-gray-900 mb-8">Awards</h3>
+          <h3 className="text-3xl font-bold text-white mb-8 flex items-center">
+            <div className="w-10 h-10 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center mr-4">
+              <i className="ri-trophy-line text-white text-xl"></i>
+            </div>
+            Awards
+          </h3>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {awards.map((award, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6 border border-blue-100 hover:shadow-lg transition-all duration-300"
+                className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-sm border border-gray-700 rounded-2xl p-6 hover:border-yellow-500/50 hover:shadow-xl hover:shadow-yellow-500/10 transition-all duration-300 group"
               >
                 <div className="flex items-start mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                  <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                     <i className="ri-award-line text-white text-xl"></i>
                   </div>
                   <div>
-                    <span className="text-sm font-medium text-blue-600 bg-blue-100 px-3 py-1 rounded-full">
+                    <span className="text-sm font-medium text-yellow-400 bg-yellow-500/20 border border-yellow-500/30 px-3 py-1 rounded-full backdrop-blur-sm">
                       {award.year}
                     </span>
                   </div>
                 </div>
                 
-                <h4 className="text-xl font-bold text-gray-900 mb-3">
+                <h4 className="text-xl font-bold text-white mb-3 group-hover:text-yellow-300 transition-colors duration-300">
                   {award.title}
                 </h4>
                 
-                <p className="text-gray-700 font-medium mb-2">
+                <p className="text-gray-300 font-medium mb-2">
                   {award.description}
                 </p>
                 
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-400">
                   {award.authors}
                 </p>
               </div>
@@ -112,11 +117,16 @@ export default function ResearchSection() {
 
         {/* Publications Section */}
         <div>
-          <h3 className="text-3xl font-bold text-gray-900 mb-8">Publications</h3>
+          <h3 className="text-3xl font-bold text-white mb-8 flex items-center">
+            <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mr-4">
+              <i className="ri-book-line text-white text-xl"></i>
+            </div>
+            Publications
+          </h3>
           <div className="space-y-12">
             {publications.map((category, categoryIndex) => (
               <div key={categoryIndex}>
-                <h4 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <h4 className="text-2xl font-bold text-white mb-6 flex items-center">
                   <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center mr-3">
                     <i className="ri-file-text-line text-white text-lg"></i>
                   </div>
@@ -127,26 +137,26 @@ export default function ResearchSection() {
                   {category.papers.map((paper, paperIndex) => (
                     <div
                       key={paperIndex}
-                      className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md transition-all duration-300"
+                      className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl p-6 hover:bg-gray-700/50 hover:border-gray-600 transition-all duration-300 group"
                     >
-                      <h5 className="text-lg font-semibold text-gray-900 mb-3">
+                      <h5 className="text-lg font-semibold text-white mb-3 group-hover:text-blue-300 transition-colors duration-300">
                         {paper.title}
                       </h5>
                       
-                      <div className="space-y-2 text-sm text-gray-600">
+                      <div className="space-y-2 text-sm text-gray-300">
                         <p>
-                          <span className="font-medium">会議:</span> {paper.venue}
+                          <span className="font-medium text-blue-400">会議:</span> {paper.venue}
                         </p>
                         {paper.pages && (
                           <p>
-                            <span className="font-medium">ページ:</span> {paper.pages}
+                            <span className="font-medium text-blue-400">ページ:</span> {paper.pages}
                           </p>
                         )}
                         <p>
-                          <span className="font-medium">開催地:</span> {paper.location} ({paper.year})
+                          <span className="font-medium text-blue-400">開催地:</span> {paper.location} ({paper.year})
                         </p>
                         <p>
-                          <span className="font-medium">著者:</span> {paper.authors}
+                          <span className="font-medium text-blue-400">著者:</span> {paper.authors}
                         </p>
                       </div>
                     </div>

@@ -5,9 +5,10 @@ export default function MediaSection() {
       type: 'YouTube',
       title: 'RePro3D デモンストレーション',
       description: 'さわれる多視点裸眼立体ディスプレイのデモ動画',
-      url: 'https://www.youtube.com/watch?v=MWtxpAIFnho',
+      url: 'https://www.youtube.com/watch?v=oYOvL-iVvYQ',
       icon: 'ri-youtube-fill',
-      color: 'from-red-500 to-red-600'
+      color: 'from-red-500 to-red-600',
+      thumbnail: 'https://img.youtube.com/vi/oYOvL-iVvYQ/maxresdefault.jpg'
     },
     {
       type: 'Project',
@@ -18,20 +19,32 @@ export default function MediaSection() {
       color: 'from-blue-500 to-blue-600'
     },
     {
-      type: 'Blog',
-      title: 'Research Blog',
-      description: '研究に関するブログ記事',
-      url: 'https://www.xr-edtechlab.com/research-blog',
-      icon: 'ri-article-line',
-      color: 'from-green-500 to-green-600'
-    },
-    {
       type: 'Portfolio',
       title: 'Company Portfolio',
       description: '企業向けプロジェクトポートフォリオ',
       url: 'https://www.xr-edtechlab.com/projects-3-1',
       icon: 'ri-briefcase-line',
       color: 'from-purple-500 to-purple-600'
+    }
+  ];
+
+  const blogLinks = [
+    {
+      type: 'Note',
+      title: 'アバターが持つ力~VRで他者の視点を体験し、無意識の偏見を乗り越える~',
+      description: 'VRを使った職場での無意識のジェンダー偏見を減らす研究について',
+      url: 'https://note.com/keitaro_shimizu/n/n40b45c9f0a72',
+      icon: 'ri-article-line',
+      color: 'from-orange-500 to-orange-600',
+      thumbnail: 'https://assets.st-note.com/production/uploads/images/219003973/rectangle_large_type_2_0cb57521ffb020bd0e45b40760f82530.jpeg?width=1200'
+    },
+    {
+      type: 'Blog',
+      title: 'Research Blog',
+      description: '研究に関するブログ記事',
+      url: 'https://www.xr-edtechlab.com/research-blog',
+      icon: 'ri-article-line',
+      color: 'from-green-500 to-green-600'
     }
   ];
 
@@ -63,50 +76,143 @@ export default function MediaSection() {
   ];
 
   return (
-    <section id="media" className="py-20 bg-white">
+    <section id="media" className="py-20 bg-gradient-to-b from-slate-800 to-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Media &
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent ml-3">
+            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent ml-3">
               Links
             </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             研究成果やプロジェクト、メディアへのリンク
           </p>
         </div>
 
         {/* Project Links */}
         <div className="mb-16">
-          <h3 className="text-3xl font-bold text-gray-900 text-center mb-8">Projects & Media</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <h3 className="text-3xl font-bold text-white text-center mb-8">Projects & Media</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {mediaLinks.map((link, index) => (
               <a
                 key={index}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 cursor-pointer"
+                className="group bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl overflow-hidden hover:bg-gray-700/50 hover:border-gray-600 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer"
               >
-                <div className="flex items-start mb-4">
-                  <div className={`w-12 h-12 bg-gradient-to-r ${link.color} rounded-lg flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
-                    <i className={`${link.icon} text-white text-xl`}></i>
-                  </div>
-                  <div className="flex-1">
-                    <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                {link.thumbnail && (
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={link.thumbnail} 
+                      alt={link.title}
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                    <div className={`absolute top-4 left-4 w-12 h-12 bg-gradient-to-r ${link.color} rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                      <i className={`${link.icon} text-white text-xl`}></i>
+                    </div>
+                    <span className="absolute top-4 right-4 text-sm font-medium text-white/80 bg-black/30 px-3 py-1 rounded-full backdrop-blur-sm">
                       {link.type}
                     </span>
-                    <h4 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-200">
-                      {link.title}
-                    </h4>
                   </div>
-                  <i className="ri-external-link-line text-gray-400 group-hover:text-blue-600 transition-colors duration-200"></i>
-                </div>
+                )}
                 
-                <p className="text-gray-600 leading-relaxed">
-                  {link.description}
-                </p>
+                <div className={`p-6 ${!link.thumbnail ? 'pt-6' : ''}`}>
+                  {!link.thumbnail && (
+                    <div className="flex items-start mb-4">
+                      <div className={`w-12 h-12 bg-gradient-to-r ${link.color} rounded-lg flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+                        <i className={`${link.icon} text-white text-xl`}></i>
+                      </div>
+                      <div className="flex-1">
+                        <span className="text-sm font-medium text-gray-400 uppercase tracking-wide">
+                          {link.type}
+                        </span>
+                      </div>
+                      <i className="ri-external-link-line text-gray-400 group-hover:text-blue-400 transition-colors duration-200"></i>
+                    </div>
+                  )}
+                  
+                  {link.thumbnail && (
+                    <div className="flex items-center justify-between mb-3">
+                      <div></div>
+                      <i className="ri-external-link-line text-gray-400 group-hover:text-blue-400 transition-colors duration-200"></i>
+                    </div>
+                  )}
+                  
+                  <h4 className="text-xl font-bold text-white mb-3 group-hover:text-blue-300 transition-colors duration-200 leading-tight">
+                    {link.title}
+                  </h4>
+                  
+                  <p className="text-gray-300 leading-relaxed text-sm">
+                    {link.description}
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Blog Section */}
+        <div className="mb-16">
+          <h3 className="text-3xl font-bold text-white text-center mb-8">Blog & Articles</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {blogLinks.map((blog, index) => (
+              <a
+                key={index}
+                href={blog.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl overflow-hidden hover:bg-gray-700/50 hover:border-gray-600 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer"
+              >
+                {blog.thumbnail && (
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={blog.thumbnail} 
+                      alt={blog.title}
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                    <div className={`absolute top-4 left-4 w-12 h-12 bg-gradient-to-r ${blog.color} rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                      <i className={`${blog.icon} text-white text-xl`}></i>
+                    </div>
+                    <span className="absolute top-4 right-4 text-sm font-medium text-white/80 bg-black/30 px-3 py-1 rounded-full backdrop-blur-sm">
+                      {blog.type}
+                    </span>
+                  </div>
+                )}
+                
+                <div className={`p-6 ${!blog.thumbnail ? 'pt-6' : ''}`}>
+                  {!blog.thumbnail && (
+                    <div className="flex items-start mb-4">
+                      <div className={`w-12 h-12 bg-gradient-to-r ${blog.color} rounded-lg flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+                        <i className={`${blog.icon} text-white text-xl`}></i>
+                      </div>
+                      <div className="flex-1">
+                        <span className="text-sm font-medium text-gray-400 uppercase tracking-wide">
+                          {blog.type}
+                        </span>
+                      </div>
+                      <i className="ri-external-link-line text-gray-400 group-hover:text-blue-400 transition-colors duration-200"></i>
+                    </div>
+                  )}
+                  
+                  {blog.thumbnail && (
+                    <div className="flex items-center justify-between mb-3">
+                      <div></div>
+                      <i className="ri-external-link-line text-gray-400 group-hover:text-blue-400 transition-colors duration-200"></i>
+                    </div>
+                  )}
+                  
+                  <h4 className="text-xl font-bold text-white mb-3 group-hover:text-blue-300 transition-colors duration-200 leading-tight">
+                    {blog.title}
+                  </h4>
+                  
+                  <p className="text-gray-300 leading-relaxed text-sm">
+                    {blog.description}
+                  </p>
+                </div>
               </a>
             ))}
           </div>
@@ -114,7 +220,7 @@ export default function MediaSection() {
 
         {/* Social Media */}
         <div>
-          <h3 className="text-3xl font-bold text-gray-900 text-center mb-8">Social Media</h3>
+          <h3 className="text-3xl font-bold text-white text-center mb-8">Social Media</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {socialMedia.map((social, index) => (
               <a
@@ -122,22 +228,22 @@ export default function MediaSection() {
                 href={social.url}
                 target={social.platform === 'Email' ? '_self' : '_blank'}
                 rel={social.platform === 'Email' ? '' : 'noopener noreferrer'}
-                className="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 cursor-pointer"
+                className="group bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-6 hover:bg-gray-700/50 hover:border-gray-600 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer"
               >
                 <div className="text-center">
                   <div className={`w-16 h-16 bg-gradient-to-r ${social.color} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
                     <i className={`${social.icon} text-white text-2xl`}></i>
                   </div>
                   
-                  <h4 className="text-xl font-bold text-gray-900 mb-2">
+                  <h4 className="text-xl font-bold text-white mb-2">
                     {social.platform}
                   </h4>
                   
-                  <p className="text-blue-600 font-medium mb-3">
+                  <p className="text-blue-400 font-medium mb-3">
                     {social.username}
                   </p>
                   
-                  <p className="text-gray-600 text-sm">
+                  <p className="text-gray-300 text-sm">
                     {social.description}
                   </p>
                 </div>
@@ -148,11 +254,11 @@ export default function MediaSection() {
 
         {/* Call to Action */}
         <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 border border-blue-100">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+          <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8">
+            <h3 className="text-2xl font-bold text-white mb-4">
               共同研究・開発のご相談
             </h3>
-            <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
               大学・業界とらわれず、さまざまな方と共同研究や開発などを積極的に進めて行こうと思っています。ぜひお気軽にお声がけください。
             </p>
             <button
