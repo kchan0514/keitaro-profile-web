@@ -93,9 +93,9 @@ export default function HeroSection() {
             <div className="relative">
               <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-2xl overflow-hidden border border-gray-700 shadow-2xl shadow-blue-500/20 backdrop-blur-sm">
                 <img
-                  src="https://static.wixstatic.com/media/4a0913_66eb40565e98422ab9b08ed790bca815~mv2.png/v1/fill/w_259,h_342,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/2021_profile.png"
+                  src="/images/profile.jpg"
                   alt="清水啓太郎のプロフィール写真"
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-center"
                 />
               </div>
               {/* Decorative elements */}
