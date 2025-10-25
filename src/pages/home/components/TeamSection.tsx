@@ -28,25 +28,6 @@ export default function MediaSection() {
     }
   ];
 
-  const blogLinks = [
-    {
-      type: 'Note',
-      title: 'アバターが持つ力~VRで他者の視点を体験し、無意識の偏見を乗り越える~',
-      description: 'VRを使った職場での無意識のジェンダー偏見を減らす研究について',
-      url: 'https://note.com/keitaro_shimizu/n/n40b45c9f0a72',
-      icon: 'ri-article-line',
-      color: 'from-orange-500 to-orange-600',
-      thumbnail: 'https://assets.st-note.com/production/uploads/images/219003973/rectangle_large_type_2_0cb57521ffb020bd0e45b40760f82530.jpeg?width=1200'
-    },
-    {
-      type: 'Blog',
-      title: 'Research Blog',
-      description: '研究に関するブログ記事',
-      url: 'https://www.xr-edtechlab.com/research-blog',
-      icon: 'ri-article-line',
-      color: 'from-green-500 to-green-600'
-    }
-  ];
 
   const socialMedia = [
     {
@@ -147,70 +128,6 @@ export default function MediaSection() {
                   
                   <p className="text-gray-300 leading-relaxed text-sm">
                     {link.description}
-                  </p>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* Blog Section */}
-        <div className="mb-16">
-          <h3 className="text-3xl font-bold text-white text-center mb-8">Blog & Articles</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {blogLinks.map((blog, index) => (
-              <a
-                key={index}
-                href={blog.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl overflow-hidden hover:bg-gray-700/50 hover:border-gray-600 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer"
-              >
-                {blog.thumbnail && (
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={blog.thumbnail} 
-                      alt={blog.title}
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
-                    <div className={`absolute top-4 left-4 w-12 h-12 bg-gradient-to-r ${blog.color} rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                      <i className={`${blog.icon} text-white text-xl`}></i>
-                    </div>
-                    <span className="absolute top-4 right-4 text-sm font-medium text-white/80 bg-black/30 px-3 py-1 rounded-full backdrop-blur-sm">
-                      {blog.type}
-                    </span>
-                  </div>
-                )}
-                
-                <div className={`p-6 ${!blog.thumbnail ? 'pt-6' : ''}`}>
-                  {!blog.thumbnail && (
-                    <div className="flex items-start mb-4">
-                      <div className={`w-12 h-12 bg-gradient-to-r ${blog.color} rounded-lg flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
-                        <i className={`${blog.icon} text-white text-xl`}></i>
-                      </div>
-                      <div className="flex-1">
-                        <span className="text-sm font-medium text-gray-400 uppercase tracking-wide">
-                          {blog.type}
-                        </span>
-                      </div>
-                      <i className="ri-external-link-line text-gray-400 group-hover:text-blue-400 transition-colors duration-200"></i>
-                    </div>
-                  )}
-                  
-                  {blog.thumbnail && (
-                    <div className="flex items-center justify-between mb-3">
-                      <div></div>
-                      <i className="ri-external-link-line text-gray-400 group-hover:text-blue-400 transition-colors duration-200"></i>
-                    </div>
-                  )}
-                  
-                  <h4 className="text-xl font-bold text-white mb-3 group-hover:text-blue-300 transition-colors duration-200 leading-tight">
-                    {blog.title}
-                  </h4>
-                  
-                  <p className="text-gray-300 leading-relaxed text-sm">
-                    {blog.description}
                   </p>
                 </div>
               </a>

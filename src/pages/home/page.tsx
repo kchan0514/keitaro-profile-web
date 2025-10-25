@@ -5,6 +5,7 @@ import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
 import ResearchSection from './components/ServicesSection';
 import CareerSection from './components/SolutionsSection';
+import BlogSection from './components/BlogSection';
 import MediaSection from './components/TeamSection';
 import ContactSection from './components/ContactSection';
 
@@ -17,6 +18,7 @@ export default function Home() {
         <AboutSection />
         <ResearchSection />
         <CareerSection />
+        <BlogSection />
         <MediaSection />
         <ContactSection />
       </main>
