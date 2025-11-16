@@ -7,6 +7,7 @@ export default {
   'media.showMore': 'もっと見る ({count}件のメディア)',
   'media.cta.title': '共同研究・開発のご相談',
   'media.cta.description': '大学・業界とらわれず、さまざまな方と共同研究や開発などを積極的に進めて行こうと思っています。ぜひお気軽にお声がけください。',
+  'media.cta.button': 'お問い合わせ',
 
   // Social Media
   'media.social.linkedin.desc': 'プロフェッショナルなネットワーキング',

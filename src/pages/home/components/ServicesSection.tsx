@@ -1,5 +1,8 @@
+import { useTranslation } from 'react-i18next';
 
 export default function ResearchSection() {
+  const { t } = useTranslation();
+
   const awards = [
     {
       year: '2011年3月',
@@ -17,7 +20,7 @@ export default function ResearchSection() {
 
   const publications = [
     {
-      type: '国際学会',
+      typeKey: 'research.publications.international',
       papers: [
         {
           title: 'RePro3D: Full-Parallax 3D Display with Haptic Feedback using Retro-Reflective Projection Technology',
@@ -37,7 +40,7 @@ export default function ResearchSection() {
       ]
     },
     {
-      type: '国内学会',
+      typeKey: 'research.publications.domestic',
       papers: [
         {
           title: '没入型VR環境における体験者の影のレンダリング',
@@ -64,13 +67,13 @@ export default function ResearchSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Research
+            {t('research.title')}
             <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent ml-3">
-              History
+              {t('research.titleHighlight')}
             </span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            これまでの研究成果と受賞歴
+            {t('research.subtitle')}
           </p>
         </div>
 
@@ -80,7 +83,7 @@ export default function ResearchSection() {
             <div className="w-10 h-10 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center mr-4">
               <i className="ri-trophy-line text-white text-xl"></i>
             </div>
-            Awards
+            {t('research.awards.title')}
           </h3>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {awards.map((award, index) => (
@@ -121,7 +124,7 @@ export default function ResearchSection() {
             <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mr-4">
               <i className="ri-book-line text-white text-xl"></i>
             </div>
-            Publications
+            {t('research.publications.title')}
           </h3>
           <div className="space-y-12">
             {publications.map((category, categoryIndex) => (
@@ -130,7 +133,7 @@ export default function ResearchSection() {
                   <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center mr-3">
                     <i className="ri-file-text-line text-white text-lg"></i>
                   </div>
-                  {category.type}
+                  {t(category.typeKey)}
                 </h4>
                 
                 <div className="space-y-6">
@@ -145,18 +148,18 @@ export default function ResearchSection() {
                       
                       <div className="space-y-2 text-sm text-gray-300">
                         <p>
-                          <span className="font-medium text-blue-400">会議:</span> {paper.venue}
+                          <span className="font-medium text-blue-400">{t('research.field.venue')}:</span> {paper.venue}
                         </p>
                         {paper.pages && (
                           <p>
-                            <span className="font-medium text-blue-400">ページ:</span> {paper.pages}
+                            <span className="font-medium text-blue-400">{t('research.field.pages')}:</span> {paper.pages}
                           </p>
                         )}
                         <p>
-                          <span className="font-medium text-blue-400">開催地:</span> {paper.location} ({paper.year})
+                          <span className="font-medium text-blue-400">{t('research.field.location')}:</span> {paper.location} ({paper.year})
                         </p>
                         <p>
-                          <span className="font-medium text-blue-400">著者:</span> {paper.authors}
+                          <span className="font-medium text-blue-400">{t('research.field.authors')}:</span> {paper.authors}
                         </p>
                       </div>
                     </div>

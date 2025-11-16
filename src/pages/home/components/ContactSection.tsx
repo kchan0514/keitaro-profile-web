@@ -1,8 +1,10 @@
-
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Button from '../../../components/base/Button';
 
 export default function ContactSection() {
+  const { t } = useTranslation();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -60,13 +62,13 @@ export default function ContactSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Contact
+            {t('contact.title')}
             <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent ml-3">
-              Me
+              {t('contact.titleHighlight')}
             </span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            共同研究・開発のご相談やお問い合わせはお気軽にどうぞ
+            {t('contact.subtitle')}
           </p>
         </div>
 
@@ -78,7 +80,7 @@ export default function ContactSection() {
                 <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center mr-3">
                   <i className="ri-information-line text-white text-lg"></i>
                 </div>
-                お問い合わせ情報
+                {t('contact.info.title')}
               </h3>
               
               <div className="space-y-6">
@@ -87,8 +89,8 @@ export default function ContactSection() {
                     <i className="ri-mail-line text-white text-xl"></i>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-white mb-1">メール</h4>
-                    <a 
+                    <h4 className="font-semibold text-white mb-1">{t('contact.info.email')}</h4>
+                    <a
                       href="mailto:keitaro@iis-lab.org"
                       className="text-blue-400 hover:text-blue-300 transition-colors duration-200"
                     >
@@ -96,30 +98,27 @@ export default function ContactSection() {
                     </a>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start group hover:bg-gray-700/30 rounded-xl p-4 transition-all duration-300">
                   <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                     <i className="ri-building-line text-white text-xl"></i>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-white mb-1">所属</h4>
-                    <p className="text-gray-300">
-                      東京大学大学院<br />
-                      学際情報学府学際情報学専攻<br />
-                      博士課程
+                    <h4 className="font-semibold text-white mb-1">{t('contact.info.affiliation')}</h4>
+                    <p className="text-gray-300 whitespace-pre-line">
+                      {t('contact.info.affiliationText')}
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start group hover:bg-gray-700/30 rounded-xl p-4 transition-all duration-300">
                   <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                     <i className="ri-team-line text-white text-xl"></i>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-white mb-1">研究室</h4>
-                    <p className="text-gray-300">
-                      矢谷研究室<br />
-                      (Interactive Intelligent Systems Lab)
+                    <h4 className="font-semibold text-white mb-1">{t('contact.info.lab')}</h4>
+                    <p className="text-gray-300 whitespace-pre-line">
+                      {t('contact.info.labText')}
                     </p>
                   </div>
                 </div>
@@ -131,28 +130,28 @@ export default function ContactSection() {
                 <div className="w-6 h-6 bg-gradient-to-r from-green-500 to-blue-500 rounded-lg flex items-center justify-center mr-3">
                   <i className="ri-lightbulb-line text-white text-sm"></i>
                 </div>
-                よくあるご相談
+                {t('contact.inquiries.title')}
               </h4>
               <ul className="space-y-3">
                 <li className="flex items-center text-gray-300 hover:text-white transition-colors duration-200">
                   <i className="ri-check-line text-green-400 mr-3"></i>
-                  XR技術を活用した研究開発
+                  {t('contact.inquiries.xr')}
                 </li>
                 <li className="flex items-center text-gray-300 hover:text-white transition-colors duration-200">
                   <i className="ri-check-line text-green-400 mr-3"></i>
-                  教育技術・EdTechソリューション
+                  {t('contact.inquiries.edtech')}
                 </li>
                 <li className="flex items-center text-gray-300 hover:text-white transition-colors duration-200">
                   <i className="ri-check-line text-green-400 mr-3"></i>
-                  ゲーミフィケーション導入
+                  {t('contact.inquiries.gamification')}
                 </li>
                 <li className="flex items-center text-gray-300 hover:text-white transition-colors duration-200">
                   <i className="ri-check-line text-green-400 mr-3"></i>
-                  HCI研究・共同開発
+                  {t('contact.inquiries.hci')}
                 </li>
                 <li className="flex items-center text-gray-300 hover:text-white transition-colors duration-200">
                   <i className="ri-check-line text-green-400 mr-3"></i>
-                  技術コンサルティング
+                  {t('contact.inquiries.consulting')}
                 </li>
               </ul>
             </div>
@@ -163,7 +162,7 @@ export default function ContactSection() {
                 <div className="w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center mr-3">
                   <i className="ri-share-line text-white text-sm"></i>
                 </div>
-                SNSでもつながりましょう
+                {t('contact.social.title')}
               </h4>
               <div className="flex space-x-4">
                 <a
@@ -192,7 +191,7 @@ export default function ContactSection() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                    お名前 <span className="text-red-400">*</span>
+                    {t('contact.form.name')} <span className="text-red-400">{t('contact.form.required')}</span>
                   </label>
                   <input
                     type="text"
@@ -202,13 +201,13 @@ export default function ContactSection() {
                     onChange={handleInputChange}
                     required
                     className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm text-white placeholder-gray-400"
-                    placeholder="山田太郎"
+                    placeholder={t('contact.form.namePlaceholder')}
                   />
                 </div>
-                
+
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                    メールアドレス <span className="text-red-400">*</span>
+                    {t('contact.form.email')} <span className="text-red-400">{t('contact.form.required')}</span>
                   </label>
                   <input
                     type="email"
@@ -218,7 +217,7 @@ export default function ContactSection() {
                     onChange={handleInputChange}
                     required
                     className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm text-white placeholder-gray-400"
-                    placeholder="example@company.com"
+                    placeholder={t('contact.form.emailPlaceholder')}
                   />
                 </div>
               </div>
@@ -226,7 +225,7 @@ export default function ContactSection() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
                   <label htmlFor="organization" className="block text-sm font-medium text-gray-300 mb-2">
-                    所属・組織名
+                    {t('contact.form.organization')}
                   </label>
                   <input
                     type="text"
@@ -235,13 +234,13 @@ export default function ContactSection() {
                     value={formData.organization}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm text-white placeholder-gray-400"
-                    placeholder="○○大学 / 株式会社○○"
+                    placeholder={t('contact.form.organizationPlaceholder')}
                   />
                 </div>
-                
+
                 <div>
                   <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
-                    件名
+                    {t('contact.form.subject')}
                   </label>
                   <input
                     type="text"
@@ -250,14 +249,14 @@ export default function ContactSection() {
                     value={formData.subject}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm text-white placeholder-gray-400"
-                    placeholder="共同研究について"
+                    placeholder={t('contact.form.subjectPlaceholder')}
                   />
                 </div>
               </div>
 
               <div className="mb-6">
                 <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                  メッセージ <span className="text-red-400">*</span>
+                  {t('contact.form.message')} <span className="text-red-400">{t('contact.form.required')}</span>
                 </label>
                 <textarea
                   id="message"
@@ -268,10 +267,10 @@ export default function ContactSection() {
                   rows={6}
                   maxLength={500}
                   className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none text-sm text-white placeholder-gray-400"
-                  placeholder="お問い合わせ内容をお聞かせください（500文字以内）"
+                  placeholder={t('contact.form.messagePlaceholder')}
                 />
                 <div className="text-right text-sm text-gray-400 mt-1">
-                  {formData.message.length}/500文字
+                  {t('contact.form.charCount', { count: formData.message.length })}
                 </div>
               </div>
 
@@ -284,12 +283,12 @@ export default function ContactSection() {
                 {isSubmitting ? (
                   <>
                     <i className="ri-loader-4-line animate-spin mr-2"></i>
-                    送信中...
+                    {t('contact.form.submitting')}
                   </>
                 ) : (
                   <>
                     <i className="ri-send-plane-line mr-2"></i>
-                    メッセージを送信
+                    {t('contact.form.submit')}
                   </>
                 )}
               </Button>
@@ -298,7 +297,7 @@ export default function ContactSection() {
                 <div className="mt-4 p-4 bg-green-900/50 border border-green-700 rounded-lg backdrop-blur-sm">
                   <div className="flex items-center text-green-300">
                     <i className="ri-check-circle-line mr-2"></i>
-                    お問い合わせありがとうございます。できるだけ早くご返信いたします。
+                    {t('contact.form.success')}
                   </div>
                 </div>
               )}
@@ -307,7 +306,7 @@ export default function ContactSection() {
                 <div className="mt-4 p-4 bg-red-900/50 border border-red-700 rounded-lg backdrop-blur-sm">
                   <div className="flex items-center text-red-300">
                     <i className="ri-error-warning-line mr-2"></i>
-                    送信に失敗しました。しばらく時間をおいて再度お試しください。
+                    {t('contact.form.error')}
                   </div>
                 </div>
               )}

@@ -1,61 +1,64 @@
+import { useTranslation } from 'react-i18next';
 
 export default function CareerSection() {
+  const { t } = useTranslation();
+
   const businessCareer = [
     {
       period: '2024~',
-      company: 'NVIDIA合同会社',
-      position: 'Senior Solution Architect'
+      companyKey: 'career.business.nvidia.company',
+      positionKey: 'career.business.nvidia.position'
     },
     {
       period: '2023~2024',
-      company: 'Unity Technologies Japan株式会社',
-      position: 'Senior Program Manager'
+      companyKey: 'career.business.unity.company',
+      positionKey: 'career.business.unity.position'
     },
     {
       period: '2022~',
-      company: '株式会社Play Life Studio',
-      position: '代表取締役'
+      companyKey: 'career.business.playlife.company',
+      positionKey: 'career.business.playlife.position'
     },
     {
       period: '2019~2022',
-      company: '株式会社博報堂',
-      position: '研究ディレクター'
+      companyKey: 'career.business.hakuhodo.company',
+      positionKey: 'career.business.hakuhodo.position'
     },
     {
       period: '2016~2019',
-      company: '株式会社リコー',
-      position: 'プロジェクトマネージャー / ソフトウェアエンジニア'
+      companyKey: 'career.business.ricoh.company',
+      positionKey: 'career.business.ricoh.position'
     },
     {
       period: '2015~2016',
-      company: '株式会社スクウェア・エニックス',
-      position: 'ゲームプログラマー'
+      companyKey: 'career.business.squareenix.company',
+      positionKey: 'career.business.squareenix.position'
     },
     {
       period: '2012~2015',
-      company: 'ソニー株式会社',
-      position: 'ソフトウェアエンジニア'
+      companyKey: 'career.business.sony.company',
+      positionKey: 'career.business.sony.position'
     }
   ];
 
   const education = [
     {
       period: '2021~',
-      institution: '東京大学大学院',
-      degree: '学際情報学府 博士課程',
-      status: '在学中'
+      institutionKey: 'career.education.utokyo.institution',
+      degreeKey: 'career.education.utokyo.degree',
+      statusKey: 'career.status.enrolled'
     },
     {
       period: '2010~2012',
-      institution: '慶應義塾大学大学院',
-      degree: 'メディアデザイン研究科 修士課程',
-      status: '修了'
+      institutionKey: 'career.education.keio_grad.institution',
+      degreeKey: 'career.education.keio_grad.degree',
+      statusKey: 'career.status.completed'
     },
     {
       period: '2006~2010',
-      institution: '慶應義塾大学',
-      degree: '環境情報学部 環境情報学科',
-      status: '卒業'
+      institutionKey: 'career.education.keio.institution',
+      degreeKey: 'career.education.keio.degree',
+      statusKey: 'career.status.graduated'
     }
   ];
 
@@ -64,13 +67,13 @@ export default function CareerSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Career
+            {t('career.title')}
             <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent ml-3">
-              History
+              {t('career.titleHighlight')}
             </span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            これまでの経歴と学歴
+            {t('career.subtitle')}
           </p>
         </div>
 
@@ -81,7 +84,7 @@ export default function CareerSection() {
               <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center mr-3">
                 <i className="ri-briefcase-line text-white text-xl"></i>
               </div>
-              Business
+              {t('career.business.title')}
             </h3>
             
             <div className="space-y-4">
@@ -97,11 +100,11 @@ export default function CareerSection() {
                   </div>
                   
                   <h4 className="text-lg font-bold text-white mb-1">
-                    {job.company}
+                    {t(job.companyKey)}
                   </h4>
-                  
+
                   <p className="text-sm text-gray-300">
-                    {job.position}
+                    {t(job.positionKey)}
                   </p>
                 </div>
               ))}
@@ -114,7 +117,7 @@ export default function CareerSection() {
               <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-blue-500 rounded-lg flex items-center justify-center mr-3">
                 <i className="ri-graduation-cap-line text-white text-xl"></i>
               </div>
-              Education
+              {t('career.education.title')}
             </h3>
             
             <div className="space-y-4">
@@ -128,20 +131,20 @@ export default function CareerSection() {
                       {edu.period}
                     </span>
                     <span className={`text-xs font-medium px-2 py-1 rounded ${
-                      edu.status === '在学中' 
-                        ? 'text-orange-300 bg-orange-500/20 border border-orange-500/30' 
+                      edu.statusKey === 'career.status.enrolled'
+                        ? 'text-orange-300 bg-orange-500/20 border border-orange-500/30'
                         : 'text-gray-300 bg-gray-500/20 border border-gray-500/30'
                     }`}>
-                      {edu.status}
+                      {t(edu.statusKey)}
                     </span>
                   </div>
                   
                   <h4 className="text-lg font-bold text-white mb-1">
-                    {edu.institution}
+                    {t(edu.institutionKey)}
                   </h4>
-                  
+
                   <p className="text-sm text-gray-300">
-                    {edu.degree}
+                    {t(edu.degreeKey)}
                   </p>
                 </div>
               ))}
@@ -151,10 +154,10 @@ export default function CareerSection() {
 
         {/* Skills Section */}
         <div className="mt-16">
-          <h3 className="text-3xl font-bold text-white text-center mb-8">Technical Skills</h3>
+          <h3 className="text-3xl font-bold text-white text-center mb-8">{t('career.skills.title')}</h3>
           <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8">
             <p className="text-lg text-gray-300 text-center mb-6">
-              I cover wide range of software skills.
+              {t('career.skills.description')}
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               {[

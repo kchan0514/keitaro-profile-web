@@ -1,5 +1,8 @@
+import { useTranslation } from 'react-i18next';
 
 export default function Footer() {
+  const { t } = useTranslation();
+
   return (
     <footer className="bg-black text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -7,12 +10,12 @@ export default function Footer() {
           {/* Profile Info */}
           <div>
             <h3 className="text-lg font-semibold mb-4">
-              Keitaro Shimizu
+              {t('hero.nameEn')}
             </h3>
             <p className="text-gray-400 text-sm leading-relaxed">
-              XR・EdTech研究者<br />
-              東京大学大学院 博士課程<br />
-              株式会社Play Life Studio 代表取締役
+              {t('hero.badge')}<br />
+              {t('about.position.utokyoRole')}<br />
+              {t('about.position.playlife')} {t('about.position.playlifeRole')}
             </p>
           </div>
 
@@ -22,22 +25,22 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <a href="#about" className="text-gray-400 hover:text-blue-400 transition-colors duration-200 cursor-pointer">
-                  About
+                  {t('header.about')}
                 </a>
               </li>
               <li>
                 <a href="#research" className="text-gray-400 hover:text-blue-400 transition-colors duration-200 cursor-pointer">
-                  Research
+                  {t('header.research')}
                 </a>
               </li>
               <li>
                 <a href="#career" className="text-gray-400 hover:text-blue-400 transition-colors duration-200 cursor-pointer">
-                  Career
+                  {t('header.career')}
                 </a>
               </li>
               <li>
                 <a href="#media" className="text-gray-400 hover:text-blue-400 transition-colors duration-200 cursor-pointer">
-                  Media
+                  {t('header.media')}
                 </a>
               </li>
             </ul>
@@ -75,11 +78,11 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
           <p className="text-gray-500 text-sm">
-            © 2024 Keitaro Shimizu. All rights reserved. | 
-            <a 
-              href="https://readdy.ai/?origin=logo" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            {t('footer.copyright')} |
+            <a
+              href="https://readdy.ai/?origin=logo"
+              target="_blank"
+              rel="noopener noreferrer"
               className="ml-1 hover:text-blue-400 transition-colors duration-200"
             >
               Powered by Readdy

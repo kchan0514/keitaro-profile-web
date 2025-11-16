@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface Article {
   title: string;
@@ -11,6 +12,7 @@ interface Article {
 }
 
 export default function BlogSection() {
+  const { t, i18n } = useTranslation();
   const [selectedTag, setSelectedTag] = useState<string>('All');
   const [sortOrder, setSortOrder] = useState<'latest' | 'oldest'>('latest');
   const [showAll, setShowAll] = useState<boolean>(false);
@@ -173,7 +175,8 @@ export default function BlogSection() {
   // 日付をフォーマット
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' });
+    const locale = i18n.language === 'en' ? 'en-US' : 'ja-JP';
+    return date.toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' });
   };
 
   return (
@@ -181,13 +184,13 @@ export default function BlogSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Blog &
+            {t('blog.title')}
             <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent ml-3">
-              Articles
+              {t('blog.titleHighlight')}
             </span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-            研究やテクノロジーに関する記事・ブログ
+            {t('blog.subtitle')}
           </p>
         </div>
 
@@ -198,7 +201,7 @@ export default function BlogSection() {
             <div className="flex-1 w-full md:w-auto">
               <label className="text-sm font-medium text-gray-400 mb-3 block">
                 <i className="ri-filter-line mr-2"></i>
-                タグで絞り込み
+                {t('blog.filter.label')}
               </label>
               <div className="flex flex-wrap gap-2">
                 {allTags.map((tag) => (
@@ -221,7 +224,7 @@ export default function BlogSection() {
             <div className="w-full md:w-auto">
               <label className="text-sm font-medium text-gray-400 mb-3 block">
                 <i className="ri-sort-desc mr-2"></i>
-                並び替え
+                {t('blog.sort.label')}
               </label>
               <div className="flex gap-2">
                 <button
@@ -233,7 +236,7 @@ export default function BlogSection() {
                   }`}
                 >
                   <i className="ri-arrow-down-line mr-1"></i>
-                  最新順
+                  {t('blog.sort.latest')}
                 </button>
                 <button
                   onClick={() => setSortOrder('oldest')}
@@ -244,7 +247,7 @@ export default function BlogSection() {
                   }`}
                 >
                   <i className="ri-arrow-up-line mr-1"></i>
-                  古い順
+                  {t('blog.sort.oldest')}
                 </button>
               </div>
             </div>
@@ -310,7 +313,7 @@ export default function BlogSection() {
                 {/* リンクアイコン */}
                 <div className="flex items-center justify-end">
                   <span className="text-sm text-blue-400 group-hover:text-blue-300 transition-colors duration-200 flex items-center">
-                    記事を読む
+                    {t('blog.readMore')}
                     <i className="ri-arrow-right-line ml-2"></i>
                   </span>
                 </div>
@@ -325,7 +328,7 @@ export default function BlogSection() {
             <div className="w-20 h-20 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-4">
               <i className="ri-file-search-line text-4xl text-gray-600"></i>
             </div>
-            <p className="text-gray-400 text-lg">該当する記事が見つかりませんでした</p>
+            <p className="text-gray-400 text-lg">{t('blog.noResults')}</p>
           </div>
         )}
 
@@ -337,7 +340,7 @@ export default function BlogSection() {
               className="inline-flex items-center bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700 hover:border-gray-600 text-white px-8 py-3 rounded-full font-medium transition-all duration-200 cursor-pointer"
             >
               <i className="ri-arrow-down-line mr-2"></i>
-              もっと見る ({filteredArticles.length - 6}件の記事)
+              {t('blog.showMore', { count: filteredArticles.length - 6 })}
             </button>
           </div>
         )}
@@ -349,10 +352,10 @@ export default function BlogSection() {
               <i className="ri-article-line text-white text-2xl"></i>
             </div>
             <h3 className="text-2xl font-bold text-white mb-4">
-              もっと記事を読む
+              {t('blog.cta.title')}
             </h3>
             <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-              noteで研究やテクノロジーに関する記事を定期的に投稿しています
+              {t('blog.cta.description')}
             </p>
             <a
               href="https://note.com/keitaro_shimizu"
@@ -361,7 +364,7 @@ export default function BlogSection() {
               className="inline-flex items-center bg-gradient-to-r from-orange-600 to-red-600 text-white px-8 py-3 rounded-full font-medium hover:from-orange-700 hover:to-red-700 transition-all duration-200 cursor-pointer shadow-lg shadow-orange-500/25"
             >
               <i className="ri-external-link-line mr-2"></i>
-              noteで全ての記事を見る
+              {t('blog.cta.button')}
             </a>
           </div>
         </div>

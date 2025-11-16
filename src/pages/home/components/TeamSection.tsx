@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function MediaSection() {
+  const { t } = useTranslation();
   const [showAllMedia, setShowAllMedia] = useState<boolean>(false);
 
   const mediaLinks = [
@@ -95,7 +97,7 @@ export default function MediaSection() {
       url: 'https://www.linkedin.com/in/keitaroshimizu/',
       icon: 'ri-linkedin-fill',
       color: 'from-blue-600 to-blue-700',
-      description: 'プロフェッショナルなネットワーキング'
+      descriptionKey: 'media.social.linkedin.desc'
     },
     {
       platform: 'Twitter',
@@ -103,7 +105,7 @@ export default function MediaSection() {
       url: 'https://twitter.com/GIZAGIZAHEART',
       icon: 'ri-twitter-fill',
       color: 'from-blue-400 to-blue-500',
-      description: '研究や技術に関する情報発信'
+      descriptionKey: 'media.social.twitter.desc'
     },
     {
       platform: 'Email',
@@ -111,7 +113,7 @@ export default function MediaSection() {
       url: 'mailto:keitaro@iis-lab.org',
       icon: 'ri-mail-fill',
       color: 'from-green-500 to-green-600',
-      description: '直接のお問い合わせ'
+      descriptionKey: 'media.social.email.desc'
     }
   ];
 
@@ -120,19 +122,19 @@ export default function MediaSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Media &
+            {t('media.title')}
             <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent ml-3">
-              Links
+              {t('media.titleHighlight')}
             </span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            研究成果やプロジェクト、メディアへのリンク
+            {t('media.subtitle')}
           </p>
         </div>
 
         {/* Project Links */}
         <div className="mb-16">
-          <h3 className="text-3xl font-bold text-white text-center mb-8">Projects & Media</h3>
+          <h3 className="text-3xl font-bold text-white text-center mb-8">{t('media.projectsTitle')}</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {displayedMediaLinks.map((link, index) => (
               <a
@@ -201,7 +203,7 @@ export default function MediaSection() {
                 className="inline-flex items-center bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700 hover:border-gray-600 text-white px-8 py-3 rounded-full font-medium transition-all duration-200 cursor-pointer"
               >
                 <i className="ri-arrow-down-line mr-2"></i>
-                もっと見る ({mediaLinks.length - 6}件のメディア)
+                {t('media.showMore', { count: mediaLinks.length - 6 })}
               </button>
             </div>
           )}
@@ -209,7 +211,7 @@ export default function MediaSection() {
 
         {/* Social Media */}
         <div>
-          <h3 className="text-3xl font-bold text-white text-center mb-8">Social Media</h3>
+          <h3 className="text-3xl font-bold text-white text-center mb-8">{t('media.socialTitle')}</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {socialMedia.map((social, index) => (
               <a
@@ -233,7 +235,7 @@ export default function MediaSection() {
                   </p>
                   
                   <p className="text-gray-300 text-sm">
-                    {social.description}
+                    {t(social.descriptionKey)}
                   </p>
                 </div>
               </a>
@@ -245,17 +247,17 @@ export default function MediaSection() {
         <div className="mt-16 text-center">
           <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-white mb-4">
-              共同研究・開発のご相談
+              {t('media.cta.title')}
             </h3>
             <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-              大学・業界とらわれず、さまざまな方と共同研究や開発などを積極的に進めて行こうと思っています。ぜひお気軽にお声がけください。
+              {t('media.cta.description')}
             </p>
             <button
               onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
               className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-200 cursor-pointer whitespace-nowrap"
             >
               <i className="ri-message-3-line mr-2"></i>
-              お問い合わせ
+              {t('media.cta.button')}
             </button>
           </div>
         </div>

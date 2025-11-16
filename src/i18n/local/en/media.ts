@@ -7,6 +7,7 @@ export default {
   'media.showMore': 'Show More ({count} more items)',
   'media.cta.title': 'Collaboration Opportunities',
   'media.cta.description': 'I actively pursue collaborative research and development with various people, regardless of university or industry boundaries. Please feel free to reach out.',
+  'media.cta.button': 'Contact Me',
 
   // Social Media
   'media.social.linkedin.desc': 'Professional networking',
