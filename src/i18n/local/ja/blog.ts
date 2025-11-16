@@ -1,0 +1,15 @@
+export default {
+  'blog.title': 'Blog &',
+  'blog.titleHighlight': 'Articles',
+  'blog.subtitle': '研究やテクノロジーに関する記事・ブログ',
+  'blog.filter.label': 'タグで絞り込み',
+  'blog.sort.label': '並び替え',
+  'blog.sort.latest': '最新順',
+  'blog.sort.oldest': '古い順',
+  'blog.readMore': '記事を読む',
+  'blog.noResults': '該当する記事が見つかりませんでした',
+  'blog.showMore': 'もっと見る ({count}件の記事)',
+  'blog.cta.title': 'もっと記事を読む',
+  'blog.cta.description': 'noteで研究やテクノロジーに関する記事を定期的に投稿しています',
+  'blog.cta.button': 'noteで全ての記事を見る',
+};

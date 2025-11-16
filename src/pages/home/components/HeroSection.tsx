@@ -1,7 +1,9 @@
-
+import { useTranslation } from 'react-i18next';
 import Button from '../../../components/base/Button';
 
 export default function HeroSection() {
+  const { t } = useTranslation();
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-gray-900 to-black">
       {/* Animated Background Pattern */}
@@ -13,7 +15,7 @@ export default function HeroSection() {
           <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-cyan-500/20 rounded-full blur-3xl animate-pulse delay-2000"></div>
         </div>
       </div>
-      
+
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -21,43 +23,43 @@ export default function HeroSection() {
           <div className="text-center lg:text-left">
             <div className="mb-6">
               <span className="inline-block px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30 rounded-full text-blue-300 text-sm font-medium backdrop-blur-sm">
-                XR・EdTech Researcher
+                {t('hero.badge')}
               </span>
             </div>
-            
+
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              <span className="text-white">清水啓太郎</span>
+              <span className="text-white">{t('hero.name')}</span>
               <br />
               <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
-                Keitaro Shimizu
+                {t('hero.nameEn')}
               </span>
             </h1>
-            
+
             <p className="text-xl md:text-2xl text-blue-300 font-medium mb-6">
-              Ph.D Student / CEO
+              {t('hero.title')}
             </p>
-            
+
             <p className="text-lg text-gray-300 mb-8 max-w-2xl leading-relaxed">
-              ヒューマンコンピュータインタフェース(HCI)やXR技術の研究をしています。これらの最新技術と、コミュニケーションや教育、ゲーミフィケーションを連携させ、新たな価値を生み出すことをビジョンとしています。
+              {t('hero.description')}
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="min-w-[200px] whitespace-nowrap bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-0 shadow-lg shadow-blue-500/25"
                 onClick={() => document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 <i className="ri-user-line mr-2 text-xl"></i>
-                プロフィールを見る
+                {t('common.viewProfile')}
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
+              <Button
+                variant="outline"
+                size="lg"
                 className="min-w-[200px] whitespace-nowrap border-gray-600 text-gray-300 hover:bg-gray-800 hover:border-gray-500"
                 onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 <i className="ri-message-3-line mr-2 text-xl"></i>
-                お問い合わせ
+                {t('common.contact')}
               </Button>
             </div>
 
@@ -94,7 +96,7 @@ export default function HeroSection() {
               <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-2xl overflow-hidden border border-gray-700 shadow-2xl shadow-blue-500/20 backdrop-blur-sm">
                 <img
                   src="/images/profile.jpg"
-                  alt="清水啓太郎のプロフィール写真"
+                  alt={t('hero.imageAlt')}
                   className="w-full h-full object-cover object-center"
                 />
               </div>

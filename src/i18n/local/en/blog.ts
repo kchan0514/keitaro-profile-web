@@ -1,0 +1,15 @@
+export default {
+  'blog.title': 'Blog &',
+  'blog.titleHighlight': 'Articles',
+  'blog.subtitle': 'Articles and blog posts on research and technology',
+  'blog.filter.label': 'Filter by tag',
+  'blog.sort.label': 'Sort by',
+  'blog.sort.latest': 'Latest',
+  'blog.sort.oldest': 'Oldest',
+  'blog.readMore': 'Read Article',
+  'blog.noResults': 'No articles found',
+  'blog.showMore': 'Show More ({count} more articles)',
+  'blog.cta.title': 'Read More Articles',
+  'blog.cta.description': 'I regularly post articles on research and technology on note',
+  'blog.cta.button': 'View All Articles on note',
+};

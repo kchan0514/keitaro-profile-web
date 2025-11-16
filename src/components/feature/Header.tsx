@@ -1,9 +1,13 @@
-
 import { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Button from '../base/Button';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t, i18n } = useTranslation();
+  const { lang } = useParams<{ lang: string }>();
+  const navigate = useNavigate();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.querySelector(sectionId);
@@ -11,6 +15,11 @@ export default function Header() {
       element.scrollIntoView({ behavior: 'smooth' });
     }
     setIsMenuOpen(false);
+  };
+
+  const changeLanguage = (newLang: string) => {
+    i18n.changeLanguage(newLang);
+    navigate(`/${newLang}`);
   };
 
   return (
@@ -23,39 +32,69 @@ export default function Header() {
               onClick={() => scrollToSection('#home')}
               className="text-gray-300 hover:text-blue-400 transition-colors duration-200 cursor-pointer font-medium"
             >
-              Home
+              {t('header.home')}
             </button>
             <button
               onClick={() => scrollToSection('#about')}
               className="text-gray-300 hover:text-blue-400 transition-colors duration-200 cursor-pointer font-medium"
             >
-              About
+              {t('header.about')}
             </button>
             <button
               onClick={() => scrollToSection('#research')}
               className="text-gray-300 hover:text-blue-400 transition-colors duration-200 cursor-pointer font-medium"
             >
-              Research
+              {t('header.research')}
             </button>
             <button
               onClick={() => scrollToSection('#career')}
               className="text-gray-300 hover:text-blue-400 transition-colors duration-200 cursor-pointer font-medium"
             >
-              Career
+              {t('header.career')}
             </button>
             <button
               onClick={() => scrollToSection('#media')}
               className="text-gray-300 hover:text-blue-400 transition-colors duration-200 cursor-pointer font-medium"
             >
-              Media
+              {t('header.media')}
+            </button>
+            <button
+              onClick={() => scrollToSection('#blog')}
+              className="text-gray-300 hover:text-blue-400 transition-colors duration-200 cursor-pointer font-medium"
+            >
+              {t('header.blog')}
             </button>
             <button
               onClick={() => scrollToSection('#contact')}
               className="text-gray-300 hover:text-blue-400 transition-colors duration-200 cursor-pointer font-medium"
             >
-              Contact
+              {t('header.contact')}
             </button>
           </nav>
+
+          {/* Language Switcher */}
+          <div className="hidden md:flex items-center space-x-2 ml-auto">
+            <button
+              onClick={() => changeLanguage('ja')}
+              className={`px-3 py-1 rounded-md transition-colors duration-200 cursor-pointer font-medium ${
+                lang === 'ja'
+                  ? 'bg-blue-600 text-white'
+                  : 'text-gray-300 hover:text-blue-400 hover:bg-gray-800'
+              }`}
+            >
+              JP
+            </button>
+            <button
+              onClick={() => changeLanguage('en')}
+              className={`px-3 py-1 rounded-md transition-colors duration-200 cursor-pointer font-medium ${
+                lang === 'en'
+                  ? 'bg-blue-600 text-white'
+                  : 'text-gray-300 hover:text-blue-400 hover:bg-gray-800'
+              }`}
+            >
+              EN
+            </button>
+          </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden ml-auto">
@@ -78,38 +117,68 @@ export default function Header() {
                 onClick={() => scrollToSection('#home')}
                 className="block w-full text-left px-3 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-800 rounded-md transition-colors duration-200 cursor-pointer font-medium"
               >
-                Home
+                {t('header.home')}
               </button>
               <button
                 onClick={() => scrollToSection('#about')}
                 className="block w-full text-left px-3 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-800 rounded-md transition-colors duration-200 cursor-pointer font-medium"
               >
-                About
+                {t('header.about')}
               </button>
               <button
                 onClick={() => scrollToSection('#research')}
                 className="block w-full text-left px-3 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-800 rounded-md transition-colors duration-200 cursor-pointer font-medium"
               >
-                Research
+                {t('header.research')}
               </button>
               <button
                 onClick={() => scrollToSection('#career')}
                 className="block w-full text-left px-3 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-800 rounded-md transition-colors duration-200 cursor-pointer font-medium"
               >
-                Career
+                {t('header.career')}
               </button>
               <button
                 onClick={() => scrollToSection('#media')}
                 className="block w-full text-left px-3 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-800 rounded-md transition-colors duration-200 cursor-pointer font-medium"
               >
-                Media
+                {t('header.media')}
+              </button>
+              <button
+                onClick={() => scrollToSection('#blog')}
+                className="block w-full text-left px-3 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-800 rounded-md transition-colors duration-200 cursor-pointer font-medium"
+              >
+                {t('header.blog')}
               </button>
               <button
                 onClick={() => scrollToSection('#contact')}
                 className="block w-full text-left px-3 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-800 rounded-md transition-colors duration-200 cursor-pointer font-medium"
               >
-                Contact
+                {t('header.contact')}
               </button>
+
+              {/* Mobile Language Switcher */}
+              <div className="flex items-center space-x-2 px-3 py-2">
+                <button
+                  onClick={() => changeLanguage('ja')}
+                  className={`flex-1 px-3 py-2 rounded-md transition-colors duration-200 cursor-pointer font-medium ${
+                    lang === 'ja'
+                      ? 'bg-blue-600 text-white'
+                      : 'text-gray-300 hover:text-blue-400 hover:bg-gray-800 border border-gray-700'
+                  }`}
+                >
+                  JP
+                </button>
+                <button
+                  onClick={() => changeLanguage('en')}
+                  className={`flex-1 px-3 py-2 rounded-md transition-colors duration-200 cursor-pointer font-medium ${
+                    lang === 'en'
+                      ? 'bg-blue-600 text-white'
+                      : 'text-gray-300 hover:text-blue-400 hover:bg-gray-800 border border-gray-700'
+                  }`}
+                >
+                  EN
+                </button>
+              </div>
             </div>
           </div>
         )}
