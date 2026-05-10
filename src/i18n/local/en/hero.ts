@@ -1,8 +1,8 @@
 export default {
-  'hero.badge': 'XR・EdTech Researcher',
+  'hero.badge': 'XR × AI × HCI / Industrial DX & Democratization',
   'hero.name': 'Keitaro Shimizu',
   'hero.nameEn': 'Keitaro Shimizu',
-  'hero.title': 'Ph.D Student / CEO',
-  'hero.description': 'I conduct research in Human-Computer Interaction (HCI) and XR technologies. My vision is to create new value by integrating these cutting-edge technologies with communication, education, and gamification.',
+  'hero.title': 'CEO, Play Life Studio  /  Ph.D Candidate, The University of Tokyo (HCI)',
+  'hero.description': 'Designing human-centered XR, AI, and Digital Twin systems for people and society — democratized, and built to be used.',
   'hero.imageAlt': 'Profile photo of Keitaro Shimizu',
 };
