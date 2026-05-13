@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://keitaro-shimizu.com/sitemap.xml
