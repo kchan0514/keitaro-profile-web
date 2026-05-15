@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>OG Template</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+  }
+  body {
+    background:
+      radial-gradient(circle at 80% 30%, rgba(168, 85, 247, 0.25) 0%, transparent 50%),
+      radial-gradient(circle at 20% 80%, rgba(20, 184, 166, 0.18) 0%, transparent 50%),
+      linear-gradient(135deg, #0a0e27 0%, #1e1b4b 50%, #312e81 100%);
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', system-ui, sans-serif;
+    color: #fff;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+  }
+  .accent-strip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 100%;
+    background: linear-gradient(180deg, #6366f1 0%, #a855f7 40%, #ec4899 70%, #f97316 100%);
+  }
+  .container {
+    padding: 64px 72px 56px 92px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 56px;
+    position: relative;
+  }
+  .text-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 8px 0;
+  }
+  .badge {
+    display: inline-block;
+    padding: 9px 22px;
+    border: 1px solid rgba(165, 180, 252, 0.35);
+    border-radius: 9999px;
+    background: rgba(99, 102, 241, 0.12);
+    color: #c7d2fe;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    width: fit-content;
+    backdrop-filter: blur(8px);
+  }
+  .name-jp {
+    font-size: 84px;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-top: 22px;
+  }
+  .name-en {
+    font-size: 38px;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-top: 6px;
+    background: linear-gradient(90deg, #818cf8 0%, #c084fc 50%, #f472b6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .tagline {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.55;
+    color: #e2e8f0;
+    margin-top: 28px;
+    max-width: 640px;
+  }
+  .meta {
+    margin-top: 24px;
+  }
+  .role-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #cbd5e1;
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-top: 8px;
+  }
+  .role-line::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: #14b8a6;
+    border-radius: 9999px;
+    flex-shrink: 0;
+  }
+  .domain {
+    position: absolute;
+    bottom: 36px;
+    right: 64px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #a5b4fc;
+    letter-spacing: 0.01em;
+  }
+  .photo-wrap {
+    position: relative;
+    width: 360px;
+    height: 360px;
+    flex-shrink: 0;
+  }
+  .photo-glow {
+    position: absolute;
+    inset: -24px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.45) 0%, transparent 65%);
+    filter: blur(20px);
+    z-index: 0;
+  }
+  .photo {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 32px;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+</style>
+</head>
+<body>
+  <div class="accent-strip"></div>
+  <div class="container">
+    <div class="text-area">
+      <div>
+        <div class="badge">XR × AI × HCI ／ 産業DXと民主化</div>
+        <h1 class="name-jp">清水啓太郎</h1>
+        <h2 class="name-en">Keitaro Shimizu</h2>
+        <p class="tagline">人と社会のためのXR・AI・デジタルツインを、民主化しながら、使われ続ける形で設計する研究者・経営者。</p>
+      </div>
+      <div class="meta">
+        <div class="role-line">CEO, Play Life Studio</div>
+        <div class="role-line">Ph.D Candidate, The University of Tokyo (HCI)</div>
+      </div>
+    </div>
+    <div class="photo-wrap">
+      <div class="photo-glow"></div>
+      <img class="photo" src="../public/images/profile.jpg" alt="Keitaro Shimizu" />
+    </div>
+  </div>
+  <div class="domain">keitaro-shimizu.com</div>
+</body>
+</html>
