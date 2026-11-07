@@ -71,17 +71,6 @@ export default function AboutSection() {
             </h3>
             <div className="space-y-6">
               <div className="flex items-start group hover:bg-gray-700/30 rounded-xl p-4 transition-all duration-300">
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                  <i className="ri-graduation-cap-line text-white text-xl"></i>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-white mb-1">{t('about.position.utokyo')}</h4>
-                  <p className="text-gray-300 text-sm">{t('about.position.utokyoRole')}</p>
-                  <p className="text-gray-400 text-sm">{t('about.position.utokyoLab')}</p>
-                </div>
-              </div>
-
-              <div className="flex items-start group hover:bg-gray-700/30 rounded-xl p-4 transition-all duration-300">
                 <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                   <i className="ri-building-line text-white text-xl"></i>
                 </div>

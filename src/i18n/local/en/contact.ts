@@ -7,9 +7,7 @@ export default {
   'contact.info.title': 'Contact Information',
   'contact.info.email': 'Email',
   'contact.info.affiliation': 'Affiliation',
-  'contact.info.affiliationText': 'The University of Tokyo\nGraduate School of Interdisciplinary Information Studies\nDoctoral Program',
-  'contact.info.lab': 'Laboratory',
-  'contact.info.labText': 'Yatani Lab\n(Interactive Intelligent Systems Lab)',
+  'contact.info.affiliationText': 'Play Life Studio Inc.\nCEO & Representative Director',
 
   // Common Inquiries
   'contact.inquiries.title': 'Common Inquiries',

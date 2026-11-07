@@ -110,18 +110,6 @@ export default function ContactSection() {
                     </p>
                   </div>
                 </div>
-
-                <div className="flex items-start group hover:bg-gray-700/30 rounded-xl p-4 transition-all duration-300">
-                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                    <i className="ri-team-line text-white text-xl"></i>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-white mb-1">{t('contact.info.lab')}</h4>
-                    <p className="text-gray-300 whitespace-pre-line">
-                      {t('contact.info.labText')}
-                    </p>
-                  </div>
-                </div>
               </div>
             </div>
 

@@ -11,6 +11,7 @@ export default {
 
   // Status labels
   'career.status.enrolled': '在学中',
+  'career.status.withdrawn': '満期退学',
   'career.status.completed': '修了',
   'career.status.graduated': '卒業',
 

@@ -43,10 +43,10 @@ export default function CareerSection() {
 
   const education = [
     {
-      period: '2021~',
+      period: '2021~2026',
       institutionKey: 'career.education.utokyo.institution',
       degreeKey: 'career.education.utokyo.degree',
-      statusKey: 'career.status.enrolled'
+      statusKey: 'career.status.withdrawn'
     },
     {
       period: '2010~2012',

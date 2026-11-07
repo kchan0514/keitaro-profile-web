@@ -11,6 +11,7 @@ export default {
 
   // Status labels
   'career.status.enrolled': 'Enrolled',
+  'career.status.withdrawn': 'Withdrew (coursework completed)',
   'career.status.completed': 'Completed',
   'career.status.graduated': 'Graduated',
 

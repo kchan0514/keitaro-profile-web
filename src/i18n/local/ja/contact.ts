@@ -7,9 +7,7 @@ export default {
   'contact.info.title': 'お問い合わせ情報',
   'contact.info.email': 'メール',
   'contact.info.affiliation': '所属',
-  'contact.info.affiliationText': '東京大学大学院\n学際情報学府学際情報学専攻\n博士課程',
-  'contact.info.lab': '研究室',
-  'contact.info.labText': '矢谷研究室\n(Interactive Intelligent Systems Lab)',
+  'contact.info.affiliationText': '株式会社Play Life Studio\n代表取締役CEO',
 
   // Common Inquiries
   'contact.inquiries.title': 'よくあるご相談',
