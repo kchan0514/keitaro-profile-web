@@ -17,6 +17,10 @@
 | 2026-11-07 | 方向は **A「書く人」が主役、作ったもの・取り組みが2番手** | 実際に人が集まったのは記事経由。8月の B「工房（Works 主役）」は実物写真・数字がそろわず止まっていた |
 | 2026-08-03 | 役割＝名刺、ヒーローは名前主役、NVIDIA・博士は Career のみ | `docs/site_design_policy.md`。A 方向で改訂予定 |
 
+## ブロッカー（2026-11-07）
+- Astra 生成の準備完了（`docs/design/astra/gen_patterns.py`：① Astra が5コンセプトを考える → ② 画面を生成）。
+  ただし **OpenAI の API キーが無効（HTTP 401）**。`06_code/scripts/.env` の `OPENAI_API_KEY` を差し替えれば `python3 gen_patterns.py concepts` → `images` で再開できる。10/24 のセキュリティ対応で失効させたキーの可能性
+
 ## 次のアクション
 - [ ] A 方向の構成・ビジュアル案を清水さんが確認（構成: 書いたもの／作ったもの／About／Contact）
 - [ ] 「作ったもの・取り組み」の掲載リスト確定
