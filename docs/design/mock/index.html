@@ -131,6 +131,15 @@ body[data-domain] .dim{opacity:.22}
 .more:hover{text-decoration:underline}
 @media (max-width:640px){.post a{grid-template-columns:auto 1fr;row-gap:2px}.post .ttl,.post .tags{grid-column:1/-1}.post .tags{justify-content:flex-start}}
 
+/* 研究 */
+.rlead{margin:0 0 16px;max-width:36em;color:var(--pencil);font-size:14px}
+.papers{list-style:none;margin:0;padding:0;max-width:880px}
+.papers li{display:grid;grid-template-columns:4em 1fr auto;gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--ink);transition:opacity .25s}
+.papers .yr{font-size:13px;color:var(--pencil);font-variant-numeric:tabular-nums}
+.papers b{font-weight:500;display:block;line-height:1.6}
+.papers a{text-decoration:none}.papers a:hover b{color:var(--vermilion)}
+.papers .vn{font-size:12px;color:var(--pencil)}
+@media (max-width:640px){.papers li{grid-template-columns:3.5em 1fr}.papers .tag{grid-column:2;justify-self:start}}
 /* この人について */
 .about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:start}
 .about p{margin:0 0 12px;max-width:34em}
@@ -162,6 +171,7 @@ footer{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;co
       <li><a href="#values">考え方</a></li>
       <li><a href="#works">つくったもの</a></li>
       <li><a href="#writing">発信</a></li>
+      <li><a href="#research">研究</a></li>
       <li><a href="about.html">この人について</a></li>
       <li><a href="#contact">お問い合わせ</a></li>
       <li class="lang">JA / EN</li>
@@ -260,6 +270,17 @@ footer{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;co
     <a class="more" href="#writing">発信をすべて見る →</a>
   </section>
 
+  <section id="research">
+    <h2>研究・論文</h2>
+    <p class="rlead">つくったものを、問いとして確かめる。VRと触覚の研究から始まり、いまは会話エージェントと子どもの対話を研究しています。</p>
+    <ul class="papers">
+      <li data-d="ai"><span class="yr">2026</span><div><a href="works/yomikikase-agent.html"><b>読み聞かせ時の親子間コミュニケーションに対する会話エージェントの質問戦略の効果検証</b></a><span class="vn">情報処理学会論文誌</span></div><span class="tag t-ai">生成AI</span></li>
+      <li data-d="xr"><span class="yr">2011</span><div><b>Adaptive Parallax Autostereoscopic LED Display</b><span class="vn">ACM SIGGRAPH ASIA 2011 Emerging Technologies</span></div><span class="tag t-xr">ゲーム・XR</span></li>
+      <li data-d="xr"><span class="yr">2011</span><div><b>RePro3D: Full-Parallax 3D Display with Haptic Feedback using Retro-Reflective Projection Technology</b><span class="vn">ISVRI 2011（Honorable Mention Award）</span></div><span class="tag t-xr">ゲーム・XR</span></li>
+    </ul>
+    <a class="more" href="research.html">研究・論文をすべて見る →</a>
+  </section>
+
   <section id="about">
     <h2>この人について</h2>
     <div class="about">
@@ -335,7 +356,7 @@ footer{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;co
 
   // 絞り込み
   const chips=[...document.querySelectorAll('.chips button')];
-  const items=[...document.querySelectorAll('.work,.post')];
+  const items=[...document.querySelectorAll('.work,.post,.papers li')];
   let cur=null;
   function setD(d){
     cur=(cur===d)?null:d;
