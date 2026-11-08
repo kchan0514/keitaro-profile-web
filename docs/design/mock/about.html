@@ -16,8 +16,8 @@
 .cont b{font-family:var(--hand);color:var(--vermilion);font-size:20px;font-weight:600}
 .cont a{font-weight:700;text-decoration:none}.cont a:hover{color:var(--vermilion)}
 @media (prefers-reduced-motion:no-preference){.cont b::after{content:" ▶";animation:blink 1.2s steps(2) infinite}@keyframes blink{50%{opacity:0}}}
-</style></head><body><div class="wrap">
-<header class="site"><a href="index.html"><b>清水 啓太郎</b></a><nav><a href="index.html#values">考え方</a>　<a href="index.html#works">つくったもの</a>　<a href="index.html#writing">発信</a>　<a href="about.html">この人について</a>　<a href="index.html#contact">お問い合わせ</a></nav></header>
+</style><style>.lang button{all:unset;cursor:pointer;color:var(--pencil);padding:0 2px}.lang button[aria-pressed="true"]{color:var(--ink);font-weight:700;border-bottom:2px solid var(--vermilion)}.lang button:focus-visible{outline:2px solid var(--vermilion)}</style></head><body><div class="wrap">
+<header class="site"><a href="index.html"><b>清水 啓太郎</b></a><nav><a href="index.html#values">考え方</a>　<a href="index.html#works">つくったもの</a>　<a href="index.html#writing">発信</a>　<a href="about.html">この人について</a>　<a href="index.html#contact">お問い合わせ</a>　<span class="lang" role="group" aria-label="Language"><button type="button" data-lang="ja" aria-pressed="true">JA</button> / <button type="button" data-lang="en" aria-pressed="false">EN</button></span></nav></header>
 <div class="prog" aria-hidden="true"><b>物語の進行度</b><div class="bar"><i id="pb"></i></div><span id="pt">STAGE 0 / 7</span></div>
 <p class="kicker">この人について</p>
 <h1>深く潜って、渡ってきた。</h1>
@@ -70,8 +70,10 @@
 <dt>2010–2012</dt><dd>慶應義塾大学大学院 メディアデザイン研究科 修士課程</dd>
 <dt>2006–2010</dt><dd>慶應義塾大学 環境情報学部</dd>
 </dl>
+<p style="font-size:14px;color:var(--pencil);margin-top:16px">資格や、より詳しい職歴は <a href="https://www.linkedin.com/in/keitaroshimizu" style="color:var(--vermilion)">LinkedIn</a> にまとめています。</p>
 <footer><span>© Keitaro Shimizu</span><span>試作 2026-11-08（黄色の箇所は要確認・仮の文章）</span></footer></div><script>(function(){const ch=[...document.querySelectorAll('.chap')];const pb=document.getElementById('pb'),pt=document.getElementById('pt');
 function f(){let n=-1;ch.forEach((c,i)=>{const on=c.getBoundingClientRect().top<innerHeight*.6;c.classList.toggle('done',on);if(on)n=i;});
 const k=Math.max(0,Math.min(n,7));pb.style.width=((n+1)/ch.length*100)+'%';pt.textContent=n>=8?'STAGE ∞ ／ プレイ中':'STAGE '+k+' / 7';}
 addEventListener('scroll',f,{passive:true});f();})();</script>
+<script src="js/i18n.js"></script>
 </body></html>

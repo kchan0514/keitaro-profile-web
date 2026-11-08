@@ -200,6 +200,7 @@ footer{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;co
   .route{stroke-dasharray:2000;stroke-dashoffset:0;animation:draw 2.4s ease-out both}
   @keyframes draw{from{stroke-dashoffset:2000}to{stroke-dashoffset:0}}
 }
+.lang button{all:unset;cursor:pointer;color:var(--pencil);padding:0 2px}.lang button[aria-pressed="true"]{color:var(--ink);font-weight:700;border-bottom:2px solid var(--vermilion)}.lang button:focus-visible{outline:2px solid var(--vermilion)}
 </style>
 </head>
 <body>
@@ -213,7 +214,7 @@ footer{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;co
       <li><a href="#research">研究</a></li>
       <li><a href="about.html">この人について</a></li>
       <li><a href="#contact">お問い合わせ</a></li>
-      <li class="lang">JA / EN</li>
+      <li><span class="lang" role="group" aria-label="Language"><button type="button" data-lang="ja" aria-pressed="true">JA</button> / <button type="button" data-lang="en" aria-pressed="false">EN</button></span></li>
     </ul></nav>
   </header>
 
@@ -347,7 +348,7 @@ footer{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;co
   <section id="contact">
     <div class="contact">
       <div><span class="party">一緒にプレイしませんか</span><a class="big" href="#contact">お問い合わせ</a></div>
-      <div class="social"><a href="https://x.com/GIZAGIZAHEART">@GIZAGIZAHEART</a><a href="https://note.com/keitaro_shimizu">note</a><span>LinkedIn</span></div>
+      <div class="social"><a href="https://x.com/GIZAGIZAHEART">@GIZAGIZAHEART</a><a href="https://note.com/keitaro_shimizu">note</a><a href="https://www.linkedin.com/in/keitaroshimizu">LinkedIn</a></div>
     </div>
     <p style="font-size:14px;color:var(--pencil);margin:0">導入・共創・講演のご相談をお受けしています。</p>
   </section>
@@ -441,5 +442,6 @@ footer{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;co
     document.querySelectorAll('.post').forEach(p=>{p.hidden=(m!=='all'&&p.dataset.m!==m)});}));
 })();
 </script>
+<script src="js/i18n.js"></script>
 </body>
 </html>
