@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>清水啓太郎 越境マップ試作</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Klee+One:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* 方針: 白いノートの上に、領域ごとの淡い色の島と、それを渡る朱の1本線。見出しは中太で控えめ */
+  --paper:#FAF8F3;
+  --ink:#1D1D1B;
+  --pencil:#6E6C66;
+  --rule:#E3DED3;
+  --vermilion:#D9472B;
+  --xr:#CBDDF3;   --xr-ink:#3E6BA8;
+  --city:#D2E8D3; --city-ink:#3F7F4A;
+  --ai:#F4E6B0;   --ai-ink:#9A7A12;
+  --gov:#E2D7F0;  --gov-ink:#6E4F9E;
+  --font-display:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  --font-body:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  --font-hand:"Klee One","Hiragino Mincho ProN",serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.8;
+  background-image:repeating-linear-gradient(to bottom,transparent 0 31px,var(--rule) 31px 32px);background-attachment:local}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+header.site{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:20px;border-bottom:1px solid var(--ink);flex-wrap:wrap}
+.id b{display:block;font-weight:700;font-size:15px;letter-spacing:.08em}
+.id span{font-size:12px;color:var(--pencil)}
+nav ul{display:flex;gap:clamp(12px,3vw,28px);list-style:none;margin:0;padding:0;font-size:13px;flex-wrap:wrap}
+nav a{text-decoration:none}
+nav a:hover,nav a:focus-visible{color:var(--vermilion)}
+.lang{font-size:12px;color:var(--pencil)}
+
+.hero{padding-block:56px 8px}
+.hero h1{font-family:var(--font-display);font-weight:700;font-size:clamp(40px,6.4vw,68px);line-height:1.2;letter-spacing:.1em;margin:0}
+.hero h1 .en{display:block;font-size:clamp(14px,1.6vw,17px);font-weight:500;letter-spacing:.18em;color:var(--pencil);margin-top:10px}
+.hero .role{margin:18px 0 0;font-size:14px;font-weight:700;letter-spacing:.06em}
+.hero .motto{margin:26px 0 0;display:flex;align-items:center;gap:14px;font-family:var(--font-display);font-weight:700;font-size:clamp(22px,3vw,32px);letter-spacing:.08em;color:var(--ink)}
+.hero .motto::before{content:"";width:48px;height:2px;background:var(--vermilion);flex:none}
+.hero .sub{font-size:clamp(15px,1.8vw,17px);font-weight:500;letter-spacing:.06em;margin:4px 0 0;color:var(--pencil)}
+.hero .lead{max-width:36em;color:var(--pencil);font-size:14px;margin:18px 0 0}
+
+/* マップ */
+.mapbox{position:relative;margin-top:28px}
+.mapbox svg{display:block;width:100%;height:auto;overflow:visible}
+.island{cursor:pointer;outline:none}
+.island .ring{fill:none;stroke:#9a978f;stroke-width:.7;opacity:.55}
+.island .base{stroke:#8d8a83;stroke-width:1.1;fill-opacity:.7;transition:opacity .25s}
+.island .label{font-family:var(--font-display);font-weight:700;font-size:20px;fill:var(--ink);letter-spacing:.06em}
+.island:focus-visible .base{stroke:var(--vermilion);stroke-width:2.5}
+.route{fill:none;stroke:var(--vermilion);stroke-width:2.4;stroke-linecap:round}
+.stop{fill:var(--paper);stroke:var(--vermilion);stroke-width:2}
+.hand{font-family:var(--font-hand);fill:var(--vermilion);font-size:20px}
+.pin{font-size:13px;fill:var(--ink);letter-spacing:.02em}
+.pinline{stroke:var(--ink);stroke-width:.8}
+body[data-domain] .island:not(.on) .base{opacity:.25}
+body[data-domain] .island:not(.on) .label{opacity:.35}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;font-size:13px}
+.chips button{font:inherit;border:1px solid var(--ink);background:var(--paper);border-radius:999px;padding:4px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.chips button i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.chips button[aria-pressed="true"]{border-color:var(--vermilion);color:var(--vermilion)}
+.chips .hint{color:var(--pencil);align-self:center}
+
+
+/* 大事にしていること */
+.values{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:8px 36px}
+.value{padding:18px 0 16px;border-top:1px solid var(--ink)}
+.value .q{font-family:var(--font-display);font-weight:700;font-size:clamp(18px,2vw,21px);letter-spacing:.04em;line-height:1.55;margin:0;text-wrap:balance}
+.value p{margin:8px 0 0;font-size:14px;color:var(--pencil);max-width:30em}
+.value .note{font-family:var(--font-hand);color:var(--vermilion);font-size:15px;display:block;margin-bottom:4px}
+.value.wide{grid-column:1/-1}
+.value.wide .q{font-size:clamp(22px,2.8vw,30px)}
+section{padding-block:56px 8px}
+h2{font-family:var(--font-display);font-weight:700;font-size:clamp(20px,2.4vw,24px);letter-spacing:.08em;margin:0 0 24px;display:inline-block;
+  background:linear-gradient(transparent 0 85%,var(--vermilion) 85% 92%,transparent 92%);}
+h2 small{font-weight:500;font-size:13px;color:var(--pencil);margin-left:10px;letter-spacing:.04em}
+
+/* 取り組み */
+.works{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:24px 28px;list-style:none;margin:0;padding:0}
+.work{transition:opacity .25s;border-top:1px solid var(--ink)}
+.work .card{display:grid;gap:8px;padding:16px 0;text-decoration:none}
+.work .go{font-size:13px;color:var(--vermilion);font-weight:500}
+.work .card:hover h3,.work .card:focus-visible h3{color:var(--vermilion)}
+.work img{width:100%;max-width:100%;height:150px;object-fit:contain;object-position:left center;mix-blend-mode:multiply}
+.work h3{font-size:17px;font-weight:700;margin:0;letter-spacing:.03em}
+.work p{margin:0;font-size:14px;color:var(--pencil);line-height:1.75}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:11px;padding:1px 9px;border-radius:999px;letter-spacing:.04em}
+.t-xr{background:var(--xr);color:var(--xr-ink)} .t-city{background:var(--city);color:var(--city-ink)}
+.t-ai{background:var(--ai);color:var(--ai-ink)} .t-gov{background:var(--gov);color:var(--gov-ink)}
+.t-x{border:1px solid var(--pencil);color:var(--pencil)}
+body[data-domain] .dim{opacity:.22}
+
+/* 発信 */
+.channels{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,180px),1fr));gap:12px;margin-bottom:24px}
+.channels a{display:grid;padding:12px 16px;border:1px solid var(--ink);text-decoration:none;background:var(--paper)}
+.channels b{font-size:16px;letter-spacing:.04em}
+.channels span{font-size:12px;color:var(--pencil)}
+.channels a:hover,.channels a:focus-visible{border-color:var(--vermilion);color:var(--vermilion)}
+.mfilter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.mfilter button{font:inherit;font-size:13px;border:1px solid var(--ink);background:var(--paper);border-radius:999px;padding:2px 14px;cursor:pointer}
+.mfilter button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.med{font-size:11px;font-weight:700;letter-spacing:.06em;justify-self:start;padding:0 8px;border-radius:3px}
+.m-note{color:#1a7f5a;border:1px solid #1a7f5a}.m-yt{color:#c4302b;border:1px solid #c4302b}.m-talk{color:var(--ink);border:1px solid var(--ink)}
+.post[hidden]{display:none}
+.feat{list-style:none;margin:0 0 28px;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:24px}
+.feat a{display:grid;gap:6px;text-decoration:none}
+.feat .thumb{aspect-ratio:16/9;max-width:100%;border:1px solid var(--ink);display:grid;place-items:center;font-size:12px;color:var(--pencil);position:relative;background:#fff}
+.feat .t-yt{background:#f3eeee}.feat .t-note{background:#eef4f0}.feat .t-talk{background:#efeee9}
+.feat .play{position:absolute;width:46px;height:32px;border-radius:8px;background:#c4302b;opacity:.85}
+.feat .play::after{content:"";position:absolute;left:19px;top:9px;border-left:12px solid #fff;border-top:7px solid transparent;border-bottom:7px solid transparent}
+.feat b{font-size:15px;line-height:1.6}
+.feat time{font-size:12px;color:var(--pencil)}
+.feat a:hover b,.feat a:focus-visible b{color:var(--vermilion)}
+/* 記事 */
+.posts{list-style:none;margin:0;padding:0;max-width:820px}
+.post{border-bottom:1px solid var(--ink);transition:opacity .25s}
+.post a{display:grid;grid-template-columns:6.5em 5.5em 1fr auto;gap:16px;align-items:baseline;padding:12px 0;text-decoration:none}
+.post time{font-size:12px;color:var(--pencil);font-variant-numeric:tabular-nums}
+.post .ttl{font-weight:500}
+.post .tags{justify-content:flex-end}
+.post a:hover .ttl,.post a:focus-visible .ttl{color:var(--vermilion)}
+.more{display:inline-block;margin-top:16px;font-size:14px;color:var(--vermilion);text-decoration:none;font-weight:500}
+.more:hover{text-decoration:underline}
+@media (max-width:640px){.post a{grid-template-columns:auto 1fr;row-gap:2px}.post .ttl,.post .tags{grid-column:1/-1}.post .tags{justify-content:flex-start}}
+
+/* 研究 */
+.rlead{margin:0 0 16px;max-width:36em;color:var(--pencil);font-size:14px}
+.papers{list-style:none;margin:0;padding:0;max-width:880px}
+.papers li{display:grid;grid-template-columns:4em 1fr auto;gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--ink);transition:opacity .25s}
+.papers .yr{font-size:13px;color:var(--pencil);font-variant-numeric:tabular-nums}
+.papers b{font-weight:500;display:block;line-height:1.6}
+.papers a{text-decoration:none}.papers a:hover b{color:var(--vermilion)}
+.papers .vn{font-size:12px;color:var(--pencil)}
+@media (max-width:640px){.papers li{grid-template-columns:3.5em 1fr}.papers .tag{grid-column:2;justify-self:start}}
+/* この人について */
+.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:start}
+.about p{margin:0 0 12px;max-width:34em}
+.steps{list-style:none;margin:0;padding:0;border-left:2px solid var(--vermilion)}
+.steps li{padding:4px 0 10px 18px;position:relative;font-size:14px}
+.steps li::before{content:"";position:absolute;left:-7px;top:12px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2px solid var(--vermilion)}
+.steps b{font-weight:700;margin-right:8px}
+.steps span{color:var(--pencil)}
+@media (max-width:760px){.about{grid-template-columns:1fr}}
+
+.contact{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;padding-block:24px}
+.contact .big{font-family:var(--font-display);font-weight:700;font-size:clamp(22px,3vw,30px);text-decoration:none;letter-spacing:.06em;display:inline-flex;align-items:center;gap:16px}
+.contact .big::before{content:"";width:72px;height:2px;background:var(--vermilion);display:inline-block}
+.contact .big:hover{color:var(--vermilion)}
+.social{display:flex;gap:20px;font-size:13px;letter-spacing:.04em;flex-wrap:wrap}
+footer{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;color:var(--pencil);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:40px}
+:focus-visible{outline:2px solid var(--vermilion);outline-offset:3px}
+/* ===== ゲーム色（企画ノートの延長。ドット絵やネオンにはしない） ===== */
+.vswitch{position:fixed;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:20;display:flex;font-size:12px;border:1px solid var(--ink);background:var(--paper);border-radius:999px;overflow:hidden}
+.vswitch a{padding:4px 12px;text-decoration:none}.vswitch a[aria-current]{background:var(--ink);color:var(--paper)}
+/* マップ：ステージ番号・現在地のコマ・探索済のスタンプ・未踏の先 */
+.stage-no{font-family:var(--font-hand);font-size:13px;fill:var(--vermilion)}
+.unknown{fill:none;stroke:var(--vermilion);stroke-width:2;stroke-dasharray:3 7;stroke-linecap:round}
+.qmark{font-family:var(--font-hand);font-size:30px;fill:var(--vermilion)}
+.start{font-family:var(--font-hand);font-size:15px;fill:var(--vermilion)}
+.koma{fill:var(--vermilion)}
+.koma-ring{fill:none;stroke:var(--vermilion);stroke-width:1.5}
+.here{font-family:var(--font-hand);font-size:15px;fill:var(--ink)}
+.seal{opacity:0;transition:opacity .3s,transform .3s;transform-box:fill-box;transform-origin:center}
+.seal circle{fill:none;stroke:var(--vermilion);stroke-width:2}
+.seal text{font-family:var(--font-hand);font-size:14px;fill:var(--vermilion)}
+.island.seen .seal{opacity:.9}
+@media (prefers-reduced-motion:no-preference){
+  .koma-ring{animation:ping 2.2s ease-out infinite;transform-box:fill-box;transform-origin:center}
+  @keyframes ping{0%{transform:scale(.6);opacity:1}100%{transform:scale(2.2);opacity:0}}
+}
+/* 探索ログ（右上に小さく） */
+.log{position:fixed;left:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:20;background:var(--paper);border:1px solid var(--ink);padding:8px 12px 10px;font-size:12px;width:178px;box-shadow:3px 3px 0 var(--rule)}
+.log b{font-family:var(--font-hand);color:var(--vermilion);font-size:14px;font-weight:600;display:flex;justify-content:space-between}
+.log .bar{height:6px;border:1px solid var(--ink);margin:6px 0 4px;position:relative}
+.log .bar i{position:absolute;inset:0 auto 0 0;background:var(--vermilion);width:0;transition:width .4s}
+.log .dots{display:flex;gap:4px;margin-top:4px}
+.log .dots span{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--pencil)}
+.log .dots span.on{border-color:var(--ink)}
+.log button{all:unset;cursor:pointer;color:var(--pencil);font-size:14px;line-height:1}
+.log[hidden]{display:none}
+@media (max-width:640px){.log{bottom:calc(52px + env(safe-area-inset-bottom,0px));width:150px}}
+.toast{position:fixed;left:50%;top:calc(24px + env(safe-area-inset-top,0px));transform:translate(-50%,-160%);z-index:30;background:var(--paper);border:1.5px solid var(--vermilion);padding:10px 18px;font-size:14px;transition:transform .45s;box-shadow:4px 4px 0 var(--rule);max-width:calc(100% - 32px)}
+.toast.show{transform:translate(-50%,0)}
+.toast small{display:block;font-family:var(--font-hand);color:var(--vermilion);font-size:13px}
+/* ルール番号 */
+.value .rule-no{font-family:var(--font-hand);color:var(--pencil);font-size:13px;margin-right:8px}
+.rules-note{font-family:var(--font-hand);color:var(--vermilion);font-size:15px;margin:-14px 0 20px}
+/* クエストの状態スタンプ */
+.work .card{position:relative}
+.stamp{position:absolute;right:4px;top:22px;font-family:var(--font-hand);font-size:13px;color:var(--vermilion);border:2px solid var(--vermilion);border-radius:50%;width:62px;height:62px;display:grid;place-items:center;text-align:center;line-height:1.15;transform:rotate(-12deg);background:rgba(250,248,243,.75)}
+.stamp.clear{border-style:double;border-width:4px}
+.stamp.going{color:var(--ink);border-color:var(--ink);border-style:dashed}
+@media (prefers-reduced-motion:no-preference){.work .card:hover .stamp{transform:rotate(-4deg) scale(1.06);transition:transform .2s}}
+.legend{font-size:12px;color:var(--pencil);margin:-12px 0 18px}
+/* 経路のステップに「獲得」 */
+.steps em{display:block;font-style:normal;font-size:12px;color:var(--vermilion);font-family:var(--font-hand)}
+.steps li.now::before{background:var(--vermilion)}
+.party{font-family:var(--font-hand);color:var(--vermilion);font-size:16px;display:block;margin-bottom:2px}
+@media (prefers-reduced-motion:no-preference){
+  .route{stroke-dasharray:2000;stroke-dashoffset:0;animation:draw 2.4s ease-out both}
+  @keyframes draw{from{stroke-dashoffset:2000}to{stroke-dashoffset:0}}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <div class="id"><b>keitaro-shimizu.com</b></div>
+    <nav aria-label="メイン"><ul>
+      <li><a href="#values">考え方</a></li>
+      <li><a href="#works">つくったもの</a></li>
+      <li><a href="#writing">発信</a></li>
+      <li><a href="#research">研究</a></li>
+      <li><a href="about-game.html">この人について</a></li>
+      <li><a href="#contact">お問い合わせ</a></li>
+      <li class="lang">JA / EN</li>
+    </ul></nav>
+  </header>
+
+  <div class="hero">
+    <h1>清水 啓太郎<span class="en">Keitaro Shimizu</span></h1>
+    <p class="role">株式会社Play Life Studio 代表取締役CEO</p>
+    <p class="sub">XR・デジタルツイン・生成AIを、産業と行政の現場へ。</p>
+    <p class="motto"><span>領域を越えて、つくる。</span></p>
+    <p class="lead">ゲームから研究へ、研究からプラットフォームへ、そして起業と行政へ。ひとつの領域に深く潜り、つかんだものを隣の領域へ持って渡ってきました。</p>
+
+    <div class="mapbox">
+      <svg id="map" viewBox="0 0 1000 560" role="group" aria-label="越境マップ。4つの領域と、それを渡る線"></svg>
+    </div>
+    <div class="chips" role="group" aria-label="領域で絞り込む">
+      <button type="button" data-d="xr" aria-pressed="false"><i style="background:var(--xr-ink)"></i>ゲーム・XR</button>
+      <button type="button" data-d="city" aria-pressed="false"><i style="background:var(--city-ink)"></i>都市・産業</button>
+      <button type="button" data-d="ai" aria-pressed="false"><i style="background:var(--ai-ink)"></i>生成AI</button>
+      <button type="button" data-d="gov" aria-pressed="false"><i style="background:var(--gov-ink)"></i>行政</button>
+      <span class="hint">島を選ぶと、その領域の取り組みと記事が浮かびます（訪れた島には印がつきます）</span>
+    </div>
+  </div>
+
+  <section id="values">
+    <h2>大事にしていること</h2>
+    <p class="rules-note">＝ 自分で決めた、この人生のルール</p>
+    <ul class="values">
+      <li class="value wide"><span class="note"><span class="rule-no">ルール1</span>越境について</span><p class="q">越境とは、混ぜることではなく、新しい意味を生み出すこと。</p>
+        <p>視点を重ねると、それまで見えなかった問いと価値が立ち上がる。大学で専攻の壁が消えた日から、ずっとそうやって領域を渡ってきた。</p></li>
+      <li class="value"><span class="note"><span class="rule-no">ルール2</span>創造的ニヒリズム</span><p class="q">価値は、自分で創る。</p>
+        <p>「選択と集中」「君の役割はこれだから」と言われ続けても、好奇心のほうを信じてきた。決められた意味がないなら、つくればいい。</p></li>
+      <li class="value"><span class="note"><span class="rule-no">ルール3</span>主体性</span><p class="q">一度きりの人生を、ゲームのように。</p>
+        <p>社会人2年目、大企業も守ってはくれないと知った。成長は自分で設計するしかない。だから人生を自分でプレイする。</p></li>
+      <li class="value"><span class="note"><span class="rule-no">ルール4</span>幸せについて</span><p class="q">今に向き合い、今に夢中になる。</p>
+        <p>横断歩道の白いところだけを渡る子どもは、先のことを考えず、目の前の一歩に集中している。本当の幸せは、そうやって今に向き合い、今の楽しさに没頭することだと思う。</p></li>
+      <li class="value"><span class="note"><span class="rule-no">ルール5</span>技術について</span><p class="q">技術の言葉を、相手の言葉に。</p>
+        <p>技術は特別な人だけのものではない。エンジニアは課題と解決のあいだをつなぐ翻訳者だと思っている。</p></li>
+      <li class="value"><span class="note"><span class="rule-no">ルール6</span>つくる人として</span><p class="q">誰かが作るのを待たず、自分が作れるかもしれないと考える。</p>
+        <p>好奇心に責任を持つこと。それが、産業と行政の現場に技術を置き続ける理由。</p></li>
+    </ul>
+  </section>
+
+  <section id="works">
+    <h2>つくったもの・取り組み</h2>
+    <p class="legend">印は状態です。「進行中」＝いまプレイ中、「公開」「論文にした」＝世に出したもの、「継続」＝続けている役割。</p>
+    <ul class="works">
+      <li class="work" data-d="xr ai"><a class="card" href="works/xrflowbuilder.html"><span class="stamp going" aria-label="状態: 進行中">進行中</span><img src="img/xfb.jpg" alt="空間から空間へ人が移動していく手描きのスケッチ">
+        <h3>XRFlowBuilder</h3><p>XR・AIの研修コンテンツをつくる制作プラットフォーム。専門知識がなくても、現場のシナリオを組める。</p>
+        <div class="tags"><span class="tag t-xr">ゲーム・XR</span><span class="tag t-ai">生成AI</span></div><span class="go">くわしく見る →</span></a></li>
+      <li class="work" data-d="city xr"><a class="card" href="works/samurai-training.html"><span class="stamp going" aria-label="状態: 進行中">進行中</span><img src="img/samurai.jpg" alt="木刀の手描きスケッチ">
+        <h3>Samurai Training</h3><p>産業現場の導入・オンボーディング。外国人材が現場で早く戦力になり、定着するまでを支える。</p>
+        <div class="tags"><span class="tag t-city">都市・産業</span><span class="tag t-xr">ゲーム・XR</span></div><span class="go">くわしく見る →</span></a></li>
+      <li class="work" data-d="ai"><a class="card" href="works/ai-talk-studio.html"><span class="stamp going" aria-label="状態: 進行中">進行中</span><img src="img/ats.jpg" alt="ふたつの吹き出しと音声波形の手描きスケッチ">
+        <h3>AI Talk Studio</h3><p>AIアバターが話す、研修・解説動画をつくるスタジオ。</p>
+        <div class="tags"><span class="tag t-ai">生成AI</span></div><span class="go">くわしく見る →</span></a></li>
+      <li class="work" data-d="city gov xr"><a class="card" href="works/plateau-sdk-toolkits.html"><span class="stamp clear" aria-label="状態: 公開">公開</span><img src="img/plateau.jpg" alt="立体的な街並みの手描きスケッチ">
+        <h3>PLATEAU SDK-Toolkits for Unity</h3><p>国土交通省の3D都市モデルをUnityで扱えるようにする、オープンソースのツールキット。</p>
+        <div class="tags"><span class="tag t-city">都市・産業</span><span class="tag t-gov">行政</span></div><span class="go">くわしく見る →</span></a></li>
+      <li class="work" data-d="gov city"><a class="card" href="works/chiba-infra-dx.html"><span class="stamp " aria-label="状態: 継続">継続</span><img src="img/chiba.jpg" alt="高架橋と道路の手描きスケッチ">
+        <h3>千葉県 インフラDXアドバイザー</h3><p>県土整備部で、BIM/CIM・ICT施工の現場普及と職員研修を支援。</p>
+        <div class="tags"><span class="tag t-gov">行政</span><span class="tag t-city">都市・産業</span></div><span class="go">くわしく見る →</span></a></li>
+      <li class="work" data-d="ai xr"><a class="card" href="works/yomikikase-agent.html"><span class="stamp clear" aria-label="状態: 論文にした">論文に<br>した</span><img src="img/yomi.jpg" alt="開いた絵本と吹き出しの手描きスケッチ">
+        <h3>読み聞かせ×会話エージェントの研究</h3><p>絵本の読み聞かせに会話エージェントを組み合わせ、子どもとの対話を引き出す。</p>
+        <div class="tags"><span class="tag t-ai">生成AI</span><span class="tag t-xr">ゲーム・XR</span></div><span class="go">くわしく見る →</span></a></li>
+    </ul>
+  </section>
+
+  <section id="writing">
+    <h2>発信<small>書いたもの・話したこと・動画</small></h2>
+    <div class="channels">
+      <a href="https://note.com/keitaro_shimizu"><b>note</b><span>記事・エッセイ</span></a>
+      <a href="#"><b>YouTube</b><span>動画（準備中）</span></a>
+      <a href="https://x.com/GIZAGIZAHEART"><b>X</b><span>@GIZAGIZAHEART</span></a>
+      <a href="#"><b>登壇</b><span>講演・イベント</span></a>
+    </div>
+    <div class="mfilter" role="group" aria-label="媒体で絞り込む">
+      <button type="button" data-m="all" aria-pressed="true">すべて</button>
+      <button type="button" data-m="note" aria-pressed="false">note</button>
+      <button type="button" data-m="youtube" aria-pressed="false">YouTube</button>
+      <button type="button" data-m="talk" aria-pressed="false">登壇</button>
+    </div>
+    <ul class="feat">
+      <li><a href="https://note.com/keitaro_shimizu/n/n81a12c1e6318"><div class="thumb t-note">note の見出し画像</div><span class="med m-note">note</span><b>VRで会議、新しいコミュニケーションのカタチ</b><time>2025.10.25</time></a></li>
+      <li><a href="#"><div class="thumb t-yt"><span class="play" aria-hidden="true"></span>YouTube のサムネイル</div><span class="med m-yt">YouTube</span><b>（最新の動画が入る位置）</b><time>20XX.XX.XX</time></a></li>
+      <li><a href="#"><div class="thumb t-talk">登壇の写真</div><span class="med m-talk">登壇</span><b>千葉県 職員向け講演</b><time>2025.10.02</time></a></li>
+    </ul>
+    <ul class="posts">
+      <li class="post" data-d="xr" data-m="note"><a href="https://note.com/keitaro_shimizu/n/n81a12c1e6318"><time>2025.10.25</time><span class="med m-note">note</span><span class="ttl">VRで会議、新しいコミュニケーションのカタチ</span><span class="tags"><span class="tag t-xr">ゲーム・XR</span></span></a></li>
+      <li class="post" data-d="xr" data-m="youtube"><a href="#"><time>20XX.XX.XX</time><span class="med m-yt">YouTube</span><span class="ttl">（動画が入る位置の見本）</span><span class="tags"><span class="tag t-x">横断</span></span></a></li>
+      <li class="post" data-d="xr" data-m="note"><a href="https://note.com/keitaro_shimizu/n/n2f3692110820"><time>2025.10.05</time><span class="med m-note">note</span><span class="ttl">ゲームで協調性は育める！ 幼い子ども向けデジタルツール研究の驚きの結論</span><span class="tags"><span class="tag t-xr">ゲーム・XR</span></span></a></li>
+      <li class="post" data-d="gov city" data-m="talk"><a href="#"><time>2025.10.02</time><span class="med m-talk">登壇</span><span class="ttl">千葉県 職員向け講演</span><span class="tags"><span class="tag t-gov">行政</span></span></a></li>
+      <li class="post" data-d="xr" data-m="note"><a href="https://note.com/keitaro_shimizu/n/n791f2452809c"><time>2025.08.31</time><span class="med m-note">note</span><span class="ttl">Augmented Realityが切り拓く、ライトペインティングの未来</span><span class="tags"><span class="tag t-xr">ゲーム・XR</span></span></a></li>
+      <li class="post" data-d="x" data-m="note"><a href="https://note.com/keitaro_shimizu/n/n5cfdc8d6a5fc"><time>2025.01.22</time><span class="med m-note">note</span><span class="ttl">技術ではなく"問い"が研究をつくる　CHI 2025参加から考える研究の価値</span><span class="tags"><span class="tag t-x">横断</span></span></a></li>
+      <li class="post" data-d="city" data-m="note"><a href="https://note.com/keitaro_shimizu/n/nc4d1bd381126"><time>2025.01.11</time><span class="med m-note">note</span><span class="ttl">デジタルツイン開発を続ける際のプロジェクトマネジメント・推進手法 Part2</span><span class="tags"><span class="tag t-city">都市・産業</span></span></a></li>
+    </ul>
+    <a class="more" href="#writing">発信をすべて見る →</a>
+  </section>
+
+  <section id="research">
+    <h2>研究・論文</h2>
+    <p class="rlead">つくったものを、問いとして確かめる。VRと触覚の研究から始まり、いまは会話エージェントと子どもの対話を研究しています。</p>
+    <ul class="papers">
+      <li data-d="ai"><span class="yr">2026</span><div><a href="works/yomikikase-agent.html"><b>読み聞かせ時の親子間コミュニケーションに対する会話エージェントの質問戦略の効果検証</b></a><span class="vn">情報処理学会論文誌</span></div><span class="tag t-ai">生成AI</span></li>
+      <li data-d="xr"><span class="yr">2011</span><div><b>Adaptive Parallax Autostereoscopic LED Display</b><span class="vn">ACM SIGGRAPH ASIA 2011 Emerging Technologies</span></div><span class="tag t-xr">ゲーム・XR</span></li>
+      <li data-d="xr"><span class="yr">2011</span><div><b>RePro3D: Full-Parallax 3D Display with Haptic Feedback using Retro-Reflective Projection Technology</b><span class="vn">ISVRI 2011（Honorable Mention Award）</span></div><span class="tag t-xr">ゲーム・XR</span></li>
+    </ul>
+    <a class="more" href="research.html">研究・論文をすべて見る →</a>
+  </section>
+
+  <section id="about">
+    <h2>この人について</h2>
+    <div class="about">
+      <div>
+        <p>高校時代はオンラインゲームに没頭し、学校にもろくに行かなかった。そこで世界中の仲間と、自分の意志で何にでもなれる感覚を手に入れた。</p>
+        <p>ゲームプログラマー、エンジニア、研究ディレクター、プラットフォームの仕事を経て起業。部門がなくなったことも、共同創業者が去ったこともある。そのたびに、得たものを持って次の領域へ渡ってきた。</p>
+        <p><b>株式会社Play Life Studio 代表取締役CEO</b></p>
+        <a class="more" href="about.html">これまでの物語を読む →</a>
+      </div>
+      <ol class="steps" aria-label="これまで渡ってきた領域">
+        <li><b>ゲーム</b><span>ゲームプログラマーとして、遊びをつくる</span><em>獲得：遊びを本気でつくる熱量</em></li>
+        <li><b>製品</b><span>PM・エンジニアとして、製品をつくる</span><em>獲得：作って届けきる段取り</em></li>
+        <li><b>研究</b><span>研究ディレクターとして、問いをつくる</span><em>獲得：何を問うかを考える力</em></li>
+        <li><b>プラットフォーム</b><span>開発基盤を、現場と都市へ広げる</span><em>獲得：技術を開いて広げる視点</em></li>
+        <li class="now"><b>起業・行政</b><span>会社をつくり、産業と行政の現場に実装する</span><em>いま、ここ。まだプレイ中</em></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact">
+      <div><span class="party">一緒にプレイしませんか</span><a class="big" href="#contact">お問い合わせ</a></div>
+      <div class="social"><a href="https://x.com/GIZAGIZAHEART">@GIZAGIZAHEART</a><a href="https://note.com/keitaro_shimizu">note</a><span>LinkedIn</span></div>
+    </div>
+    <p style="font-size:14px;color:var(--pencil);margin:0">導入・共創・講演のご相談をお受けしています。</p>
+  </section>
+
+  <footer><span>© Keitaro Shimizu</span><span>試作 2026-11-08（デザイン確認用。リンク・文言は仮）</span></footer>
+</div>
+
+<div class="vswitch" role="navigation" aria-label="試作の版を切り替え"><a href="index.html">通常版</a><a href="index-game.html" aria-current="page">ゲーム色版</a></div>
+<aside class="log" id="log" aria-live="polite"><b><span>探索ログ</span><button type="button" id="logx" aria-label="探索ログを閉じる">×</button></b>
+  <div>訪れた領域 <span id="lgN">0</span>/4</div><div class="dots" id="lgDots"></div>
+  <div class="bar" aria-hidden="true"><i id="lgBar"></i></div><div>読んだ章 <span id="lgS">0</span>/6</div></aside>
+<div class="toast" id="toast" role="status"><small>実績を解除しました</small><span id="toastT"></span></div>
+<script>
+(function(){
+  const NS='http://www.w3.org/2000/svg';
+  const svg=document.getElementById('map');
+  const el=(n,a,p)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e};
+  // 疑似乱数（毎回同じ形にする）
+  let seed=7;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+  const islands=[
+    {d:'xr',  name:'ゲーム・XR', cx:330,cy:170,r:150,fill:'var(--xr)'},
+    {d:'city',name:'都市・産業', cx:640,cy:165,r:150,fill:'var(--city)'},
+    {d:'ai',  name:'生成AI',     cx:340,cy:400,r:145,fill:'var(--ai)'},
+    {d:'gov', name:'行政',       cx:650,cy:405,r:140,fill:'var(--gov)'},
+  ];
+  function blob(cx,cy,r,ph){
+    const pts=[];const N=90;
+    for(let i=0;i<N;i++){const t=i/N*Math.PI*2;
+      const k=1+.10*Math.sin(3*t+ph[0])+.06*Math.sin(5*t+ph[1])+.035*Math.sin(9*t+ph[2]);
+      pts.push([cx+Math.cos(t)*r*k,cy+Math.sin(t)*r*k*.86]);}
+    return 'M'+pts.map(p=>p[0].toFixed(1)+' '+p[1].toFixed(1)).join('L')+'Z';
+  }
+  const gIs=[];
+  islands.forEach(is=>{
+    const g=el('g',{class:'island','data-d':is.d,tabindex:0,role:'button','aria-label':is.name+'の取り組みと記事を見る'});
+    const ph=[rnd()*6,rnd()*6,rnd()*6];
+    el('path',{class:'base',d:blob(is.cx,is.cy,is.r,ph),fill:is.fill},g);
+    for(let i=1;i<9;i++){const s=1-i*.105;const off=(1-s)*18;
+      el('path',{class:'ring',d:blob(is.cx+off*.6,is.cy+off*.9,is.r*s,ph.map((p,j)=>p+i*.12*(j+1)))},g);}
+    const t=el('text',{class:'label',x:is.cx-50,y:is.cy+70},g);t.textContent=is.name;
+    const sg=el('g',{class:'seal'},g);el('circle',{cx:is.cx+88,cy:is.cy-62,r:24},sg);
+    const st2=el('text',{x:is.cx+72,y:is.cy-57},sg);st2.textContent='探索済';
+    gIs.push(g);
+  });
+  // 渡る線
+  el('path',{class:'route',d:'M150 70 C 220 80, 300 120, 345 185 C 390 250, 470 120, 560 120 C 640 120, 640 170, 655 190 C 600 260, 420 250, 380 330 C 350 390, 340 400, 352 415 C 420 470, 520 330, 600 360 C 660 380, 650 420, 668 430 C 720 470, 800 500, 900 520'});
+  [[345,185],[560,120],[655,190],[380,330],[352,415],[600,360],[668,430]].forEach(p=>el('circle',{class:'stop',cx:p[0],cy:p[1],r:6}));
+  // ステージ番号
+  [[345,185],[560,120],[655,190],[380,330],[352,415],[600,360],[668,430]].forEach((p,i)=>{const t=el('text',{class:'stage-no',x:p[0]+9,y:p[1]-9});t.textContent=i+1;});
+  // スタート
+  el('circle',{cx:150,cy:70,r:5,fill:'var(--vermilion)'});
+  let st=el('text',{class:'start',x:96,y:56});st.textContent='START';
+  // 現在地のコマ（最後の停留所）と、その先の未踏
+  el('path',{class:'unknown',d:'M900 520 C 940 528, 960 500, 975 470'});
+  const q=el('text',{class:'qmark',x:960,y:458});q.textContent='?';
+  el('circle',{class:'koma-ring',cx:900,cy:520,r:9});
+  el('path',{class:'koma',d:'M900 520 l-9 -20 a10 10 0 1 1 18 0 z'});
+  const hr=el('text',{class:'here',x:806,y:548});hr.textContent='いま、ここ（まだプレイ中）';
+  let h=el('text',{class:'hand',x:470,y:60});h.textContent='深く';
+  h=el('text',{class:'hand',x:800,y:496});h.textContent='渡る';
+  // 取り組みの札
+  const pins=[
+    ['XRFlowBuilder',40,140,215,170],['Samurai Training',40,300,205,270],['AI Talk Studio',40,470,215,430],
+    ['PLATEAU SDK-Toolkits',800,90,770,130],['千葉県 インフラDXアドバイザー',790,300,770,340],['読み聞かせ×会話エージェント',780,420,775,420]
+  ];
+  pins.forEach(([n,x,y])=>{const t=el('text',{class:'pin',x,y});t.textContent=n;});
+
+  // 絞り込み
+  const chips=[...document.querySelectorAll('.chips button')];
+  const items=[...document.querySelectorAll('.work,.post,.papers li')];
+  let cur=null;
+  const seen=new Set(),read=new Set(),got=new Set();
+  const dom=[['xr','var(--xr-ink)'],['city','var(--city-ink)'],['ai','var(--ai-ink)'],['gov','var(--gov-ink)']];
+  const dots=document.getElementById('lgDots');
+  dom.forEach(([d,c])=>{const s=document.createElement('span');s.dataset.d=d;s.style.setProperty('--c',c);dots.appendChild(s);});
+  const toastEl=document.getElementById('toast');let tt;
+  function award(id,txt){if(got.has(id))return;got.add(id);document.getElementById('toastT').textContent=txt;
+    toastEl.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toastEl.classList.remove('show'),3200);}
+  function upd(){
+    document.getElementById('lgN').textContent=seen.size;
+    dots.querySelectorAll('span').forEach(s=>{const on=seen.has(s.dataset.d);s.classList.toggle('on',on);s.style.background=on?s.style.getPropertyValue('--c'):'transparent';});
+    document.getElementById('lgS').textContent=read.size;
+    document.getElementById('lgBar').style.width=(read.size/6*100)+'%';
+    if(seen.size===4)award('cross','越境者 — 4つの領域をすべて訪れました');
+    if(read.size===6)award('read','読破 — このページを最後まで読みました');
+  }
+  const secs=['values','works','writing','research','about','contact'].map(id=>document.getElementById(id));
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){read.add(e.target.id);upd();}}),{threshold:.3});
+  secs.forEach(x=>io.observe(x));
+  document.getElementById('logx').addEventListener('click',()=>{document.getElementById('log').hidden=true;});
+  function setD(d){
+    cur=(cur===d)?null:d;
+    if(cur)document.body.dataset.domain=cur;else delete document.body.dataset.domain;
+    gIs.forEach(g=>g.classList.toggle('on',g.dataset.d===cur));
+    if(cur){seen.add(cur);gIs.forEach(g=>g.classList.toggle('seen',seen.has(g.dataset.d)));upd();}
+    chips.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.d===cur)));
+    items.forEach(it=>it.classList.toggle('dim',!!cur&&!it.dataset.d.split(' ').includes(cur)));
+  }
+  gIs.forEach(g=>{g.addEventListener('click',()=>setD(g.dataset.d));
+    g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setD(g.dataset.d)}});});
+  chips.forEach(b=>b.addEventListener('click',()=>setD(b.dataset.d)));
+  const mb=[...document.querySelectorAll('.mfilter button')];
+  mb.forEach(b=>b.addEventListener('click',()=>{const m=b.dataset.m;
+    mb.forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+    document.querySelectorAll('.post').forEach(p=>{p.hidden=(m!=='all'&&p.dataset.m!==m)});}));
+})();
+</script>
+</body>
+</html>
