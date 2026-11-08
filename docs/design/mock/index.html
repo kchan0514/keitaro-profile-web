@@ -231,6 +231,9 @@ footer{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;co
       <li class="work" data-d="ai"><a class="card" href="works/ai-talk-studio.html"><img src="img/ats.jpg" alt="ふたつの吹き出しと音声波形の手描きスケッチ">
         <h3>AI Talk Studio</h3><p>AIアバターが話す、研修・解説動画をつくるスタジオ。</p>
         <div class="tags"><span class="tag t-ai">生成AI</span></div><span class="go">くわしく見る →</span></a></li>
+      <li class="work" data-d="xr ai"><a class="card" href="works/playful-habits.html"><img src="img/ph.jpg" alt="家と木のある浮かぶ小島で、家族が手を振っている手描きのスケッチ">
+        <h3>Playful Habits</h3><p>家族で取り組む、習慣化のアプリ。家族それぞれがアバターを持ち、小さな街で一緒に成長を楽しむ。</p>
+        <div class="tags"><span class="tag t-xr">ゲーム・XR</span><span class="tag t-ai">生成AI</span></div><span class="go">くわしく見る →</span></a></li>
       <li class="work" data-d="city gov xr"><a class="card" href="works/plateau-sdk-toolkits.html"><img src="img/plateau.jpg" alt="立体的な街並みの手描きスケッチ">
         <h3>PLATEAU SDK-Toolkits for Unity</h3><p>国土交通省の3D都市モデルをUnityで扱えるようにする、オープンソースのツールキット。</p>
         <div class="tags"><span class="tag t-city">都市・産業</span><span class="tag t-gov">行政</span></div><span class="go">くわしく見る →</span></a></li>
@@ -353,7 +356,7 @@ footer{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;co
   h=el('text',{class:'hand',x:830,y:500});h.textContent='渡る';
   // 取り組みの札
   const pins=[
-    ['XRFlowBuilder',40,140,215,170],['Samurai Training',40,300,205,270],['AI Talk Studio',40,470,215,430],
+    ['XRFlowBuilder',40,140,215,170],['Samurai Training',40,300,205,270],['AI Talk Studio',40,470,215,430],['Playful Habits',40,540,0,0],
     ['PLATEAU SDK-Toolkits',800,90,770,130],['千葉県 インフラDXアドバイザー',790,300,770,340],['読み聞かせ×会話エージェント',780,420,775,420]
   ];
   pins.forEach(([n,x,y])=>{const t=el('text',{class:'pin',x,y});t.textContent=n;});
