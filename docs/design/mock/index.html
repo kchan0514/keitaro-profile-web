@@ -84,7 +84,10 @@ h2 small{font-weight:500;font-size:13px;color:var(--pencil);margin-left:10px;let
 
 /* 取り組み */
 .works{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:24px 28px;list-style:none;margin:0;padding:0}
-.work{display:grid;gap:8px;transition:opacity .25s;padding:16px 0;border-top:1px solid var(--ink)}
+.work{transition:opacity .25s;border-top:1px solid var(--ink)}
+.work .card{display:grid;gap:8px;padding:16px 0;text-decoration:none}
+.work .go{font-size:13px;color:var(--vermilion);font-weight:500}
+.work .card:hover h3,.work .card:focus-visible h3{color:var(--vermilion)}
 .work img{width:100%;max-width:100%;height:150px;object-fit:contain;object-position:left center;mix-blend-mode:multiply}
 .work h3{font-size:17px;font-weight:700;margin:0;letter-spacing:.03em}
 .work p{margin:0;font-size:14px;color:var(--pencil);line-height:1.75}
@@ -95,17 +98,38 @@ h2 small{font-weight:500;font-size:13px;color:var(--pencil);margin-left:10px;let
 .t-x{border:1px solid var(--pencil);color:var(--pencil)}
 body[data-domain] .dim{opacity:.22}
 
+/* 発信 */
+.channels{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,180px),1fr));gap:12px;margin-bottom:24px}
+.channels a{display:grid;padding:12px 16px;border:1px solid var(--ink);text-decoration:none;background:var(--paper)}
+.channels b{font-size:16px;letter-spacing:.04em}
+.channels span{font-size:12px;color:var(--pencil)}
+.channels a:hover,.channels a:focus-visible{border-color:var(--vermilion);color:var(--vermilion)}
+.mfilter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.mfilter button{font:inherit;font-size:13px;border:1px solid var(--ink);background:var(--paper);border-radius:999px;padding:2px 14px;cursor:pointer}
+.mfilter button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.med{font-size:11px;font-weight:700;letter-spacing:.06em;justify-self:start;padding:0 8px;border-radius:3px}
+.m-note{color:#1a7f5a;border:1px solid #1a7f5a}.m-yt{color:#c4302b;border:1px solid #c4302b}.m-talk{color:var(--ink);border:1px solid var(--ink)}
+.post[hidden]{display:none}
+.feat{list-style:none;margin:0 0 28px;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:24px}
+.feat a{display:grid;gap:6px;text-decoration:none}
+.feat .thumb{aspect-ratio:16/9;max-width:100%;border:1px solid var(--ink);display:grid;place-items:center;font-size:12px;color:var(--pencil);position:relative;background:#fff}
+.feat .t-yt{background:#f3eeee}.feat .t-note{background:#eef4f0}.feat .t-talk{background:#efeee9}
+.feat .play{position:absolute;width:46px;height:32px;border-radius:8px;background:#c4302b;opacity:.85}
+.feat .play::after{content:"";position:absolute;left:19px;top:9px;border-left:12px solid #fff;border-top:7px solid transparent;border-bottom:7px solid transparent}
+.feat b{font-size:15px;line-height:1.6}
+.feat time{font-size:12px;color:var(--pencil)}
+.feat a:hover b,.feat a:focus-visible b{color:var(--vermilion)}
 /* 記事 */
 .posts{list-style:none;margin:0;padding:0;max-width:820px}
 .post{border-bottom:1px solid var(--ink);transition:opacity .25s}
-.post a{display:grid;grid-template-columns:7.5em 1fr auto;gap:16px;align-items:baseline;padding:12px 0;text-decoration:none}
+.post a{display:grid;grid-template-columns:6.5em 5.5em 1fr auto;gap:16px;align-items:baseline;padding:12px 0;text-decoration:none}
 .post time{font-size:12px;color:var(--pencil);font-variant-numeric:tabular-nums}
 .post .ttl{font-weight:500}
 .post .tags{justify-content:flex-end}
 .post a:hover .ttl,.post a:focus-visible .ttl{color:var(--vermilion)}
 .more{display:inline-block;margin-top:16px;font-size:14px;color:var(--vermilion);text-decoration:none;font-weight:500}
 .more:hover{text-decoration:underline}
-@media (max-width:640px){.post a{grid-template-columns:1fr}.post .tags{justify-content:flex-start}}
+@media (max-width:640px){.post a{grid-template-columns:auto 1fr;row-gap:2px}.post .ttl,.post .tags{grid-column:1/-1}.post .tags{justify-content:flex-start}}
 
 /* この人について */
 .about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:start}
@@ -137,8 +161,8 @@ footer{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;co
     <nav aria-label="メイン"><ul>
       <li><a href="#values">考え方</a></li>
       <li><a href="#works">つくったもの</a></li>
-      <li><a href="#writing">読む</a></li>
-      <li><a href="#about">この人について</a></li>
+      <li><a href="#writing">発信</a></li>
+      <li><a href="about.html">この人について</a></li>
       <li><a href="#contact">お問い合わせ</a></li>
       <li class="lang">JA / EN</li>
     </ul></nav>
@@ -164,7 +188,7 @@ footer{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;co
   </div>
 
   <section id="values">
-    <h2>大事にしていること<small>千葉県 職員向け講演（2025年10月）より</small></h2>
+    <h2>大事にしていること</h2>
     <ul class="values">
       <li class="value wide"><span class="note">越境について</span><p class="q">越境とは、混ぜることではなく、新しい意味を生み出すこと。</p>
         <p>視点を重ねると、それまで見えなかった問いと価値が立ち上がる。大学で専攻の壁が消えた日から、ずっとそうやって領域を渡ってきた。</p></li>
@@ -172,8 +196,8 @@ footer{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;co
         <p>「選択と集中」「君の役割はこれだから」と言われ続けても、好奇心のほうを信じてきた。決められた意味がないなら、つくればいい。</p></li>
       <li class="value"><span class="note">主体性</span><p class="q">一度きりの人生を、ゲームのように。</p>
         <p>社会人2年目、大企業も守ってはくれないと知った。成長は自分で設計するしかない。だから人生を自分でプレイする。</p></li>
-      <li class="value"><span class="note">幸せについて</span><p class="q">横断歩道の、白いところだけを渡る。</p>
-        <p>本当の幸せは、そういう子どもの遊びに近いと思う。自分で決めたルールを、今ここで楽しむこと。</p></li>
+      <li class="value"><span class="note">幸せについて</span><p class="q">今に向き合い、今に夢中になる。</p>
+        <p>横断歩道の白いところだけを渡る子どもは、先のことを考えず、目の前の一歩に集中している。本当の幸せは、そうやって今に向き合い、今の楽しさに没頭することだと思う。</p></li>
       <li class="value"><span class="note">技術について</span><p class="q">技術の言葉を、相手の言葉に。</p>
         <p>技術は特別な人だけのものではない。エンジニアは課題と解決のあいだをつなぐ翻訳者だと思っている。</p></li>
       <li class="value"><span class="note">つくる人として</span><p class="q">誰かが作るのを待たず、自分が作れるかもしれないと考える。</p>
@@ -184,39 +208,56 @@ footer{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;co
   <section id="works">
     <h2>つくったもの・取り組み</h2>
     <ul class="works">
-      <li class="work" data-d="xr ai"><img src="img/xfb.jpg" alt="空間から空間へ人が移動していく手描きのスケッチ">
+      <li class="work" data-d="xr ai"><a class="card" href="works/xrflowbuilder.html"><img src="img/xfb.jpg" alt="空間から空間へ人が移動していく手描きのスケッチ">
         <h3>XRFlowBuilder</h3><p>XR・AIの研修コンテンツをつくる制作プラットフォーム。専門知識がなくても、現場のシナリオを組める。</p>
-        <div class="tags"><span class="tag t-xr">ゲーム・XR</span><span class="tag t-ai">生成AI</span></div></li>
-      <li class="work" data-d="city xr"><img src="img/samurai.jpg" alt="木刀の手描きスケッチ">
+        <div class="tags"><span class="tag t-xr">ゲーム・XR</span><span class="tag t-ai">生成AI</span></div><span class="go">くわしく見る →</span></a></li>
+      <li class="work" data-d="city xr"><a class="card" href="works/samurai-training.html"><img src="img/samurai.jpg" alt="木刀の手描きスケッチ">
         <h3>Samurai Training</h3><p>産業現場の導入・オンボーディング。外国人材が現場で早く戦力になり、定着するまでを支える。</p>
-        <div class="tags"><span class="tag t-city">都市・産業</span><span class="tag t-xr">ゲーム・XR</span></div></li>
-      <li class="work" data-d="ai"><img src="img/ats.jpg" alt="ふたつの吹き出しと音声波形の手描きスケッチ">
+        <div class="tags"><span class="tag t-city">都市・産業</span><span class="tag t-xr">ゲーム・XR</span></div><span class="go">くわしく見る →</span></a></li>
+      <li class="work" data-d="ai"><a class="card" href="works/ai-talk-studio.html"><img src="img/ats.jpg" alt="ふたつの吹き出しと音声波形の手描きスケッチ">
         <h3>AI Talk Studio</h3><p>AIアバターが話す、研修・解説動画をつくるスタジオ。</p>
-        <div class="tags"><span class="tag t-ai">生成AI</span></div></li>
-      <li class="work" data-d="city gov xr"><img src="img/plateau.jpg" alt="立体的な街並みの手描きスケッチ">
+        <div class="tags"><span class="tag t-ai">生成AI</span></div><span class="go">くわしく見る →</span></a></li>
+      <li class="work" data-d="city gov xr"><a class="card" href="works/plateau-sdk-toolkits.html"><img src="img/plateau.jpg" alt="立体的な街並みの手描きスケッチ">
         <h3>PLATEAU SDK-Toolkits for Unity</h3><p>国土交通省の3D都市モデルをUnityで扱えるようにする、オープンソースのツールキット。</p>
-        <div class="tags"><span class="tag t-city">都市・産業</span><span class="tag t-gov">行政</span></div></li>
-      <li class="work" data-d="gov city"><img src="img/chiba.jpg" alt="高架橋と道路の手描きスケッチ">
+        <div class="tags"><span class="tag t-city">都市・産業</span><span class="tag t-gov">行政</span></div><span class="go">くわしく見る →</span></a></li>
+      <li class="work" data-d="gov city"><a class="card" href="works/chiba-infra-dx.html"><img src="img/chiba.jpg" alt="高架橋と道路の手描きスケッチ">
         <h3>千葉県 インフラDXアドバイザー</h3><p>県土整備部で、BIM/CIM・ICT施工の現場普及と職員研修を支援。</p>
-        <div class="tags"><span class="tag t-gov">行政</span><span class="tag t-city">都市・産業</span></div></li>
-      <li class="work" data-d="ai xr"><img src="img/yomi.jpg" alt="開いた絵本と吹き出しの手描きスケッチ">
+        <div class="tags"><span class="tag t-gov">行政</span><span class="tag t-city">都市・産業</span></div><span class="go">くわしく見る →</span></a></li>
+      <li class="work" data-d="ai xr"><a class="card" href="works/yomikikase-agent.html"><img src="img/yomi.jpg" alt="開いた絵本と吹き出しの手描きスケッチ">
         <h3>読み聞かせ×会話エージェントの研究</h3><p>絵本の読み聞かせに会話エージェントを組み合わせ、子どもとの対話を引き出す。</p>
-        <div class="tags"><span class="tag t-ai">生成AI</span><span class="tag t-xr">ゲーム・XR</span></div></li>
+        <div class="tags"><span class="tag t-ai">生成AI</span><span class="tag t-xr">ゲーム・XR</span></div><span class="go">くわしく見る →</span></a></li>
     </ul>
   </section>
 
   <section id="writing">
-    <h2>書いたもの・話したこと<small>note ほか</small></h2>
-    <ul class="posts">
-      <li class="post" data-d="xr"><a href="https://note.com/keitaro_shimizu/n/n81a12c1e6318"><time>2025.10.25</time><span class="ttl">VRで会議、新しいコミュニケーションのカタチ</span><span class="tags"><span class="tag t-xr">ゲーム・XR</span></span></a></li>
-      <li class="post" data-d="gov city"><a href="#"><time>2025.10.02</time><span class="ttl">講演　千葉県 職員向け「越境で、可能性を広げる」</span><span class="tags"><span class="tag t-gov">行政</span></span></a></li>
-      <li class="post" data-d="xr"><a href="https://note.com/keitaro_shimizu/n/n2f3692110820"><time>2025.10.05</time><span class="ttl">ゲームで協調性は育める！ 幼い子ども向けデジタルツール研究の驚きの結論</span><span class="tags"><span class="tag t-xr">ゲーム・XR</span></span></a></li>
-      <li class="post" data-d="xr"><a href="https://note.com/keitaro_shimizu/n/n791f2452809c"><time>2025.08.31</time><span class="ttl">Augmented Realityが切り拓く、ライトペインティングの未来</span><span class="tags"><span class="tag t-xr">ゲーム・XR</span></span></a></li>
-      <li class="post" data-d="x"><a href="https://note.com/keitaro_shimizu/n/n5cfdc8d6a5fc"><time>2025.01.22</time><span class="ttl">技術ではなく"問い"が研究をつくる　CHI 2025参加から考える研究の価値</span><span class="tags"><span class="tag t-x">横断</span></span></a></li>
-      <li class="post" data-d="city"><a href="https://note.com/keitaro_shimizu/n/nc4d1bd381126"><time>2025.01.11</time><span class="ttl">デジタルツイン開発を続ける際のプロジェクトマネジメント・推進手法 Part2</span><span class="tags"><span class="tag t-city">都市・産業</span></span></a></li>
-      <li class="post" data-d="x"><a href="https://note.com/keitaro_shimizu/n/n11feb8473e13"><time>2024.08.24</time><span class="ttl">ムダは本当にムダなのか</span><span class="tags"><span class="tag t-x">横断</span></span></a></li>
+    <h2>発信<small>書いたもの・話したこと・動画</small></h2>
+    <div class="channels">
+      <a href="https://note.com/keitaro_shimizu"><b>note</b><span>記事・エッセイ</span></a>
+      <a href="#"><b>YouTube</b><span>動画（準備中）</span></a>
+      <a href="https://x.com/GIZAGIZAHEART"><b>X</b><span>@GIZAGIZAHEART</span></a>
+      <a href="#"><b>登壇</b><span>講演・イベント</span></a>
+    </div>
+    <div class="mfilter" role="group" aria-label="媒体で絞り込む">
+      <button type="button" data-m="all" aria-pressed="true">すべて</button>
+      <button type="button" data-m="note" aria-pressed="false">note</button>
+      <button type="button" data-m="youtube" aria-pressed="false">YouTube</button>
+      <button type="button" data-m="talk" aria-pressed="false">登壇</button>
+    </div>
+    <ul class="feat">
+      <li><a href="https://note.com/keitaro_shimizu/n/n81a12c1e6318"><div class="thumb t-note">note の見出し画像</div><span class="med m-note">note</span><b>VRで会議、新しいコミュニケーションのカタチ</b><time>2025.10.25</time></a></li>
+      <li><a href="#"><div class="thumb t-yt"><span class="play" aria-hidden="true"></span>YouTube のサムネイル</div><span class="med m-yt">YouTube</span><b>（最新の動画が入る位置）</b><time>20XX.XX.XX</time></a></li>
+      <li><a href="#"><div class="thumb t-talk">登壇の写真</div><span class="med m-talk">登壇</span><b>千葉県 職員向け講演</b><time>2025.10.02</time></a></li>
     </ul>
-    <a class="more" href="https://note.com/keitaro_shimizu">note で全部読む →</a>
+    <ul class="posts">
+      <li class="post" data-d="xr" data-m="note"><a href="https://note.com/keitaro_shimizu/n/n81a12c1e6318"><time>2025.10.25</time><span class="med m-note">note</span><span class="ttl">VRで会議、新しいコミュニケーションのカタチ</span><span class="tags"><span class="tag t-xr">ゲーム・XR</span></span></a></li>
+      <li class="post" data-d="xr" data-m="youtube"><a href="#"><time>20XX.XX.XX</time><span class="med m-yt">YouTube</span><span class="ttl">（動画が入る位置の見本）</span><span class="tags"><span class="tag t-x">横断</span></span></a></li>
+      <li class="post" data-d="xr" data-m="note"><a href="https://note.com/keitaro_shimizu/n/n2f3692110820"><time>2025.10.05</time><span class="med m-note">note</span><span class="ttl">ゲームで協調性は育める！ 幼い子ども向けデジタルツール研究の驚きの結論</span><span class="tags"><span class="tag t-xr">ゲーム・XR</span></span></a></li>
+      <li class="post" data-d="gov city" data-m="talk"><a href="#"><time>2025.10.02</time><span class="med m-talk">登壇</span><span class="ttl">千葉県 職員向け講演</span><span class="tags"><span class="tag t-gov">行政</span></span></a></li>
+      <li class="post" data-d="xr" data-m="note"><a href="https://note.com/keitaro_shimizu/n/n791f2452809c"><time>2025.08.31</time><span class="med m-note">note</span><span class="ttl">Augmented Realityが切り拓く、ライトペインティングの未来</span><span class="tags"><span class="tag t-xr">ゲーム・XR</span></span></a></li>
+      <li class="post" data-d="x" data-m="note"><a href="https://note.com/keitaro_shimizu/n/n5cfdc8d6a5fc"><time>2025.01.22</time><span class="med m-note">note</span><span class="ttl">技術ではなく"問い"が研究をつくる　CHI 2025参加から考える研究の価値</span><span class="tags"><span class="tag t-x">横断</span></span></a></li>
+      <li class="post" data-d="city" data-m="note"><a href="https://note.com/keitaro_shimizu/n/nc4d1bd381126"><time>2025.01.11</time><span class="med m-note">note</span><span class="ttl">デジタルツイン開発を続ける際のプロジェクトマネジメント・推進手法 Part2</span><span class="tags"><span class="tag t-city">都市・産業</span></span></a></li>
+    </ul>
+    <a class="more" href="#writing">発信をすべて見る →</a>
   </section>
 
   <section id="about">
@@ -226,7 +267,7 @@ footer{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;co
         <p>高校時代はオンラインゲームに没頭し、学校にもろくに行かなかった。そこで世界中の仲間と、自分の意志で何にでもなれる感覚を手に入れた。</p>
         <p>ゲームプログラマー、エンジニア、研究ディレクター、プラットフォームの仕事を経て起業。部門がなくなったことも、共同創業者が去ったこともある。そのたびに、得たものを持って次の領域へ渡ってきた。</p>
         <p><b>株式会社Play Life Studio 代表取締役CEO</b></p>
-        <a class="more" href="#about">経歴をくわしく見る →</a>
+        <a class="more" href="about.html">これまでの物語を読む →</a>
       </div>
       <ol class="steps" aria-label="これまで渡ってきた領域">
         <li><b>ゲーム</b><span>ゲームプログラマーとして、遊びをつくる</span></li>
@@ -306,6 +347,10 @@ footer{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;co
   gIs.forEach(g=>{g.addEventListener('click',()=>setD(g.dataset.d));
     g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setD(g.dataset.d)}});});
   chips.forEach(b=>b.addEventListener('click',()=>setD(b.dataset.d)));
+  const mb=[...document.querySelectorAll('.mfilter button')];
+  mb.forEach(b=>b.addEventListener('click',()=>{const m=b.dataset.m;
+    mb.forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+    document.querySelectorAll('.post').forEach(p=>{p.hidden=(m!=='all'&&p.dataset.m!==m)});}));
 })();
 </script>
 </body>
