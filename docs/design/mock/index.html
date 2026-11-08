@@ -185,13 +185,6 @@ footer{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;co
 /* ルール番号 */
 .value .rule-no{font-family:var(--font-hand);color:var(--pencil);font-size:13px;margin-right:8px}
 .rules-note{font-family:var(--font-hand);color:var(--vermilion);font-size:15px;margin:-14px 0 20px}
-/* クエストの状態スタンプ */
-.work .card{position:relative}
-.stamp{position:absolute;right:4px;top:22px;font-family:var(--font-hand);font-size:13px;color:var(--vermilion);border:2px solid var(--vermilion);border-radius:50%;width:62px;height:62px;display:grid;place-items:center;text-align:center;line-height:1.15;transform:rotate(-12deg);background:rgba(250,248,243,.75)}
-.stamp.clear{border-style:double;border-width:4px}
-.stamp.going{color:var(--ink);border-color:var(--ink);border-style:dashed}
-@media (prefers-reduced-motion:no-preference){.work .card:hover .stamp{transform:rotate(-4deg) scale(1.06);transition:transform .2s}}
-.legend{font-size:12px;color:var(--pencil);margin:-12px 0 18px}
 /* 経路のステップに「獲得」 */
 .steps em{display:block;font-style:normal;font-size:12px;color:var(--vermilion);font-family:var(--font-hand)}
 .steps li.now::before{background:var(--vermilion)}
@@ -261,24 +254,23 @@ footer{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;co
 
   <section id="works">
     <h2>つくったもの・取り組み</h2>
-    <p class="legend">印は状態です。「進行中」＝いまプレイ中、「公開」「論文にした」＝世に出したもの、「継続」＝続けている役割。</p>
     <ul class="works">
-      <li class="work" data-d="xr ai"><a class="card" href="works/xrflowbuilder.html"><span class="stamp going" aria-label="状態: 進行中">進行中</span><img src="img/xfb.jpg" alt="空間から空間へ人が移動していく手描きのスケッチ">
+      <li class="work" data-d="xr ai"><a class="card" href="works/xrflowbuilder.html"><img src="img/xfb.jpg" alt="空間から空間へ人が移動していく手描きのスケッチ">
         <h3>XRFlowBuilder</h3><p>XR・AIの研修コンテンツをつくる制作プラットフォーム。専門知識がなくても、現場のシナリオを組める。</p>
         <div class="tags"><span class="tag t-xr">ゲーム・XR</span><span class="tag t-ai">生成AI</span></div><span class="go">くわしく見る →</span></a></li>
-      <li class="work" data-d="city xr"><a class="card" href="works/samurai-training.html"><span class="stamp going" aria-label="状態: 進行中">進行中</span><img src="img/samurai.jpg" alt="木刀の手描きスケッチ">
+      <li class="work" data-d="city xr"><a class="card" href="works/samurai-training.html"><img src="img/samurai.jpg" alt="木刀の手描きスケッチ">
         <h3>Samurai Training</h3><p>産業現場の導入・オンボーディング。外国人材が現場で早く戦力になり、定着するまでを支える。</p>
         <div class="tags"><span class="tag t-city">都市・産業</span><span class="tag t-xr">ゲーム・XR</span></div><span class="go">くわしく見る →</span></a></li>
-      <li class="work" data-d="ai"><a class="card" href="works/ai-talk-studio.html"><span class="stamp going" aria-label="状態: 進行中">進行中</span><img src="img/ats.jpg" alt="ふたつの吹き出しと音声波形の手描きスケッチ">
+      <li class="work" data-d="ai"><a class="card" href="works/ai-talk-studio.html"><img src="img/ats.jpg" alt="ふたつの吹き出しと音声波形の手描きスケッチ">
         <h3>AI Talk Studio</h3><p>AIアバターが話す、研修・解説動画をつくるスタジオ。</p>
         <div class="tags"><span class="tag t-ai">生成AI</span></div><span class="go">くわしく見る →</span></a></li>
-      <li class="work" data-d="city gov xr"><a class="card" href="works/plateau-sdk-toolkits.html"><span class="stamp clear" aria-label="状態: 公開">公開</span><img src="img/plateau.jpg" alt="立体的な街並みの手描きスケッチ">
+      <li class="work" data-d="city gov xr"><a class="card" href="works/plateau-sdk-toolkits.html"><img src="img/plateau.jpg" alt="立体的な街並みの手描きスケッチ">
         <h3>PLATEAU SDK-Toolkits for Unity</h3><p>国土交通省の3D都市モデルをUnityで扱えるようにする、オープンソースのツールキット。</p>
         <div class="tags"><span class="tag t-city">都市・産業</span><span class="tag t-gov">行政</span></div><span class="go">くわしく見る →</span></a></li>
-      <li class="work" data-d="gov city"><a class="card" href="works/chiba-infra-dx.html"><span class="stamp " aria-label="状態: 継続">継続</span><img src="img/chiba.jpg" alt="高架橋と道路の手描きスケッチ">
+      <li class="work" data-d="gov city"><a class="card" href="works/chiba-infra-dx.html"><img src="img/chiba.jpg" alt="高架橋と道路の手描きスケッチ">
         <h3>千葉県 インフラDXアドバイザー</h3><p>県土整備部で、BIM/CIM・ICT施工の現場普及と職員研修を支援。</p>
         <div class="tags"><span class="tag t-gov">行政</span><span class="tag t-city">都市・産業</span></div><span class="go">くわしく見る →</span></a></li>
-      <li class="work" data-d="ai xr"><a class="card" href="works/yomikikase-agent.html"><span class="stamp clear" aria-label="状態: 論文にした">論文に<br>した</span><img src="img/yomi.jpg" alt="開いた絵本と吹き出しの手描きスケッチ">
+      <li class="work" data-d="ai xr"><a class="card" href="works/yomikikase-agent.html"><img src="img/yomi.jpg" alt="開いた絵本と吹き出しの手描きスケッチ">
         <h3>読み聞かせ×会話エージェントの研究</h3><p>絵本の読み聞かせに会話エージェントを組み合わせ、子どもとの対話を引き出す。</p>
         <div class="tags"><span class="tag t-ai">生成AI</span><span class="tag t-xr">ゲーム・XR</span></div><span class="go">くわしく見る →</span></a></li>
     </ul>
