@@ -1,43 +1,61 @@
 <!DOCTYPE html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Klee+One:wght@600&display=swap" rel="stylesheet"><title>この人について｜清水啓太郎</title><link rel="stylesheet" href="css/sub.css"><style>.vswitch{position:fixed;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:20;display:flex;font-size:12px;border:1px solid var(--ink);background:var(--paper);border-radius:999px;overflow:hidden}.vswitch a{padding:4px 12px;text-decoration:none}.vswitch a[aria-current]{background:var(--ink);color:var(--paper)}</style></head><body><div class="wrap">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Klee+One:wght@600&display=swap" rel="stylesheet"><title>この人について｜清水啓太郎</title><link rel="stylesheet" href="css/sub.css"><style>
+.prog{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--paper);padding:8px 0 6px;border-bottom:1px solid var(--rule);display:flex;gap:12px;align-items:center;font-size:12px}
+.prog b{font-family:var(--hand);color:var(--vermilion);font-weight:600;font-size:14px;white-space:nowrap}
+.prog .bar{flex:1;height:6px;border:1px solid var(--ink);position:relative}.prog .bar i{position:absolute;inset:0 auto 0 0;width:0;background:var(--vermilion);transition:width .2s}
+.prog span{color:var(--pencil);white-space:nowrap;font-variant-numeric:tabular-nums}
+.chap .stg{font-family:var(--hand);color:var(--vermilion);font-size:14px;margin-right:10px}
+.chap.done::before{background:var(--vermilion)}
+.chap .got{display:grid;gap:6px;margin-top:10px}
+.item{display:flex;gap:10px;align-items:baseline;border:1px solid var(--ink);background:#fff;padding:6px 12px;font-size:14px;box-shadow:3px 3px 0 var(--rule);max-width:34em}
+.item i{font-style:normal;font-family:var(--hand);color:var(--vermilion);white-space:nowrap}
+.item.lost{border-style:dashed;box-shadow:none;background:transparent;color:var(--pencil)}.item.lost i{color:var(--pencil)}
+.cont{margin:28px 0 0;padding:18px 20px;border:1.5px solid var(--vermilion);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.cont b{font-family:var(--hand);color:var(--vermilion);font-size:20px;font-weight:600}
+.cont a{font-weight:700;text-decoration:none}.cont a:hover{color:var(--vermilion)}
+@media (prefers-reduced-motion:no-preference){.cont b::after{content:" ▶";animation:blink 1.2s steps(2) infinite}@keyframes blink{50%{opacity:0}}}
+</style></head><body><div class="wrap">
 <header class="site"><a href="index.html"><b>清水 啓太郎</b></a><nav><a href="index.html#values">考え方</a>　<a href="index.html#works">つくったもの</a>　<a href="index.html#writing">発信</a>　<a href="about.html">この人について</a>　<a href="index.html#contact">お問い合わせ</a></nav></header>
+<div class="prog" aria-hidden="true"><b>物語の進行度</b><div class="bar"><i id="pb"></i></div><span id="pt">STAGE 0 / 7</span></div>
 <p class="kicker">この人について</p>
 <h1>深く潜って、渡ってきた。</h1>
 <p class="lede">ひとつの領域に夢中で潜り、つかんだものを持って隣の領域へ渡る。ゲームから始まって、研究、プラットフォーム、起業、行政へ。その繰り返しを、得たものと失ったものの両方で書いておきます。</p>
 
 <h2>これまでの物語</h2>
-<div class="chap"><div class="era">高校時代</div><h3>序章　ネトゲに、全部を捧げた</h3>
+<div class="chap"><div class="era">高校時代</div><h3><span class="stg">STAGE 0</span>序章　ネトゲに、全部を捧げた</h3>
 <p>食事もせず、学校にも行かず、オンラインゲームに没頭した。親をずいぶん困らせた。それでも画面の向こうには世界中の仲間がいて、ギルドをまとめるうちに、リーダーシップと、多様な人と付き合う感覚を覚えた。</p>
-<div class="got"><span>得たもの</span>世界中の仲間、リーダーシップ、自分の意志で何にでもなれる感覚<em>失ったもの　青春の一部</em></div></div>
+<div class="got"><div class="item"><i>獲得</i>世界中の仲間、リーダーシップ、自分の意志で何にでもなれる感覚</div><div class="item lost"><i>失ったもの</i>青春の一部</div></div></div>
 
-<div class="chap"><div class="era">2006–2012　大学・大学院</div><h3>第1章　専攻の壁が、消えた</h3>
+<div class="chap"><div class="era">2006–2012　大学・大学院</div><h3><span class="stg">STAGE 1</span>第1章　専攻の壁が、消えた</h3>
 <p>大学に入ると、決められた学びから一気に解放された。デザインも、プログラミングも、建築も学べる。違う専門を持つ人たちが同じ場所に集まっている。専攻の壁を越えて世界が広がったこの瞬間が、越境思考の始まりだった。</p>
-<div class="got"><span>得たもの</span>越境思考、自分の人生をプレイするという主体性</div></div>
+<div class="got"><div class="item"><i>獲得</i>越境思考、自分の人生をプレイするという主体性</div></div></div>
 
-<div class="chap"><div class="era">2012–2015　エンジニア</div><h3>第2章　会社は、守ってくれない</h3>
+<div class="chap"><div class="era">2012–2015　エンジニア</div><h3><span class="stg">STAGE 2</span>第2章　会社は、守ってくれない</h3>
 <p>社会人2年目、構造改革が進み、先輩たちが去り、オフィスはお葬式のような空気になった。どんな大企業も永遠ではない。成長は自分で設計するしかないと、ここで知った。</p>
-<div class="got"><span>得たもの</span>会社ではなく、自分の可能性でキャリアを選ぶという軸</div></div>
+<div class="got"><div class="item"><i>獲得</i>会社ではなく、自分の可能性でキャリアを選ぶという軸</div></div></div>
 
-<div class="chap"><div class="era">2015–2016　ゲームプログラマー</div><h3>第3章　発売1か月前の、ボス戦</h3>
+<div class="chap"><div class="era">2015–2016　ゲームプログラマー</div><h3><span class="stg">STAGE 3</span>第3章　発売1か月前の、ボス戦</h3>
 <p>子どものころ夢中になったゲームを、今度はつくる側に回った。発売1か月前に届いたボス戦の仕様変更にも、全力で応えた。遊びを本気でつくる現場の熱量を、体で覚えた。<span class="todo">エピソードの補足をお願いします</span></p></div>
 
-<div class="chap"><div class="era">2016–2022　PM・研究ディレクター</div><h3>第4章　製品をつくり、問いをつくる</h3>
+<div class="chap"><div class="era">2016–2022　PM・研究ディレクター</div><h3><span class="stg">STAGE 4</span>第4章　製品をつくり、問いをつくる</h3>
 <p>製品の企画と開発を回し、やがて研究ディレクターとして「何を問うか」から考える仕事へ。海外の大学との共同研究や、ウィーンの歴史建築をフォトグラメトリで写し取る制作も経験した。<span class="todo">どの時期の出来事か要確認</span></p></div>
 
-<div class="chap"><div class="era">2022–　起業</div><h3>第5章　会社をつくり、一度めちゃくちゃになった</h3>
+<div class="chap"><div class="era">2022–　起業</div><h3><span class="stg">STAGE 5</span>第5章　会社をつくり、一度めちゃくちゃになった</h3>
 <p>株式会社Play Life Studio を立ち上げた。共同創業者が会社を離れ、立て直しから始め直したこともある。ミッションは「世界をゲーム化せよ」。XR・デジタルツイン・生成AIを、産業現場と行政に実装している。</p>
-<div class="got"><span>得たもの</span>何があっても続けられる、という自信と許容力</div></div>
+<div class="got"><div class="item"><i>獲得</i>何があっても続けられる、という自信と許容力</div></div></div>
 
-<div class="chap"><div class="era">2023–　プラットフォーム</div><h3>第6章　開発基盤を、都市と産業へ</h3>
+<div class="chap"><div class="era">2023–　プラットフォーム</div><h3><span class="stg">STAGE 6</span>第6章　開発基盤を、都市と産業へ</h3>
 <p>開発プラットフォームの側から、3D都市モデルや産業のデジタルツインに関わる。現在は NVIDIA のソリューションアーキテクトとして、産業向けの技術支援にあたっている。</p></div>
 
-<div class="chap"><div class="era">2024–　行政</div><h3>第7章　技術を、行政の言葉に訳す</h3>
+<div class="chap"><div class="era">2024–　行政</div><h3><span class="stg">STAGE 7</span>第7章　技術を、行政の言葉に訳す</h3>
 <p>千葉県のインフラDXアドバイザーとして、BIM/CIM・ICT施工の普及と職員研修を支援している。技術職は、課題と解決のあいだをつなぐ翻訳者だと思っている。</p></div>
 
-<div class="chap"><div class="era">これから</div><h3>終章　まだ、プレイ中</h3>
+<div class="chap"><div class="era">これから</div><h3><span class="stg">STAGE ∞</span>終章　まだ、プレイ中</h3>
 <p>一度きりの人生を、ゲームのように。横断歩道の白いところだけを渡る子どものように、今に集中して、夢中で次の領域へ渡っていく。<span class="todo">これからの一文をご本人の言葉で</span></p></div>
+
+<div class="cont"><b>CONTINUE?</b><a href="index.html#contact">次の領域へ、一緒に渡る人を探しています →</a></div>
 
 <h2>経歴</h2>
 <dl class="facts">
@@ -52,4 +70,8 @@
 <dt>2010–2012</dt><dd>慶應義塾大学大学院 メディアデザイン研究科 修士課程</dd>
 <dt>2006–2010</dt><dd>慶應義塾大学 環境情報学部</dd>
 </dl>
-<footer><span>© Keitaro Shimizu</span><span>試作 2026-11-08（黄色の箇所は要確認・仮の文章）</span></footer></div><div class="vswitch" role="navigation" aria-label="試作の版を切り替え"><a href="about.html" aria-current="page">通常版</a><a href="about-game.html">ゲーム色版</a></div></body></html>
+<footer><span>© Keitaro Shimizu</span><span>試作 2026-11-08（黄色の箇所は要確認・仮の文章）</span></footer></div><script>(function(){const ch=[...document.querySelectorAll('.chap')];const pb=document.getElementById('pb'),pt=document.getElementById('pt');
+function f(){let n=-1;ch.forEach((c,i)=>{const on=c.getBoundingClientRect().top<innerHeight*.6;c.classList.toggle('done',on);if(on)n=i;});
+const k=Math.max(0,Math.min(n,7));pb.style.width=((n+1)/ch.length*100)+'%';pt.textContent=n>=8?'STAGE ∞ ／ プレイ中':'STAGE '+k+' / 7';}
+addEventListener('scroll',f,{passive:true});f();})();</script>
+</body></html>

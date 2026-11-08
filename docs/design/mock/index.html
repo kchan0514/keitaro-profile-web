@@ -77,6 +77,7 @@ body[data-domain] .island:not(.on) .label{opacity:.35}
 .value .note{font-family:var(--font-hand);color:var(--vermilion);font-size:15px;display:block;margin-bottom:4px}
 .value.wide{grid-column:1/-1}
 .value.wide .q{font-size:clamp(22px,2.8vw,30px)}
+.value.wide p:not(.q){max-width:44em}
 section{padding-block:56px 8px}
 h2{font-family:var(--font-display);font-weight:700;font-size:clamp(20px,2.4vw,24px);letter-spacing:.08em;margin:0 0 24px;display:inline-block;
   background:linear-gradient(transparent 0 85%,var(--vermilion) 85% 92%,transparent 92%);}
@@ -157,12 +158,48 @@ body[data-domain] .dim{opacity:.22}
 .social{display:flex;gap:20px;font-size:13px;letter-spacing:.04em;flex-wrap:wrap}
 footer{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;color:var(--pencil);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:40px}
 :focus-visible{outline:2px solid var(--vermilion);outline-offset:3px}
+/* ===== ゲーム色（企画ノートの延長。ドット絵やネオンにはしない） ===== */
+/* マップ：ステージ番号・現在地のコマ・探索済のスタンプ・未踏の先 */
+.stage-no{font-family:var(--font-hand);font-size:13px;fill:var(--vermilion)}
+.unknown{fill:none;stroke:var(--vermilion);stroke-width:2;stroke-dasharray:3 7;stroke-linecap:round}
+.qmark{font-family:var(--font-hand);font-size:30px;fill:var(--vermilion)}
+.start{font-family:var(--font-hand);font-size:15px;fill:var(--vermilion)}
+.koma{fill:var(--vermilion)}
+.koma-ring{fill:none;stroke:var(--vermilion);stroke-width:1.5}
+.here{font-family:var(--font-hand);font-size:15px;fill:var(--ink)}
+.seal{opacity:0;transition:opacity .3s,transform .3s;transform-box:fill-box;transform-origin:center}
+.seal circle{fill:none;stroke:var(--vermilion);stroke-width:2}
+.seal text{font-family:var(--font-hand);font-size:14px;fill:var(--vermilion)}
+.island.seen .seal{opacity:.9}
+@media (prefers-reduced-motion:no-preference){
+  .koma-ring{animation:ping 2.2s ease-out infinite;transform-box:fill-box;transform-origin:center}
+  @keyframes ping{0%{transform:scale(.6);opacity:1}100%{transform:scale(2.2);opacity:0}}
+}
+/* 探索（マップの下に小さく） */
+.explore{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--pencil);margin-left:auto}
+.explore b{font-family:var(--font-hand);color:var(--vermilion);font-weight:600;font-size:14px}
+.explore .dots{display:inline-flex;gap:4px}
+.explore .dots span{width:11px;height:11px;border-radius:50%;border:1.5px solid var(--pencil)}
+.explore .dots span.on{border-color:transparent}
+.explore .got{font-family:var(--font-hand);color:var(--vermilion);font-size:14px}
+/* ルール番号 */
+.value .rule-no{font-family:var(--font-hand);color:var(--pencil);font-size:13px;margin-right:8px}
+.rules-note{font-family:var(--font-hand);color:var(--vermilion);font-size:15px;margin:-14px 0 20px}
+/* クエストの状態スタンプ */
+.work .card{position:relative}
+.stamp{position:absolute;right:4px;top:22px;font-family:var(--font-hand);font-size:13px;color:var(--vermilion);border:2px solid var(--vermilion);border-radius:50%;width:62px;height:62px;display:grid;place-items:center;text-align:center;line-height:1.15;transform:rotate(-12deg);background:rgba(250,248,243,.75)}
+.stamp.clear{border-style:double;border-width:4px}
+.stamp.going{color:var(--ink);border-color:var(--ink);border-style:dashed}
+@media (prefers-reduced-motion:no-preference){.work .card:hover .stamp{transform:rotate(-4deg) scale(1.06);transition:transform .2s}}
+.legend{font-size:12px;color:var(--pencil);margin:-12px 0 18px}
+/* 経路のステップに「獲得」 */
+.steps em{display:block;font-style:normal;font-size:12px;color:var(--vermilion);font-family:var(--font-hand)}
+.steps li.now::before{background:var(--vermilion)}
+.party{font-family:var(--font-hand);color:var(--vermilion);font-size:16px;display:block;margin-bottom:2px}
 @media (prefers-reduced-motion:no-preference){
   .route{stroke-dasharray:2000;stroke-dashoffset:0;animation:draw 2.4s ease-out both}
   @keyframes draw{from{stroke-dashoffset:2000}to{stroke-dashoffset:0}}
 }
-.vswitch{position:fixed;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:20;display:flex;font-size:12px;border:1px solid var(--ink);background:var(--paper);border-radius:999px;overflow:hidden}
-.vswitch a{padding:4px 12px;text-decoration:none}.vswitch a[aria-current]{background:var(--ink);color:var(--paper)}
 </style>
 </head>
 <body>
@@ -195,47 +232,52 @@ footer{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;co
       <button type="button" data-d="city" aria-pressed="false"><i style="background:var(--city-ink)"></i>都市・産業</button>
       <button type="button" data-d="ai" aria-pressed="false"><i style="background:var(--ai-ink)"></i>生成AI</button>
       <button type="button" data-d="gov" aria-pressed="false"><i style="background:var(--gov-ink)"></i>行政</button>
-      <span class="hint">島か印を選ぶと、その領域の取り組みと記事が浮かびます</span>
+      <span class="hint">島を選ぶと、その領域の取り組みと記事が浮かびます（訪れた島には印がつきます）</span>
+      <span class="explore" aria-live="polite">探索 <b><span id="lgN">0</span>/4</b><span class="dots" id="lgDots"></span><span class="got" id="lgGot"></span></span>
     </div>
   </div>
 
   <section id="values">
     <h2>大事にしていること</h2>
+    <p class="rules-note">＝ 自分で決めた、この人生のルール</p>
     <ul class="values">
-      <li class="value wide"><span class="note">越境について</span><p class="q">越境とは、混ぜることではなく、新しい意味を生み出すこと。</p>
+      <li class="value wide"><span class="note"><span class="rule-no">ルール1</span>越境について</span><p class="q">越境とは、混ぜることではなく、新しい意味を生み出すこと。</p>
         <p>視点を重ねると、それまで見えなかった問いと価値が立ち上がる。大学で専攻の壁が消えた日から、ずっとそうやって領域を渡ってきた。</p></li>
-      <li class="value"><span class="note">創造的ニヒリズム</span><p class="q">価値は、自分で創る。</p>
+      <li class="value wide"><span class="note"><span class="rule-no">ルール2</span>ゲーミフィケーションについて</span><p class="q">「やらされる」を、「やりたい」に変える。</p>
+        <p>食事も忘れてゲームに没頭した高校時代に知った。人は、仕組みしだいで夢中になれる。学び方が合わなければ、人は「できない人」に見える。ただそれだけのことだ。だから現場の学びや仕事を、遊びの仕組みで設計し直す。このサイトの地図やステージも、その考え方でつくっている。</p></li>
+      <li class="value"><span class="note"><span class="rule-no">ルール3</span>創造的ニヒリズム</span><p class="q">価値は、自分で創る。</p>
         <p>「選択と集中」「君の役割はこれだから」と言われ続けても、好奇心のほうを信じてきた。決められた意味がないなら、つくればいい。</p></li>
-      <li class="value"><span class="note">主体性</span><p class="q">一度きりの人生を、ゲームのように。</p>
+      <li class="value"><span class="note"><span class="rule-no">ルール4</span>主体性</span><p class="q">一度きりの人生を、ゲームのように。</p>
         <p>社会人2年目、大企業も守ってはくれないと知った。成長は自分で設計するしかない。だから人生を自分でプレイする。</p></li>
-      <li class="value"><span class="note">幸せについて</span><p class="q">今に向き合い、今に夢中になる。</p>
+      <li class="value"><span class="note"><span class="rule-no">ルール5</span>幸せについて</span><p class="q">今に向き合い、今に夢中になる。</p>
         <p>横断歩道の白いところだけを渡る子どもは、先のことを考えず、目の前の一歩に集中している。本当の幸せは、そうやって今に向き合い、今の楽しさに没頭することだと思う。</p></li>
-      <li class="value"><span class="note">技術について</span><p class="q">技術の言葉を、相手の言葉に。</p>
+      <li class="value"><span class="note"><span class="rule-no">ルール6</span>技術について</span><p class="q">技術の言葉を、相手の言葉に。</p>
         <p>技術は特別な人だけのものではない。エンジニアは課題と解決のあいだをつなぐ翻訳者だと思っている。</p></li>
-      <li class="value"><span class="note">つくる人として</span><p class="q">誰かが作るのを待たず、自分が作れるかもしれないと考える。</p>
+      <li class="value"><span class="note"><span class="rule-no">ルール7</span>つくる人として</span><p class="q">誰かが作るのを待たず、自分が作れるかもしれないと考える。</p>
         <p>好奇心に責任を持つこと。それが、産業と行政の現場に技術を置き続ける理由。</p></li>
     </ul>
   </section>
 
   <section id="works">
     <h2>つくったもの・取り組み</h2>
+    <p class="legend">印は状態です。「進行中」＝いまプレイ中、「公開」「論文にした」＝世に出したもの、「継続」＝続けている役割。</p>
     <ul class="works">
-      <li class="work" data-d="xr ai"><a class="card" href="works/xrflowbuilder.html"><img src="img/xfb.jpg" alt="空間から空間へ人が移動していく手描きのスケッチ">
+      <li class="work" data-d="xr ai"><a class="card" href="works/xrflowbuilder.html"><span class="stamp going" aria-label="状態: 進行中">進行中</span><img src="img/xfb.jpg" alt="空間から空間へ人が移動していく手描きのスケッチ">
         <h3>XRFlowBuilder</h3><p>XR・AIの研修コンテンツをつくる制作プラットフォーム。専門知識がなくても、現場のシナリオを組める。</p>
         <div class="tags"><span class="tag t-xr">ゲーム・XR</span><span class="tag t-ai">生成AI</span></div><span class="go">くわしく見る →</span></a></li>
-      <li class="work" data-d="city xr"><a class="card" href="works/samurai-training.html"><img src="img/samurai.jpg" alt="木刀の手描きスケッチ">
+      <li class="work" data-d="city xr"><a class="card" href="works/samurai-training.html"><span class="stamp going" aria-label="状態: 進行中">進行中</span><img src="img/samurai.jpg" alt="木刀の手描きスケッチ">
         <h3>Samurai Training</h3><p>産業現場の導入・オンボーディング。外国人材が現場で早く戦力になり、定着するまでを支える。</p>
         <div class="tags"><span class="tag t-city">都市・産業</span><span class="tag t-xr">ゲーム・XR</span></div><span class="go">くわしく見る →</span></a></li>
-      <li class="work" data-d="ai"><a class="card" href="works/ai-talk-studio.html"><img src="img/ats.jpg" alt="ふたつの吹き出しと音声波形の手描きスケッチ">
+      <li class="work" data-d="ai"><a class="card" href="works/ai-talk-studio.html"><span class="stamp going" aria-label="状態: 進行中">進行中</span><img src="img/ats.jpg" alt="ふたつの吹き出しと音声波形の手描きスケッチ">
         <h3>AI Talk Studio</h3><p>AIアバターが話す、研修・解説動画をつくるスタジオ。</p>
         <div class="tags"><span class="tag t-ai">生成AI</span></div><span class="go">くわしく見る →</span></a></li>
-      <li class="work" data-d="city gov xr"><a class="card" href="works/plateau-sdk-toolkits.html"><img src="img/plateau.jpg" alt="立体的な街並みの手描きスケッチ">
+      <li class="work" data-d="city gov xr"><a class="card" href="works/plateau-sdk-toolkits.html"><span class="stamp clear" aria-label="状態: 公開">公開</span><img src="img/plateau.jpg" alt="立体的な街並みの手描きスケッチ">
         <h3>PLATEAU SDK-Toolkits for Unity</h3><p>国土交通省の3D都市モデルをUnityで扱えるようにする、オープンソースのツールキット。</p>
         <div class="tags"><span class="tag t-city">都市・産業</span><span class="tag t-gov">行政</span></div><span class="go">くわしく見る →</span></a></li>
-      <li class="work" data-d="gov city"><a class="card" href="works/chiba-infra-dx.html"><img src="img/chiba.jpg" alt="高架橋と道路の手描きスケッチ">
+      <li class="work" data-d="gov city"><a class="card" href="works/chiba-infra-dx.html"><span class="stamp " aria-label="状態: 継続">継続</span><img src="img/chiba.jpg" alt="高架橋と道路の手描きスケッチ">
         <h3>千葉県 インフラDXアドバイザー</h3><p>県土整備部で、BIM/CIM・ICT施工の現場普及と職員研修を支援。</p>
         <div class="tags"><span class="tag t-gov">行政</span><span class="tag t-city">都市・産業</span></div><span class="go">くわしく見る →</span></a></li>
-      <li class="work" data-d="ai xr"><a class="card" href="works/yomikikase-agent.html"><img src="img/yomi.jpg" alt="開いた絵本と吹き出しの手描きスケッチ">
+      <li class="work" data-d="ai xr"><a class="card" href="works/yomikikase-agent.html"><span class="stamp clear" aria-label="状態: 論文にした">論文に<br>した</span><img src="img/yomi.jpg" alt="開いた絵本と吹き出しの手描きスケッチ">
         <h3>読み聞かせ×会話エージェントの研究</h3><p>絵本の読み聞かせに会話エージェントを組み合わせ、子どもとの対話を引き出す。</p>
         <div class="tags"><span class="tag t-ai">生成AI</span><span class="tag t-xr">ゲーム・XR</span></div><span class="go">くわしく見る →</span></a></li>
     </ul>
@@ -293,18 +335,18 @@ footer{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;co
         <a class="more" href="about.html">これまでの物語を読む →</a>
       </div>
       <ol class="steps" aria-label="これまで渡ってきた領域">
-        <li><b>ゲーム</b><span>ゲームプログラマーとして、遊びをつくる</span></li>
-        <li><b>製品</b><span>PM・エンジニアとして、製品をつくる</span></li>
-        <li><b>研究</b><span>研究ディレクターとして、問いをつくる</span></li>
-        <li><b>プラットフォーム</b><span>開発基盤を、現場と都市へ広げる</span></li>
-        <li><b>起業・行政</b><span>会社をつくり、産業と行政の現場に実装する</span></li>
+        <li><b>ゲーム</b><span>ゲームプログラマーとして、遊びをつくる</span><em>獲得：遊びを本気でつくる熱量</em></li>
+        <li><b>製品</b><span>PM・エンジニアとして、製品をつくる</span><em>獲得：作って届けきる段取り</em></li>
+        <li><b>研究</b><span>研究ディレクターとして、問いをつくる</span><em>獲得：何を問うかを考える力</em></li>
+        <li><b>プラットフォーム</b><span>開発基盤を、現場と都市へ広げる</span><em>獲得：技術を開いて広げる視点</em></li>
+        <li class="now"><b>起業・行政</b><span>会社をつくり、産業と行政の現場に実装する</span><em>いま、ここ。まだプレイ中</em></li>
       </ol>
     </div>
   </section>
 
   <section id="contact">
     <div class="contact">
-      <a class="big" href="#contact">お問い合わせ</a>
+      <div><span class="party">一緒にプレイしませんか</span><a class="big" href="#contact">お問い合わせ</a></div>
       <div class="social"><a href="https://x.com/GIZAGIZAHEART">@GIZAGIZAHEART</a><a href="https://note.com/keitaro_shimizu">note</a><span>LinkedIn</span></div>
     </div>
     <p style="font-size:14px;color:var(--pencil);margin:0">導入・共創・講演のご相談をお受けしています。</p>
@@ -313,7 +355,6 @@ footer{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;co
   <footer><span>© Keitaro Shimizu</span><span>試作 2026-11-08（デザイン確認用。リンク・文言は仮）</span></footer>
 </div>
 
-<div class="vswitch" role="navigation" aria-label="試作の版を切り替え"><a href="index.html" aria-current="page">通常版</a><a href="index-game.html">ゲーム色版</a></div>
 <script>
 (function(){
   const NS='http://www.w3.org/2000/svg';
@@ -342,14 +383,26 @@ footer{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;co
     for(let i=1;i<9;i++){const s=1-i*.105;const off=(1-s)*18;
       el('path',{class:'ring',d:blob(is.cx+off*.6,is.cy+off*.9,is.r*s,ph.map((p,j)=>p+i*.12*(j+1)))},g);}
     const t=el('text',{class:'label',x:is.cx-50,y:is.cy+70},g);t.textContent=is.name;
+    const sg=el('g',{class:'seal'},g);el('circle',{cx:is.cx+88,cy:is.cy-62,r:24},sg);
+    const st2=el('text',{x:is.cx+72,y:is.cy-57},sg);st2.textContent='探索済';
     gIs.push(g);
   });
   // 渡る線
   el('path',{class:'route',d:'M150 70 C 220 80, 300 120, 345 185 C 390 250, 470 120, 560 120 C 640 120, 640 170, 655 190 C 600 260, 420 250, 380 330 C 350 390, 340 400, 352 415 C 420 470, 520 330, 600 360 C 660 380, 650 420, 668 430 C 720 470, 800 500, 900 520'});
   [[345,185],[560,120],[655,190],[380,330],[352,415],[600,360],[668,430]].forEach(p=>el('circle',{class:'stop',cx:p[0],cy:p[1],r:6}));
-  el('path',{d:'M888 510 L902 521 L885 527',fill:'none',stroke:'var(--vermilion)','stroke-width':2.4,'stroke-linecap':'round'});
+  // ステージ番号
+  [[345,185],[560,120],[655,190],[380,330],[352,415],[600,360],[668,430]].forEach((p,i)=>{const t=el('text',{class:'stage-no',x:p[0]+9,y:p[1]-9});t.textContent=i+1;});
+  // スタート
+  el('circle',{cx:150,cy:70,r:5,fill:'var(--vermilion)'});
+  let st=el('text',{class:'start',x:96,y:56});st.textContent='START';
+  // 現在地のコマ（最後の停留所）と、その先の未踏
+  el('path',{class:'unknown',d:'M900 520 C 940 528, 960 500, 975 470'});
+  const q=el('text',{class:'qmark',x:960,y:458});q.textContent='?';
+  el('circle',{class:'koma-ring',cx:900,cy:520,r:9});
+  el('path',{class:'koma',d:'M900 520 l-9 -20 a10 10 0 1 1 18 0 z'});
+  const hr=el('text',{class:'here',x:806,y:548});hr.textContent='いま、ここ（まだプレイ中）';
   let h=el('text',{class:'hand',x:470,y:60});h.textContent='深く';
-  h=el('text',{class:'hand',x:830,y:500});h.textContent='渡る';
+  h=el('text',{class:'hand',x:800,y:496});h.textContent='渡る';
   // 取り組みの札
   const pins=[
     ['XRFlowBuilder',40,140,215,170],['Samurai Training',40,300,205,270],['AI Talk Studio',40,470,215,430],
@@ -361,10 +414,21 @@ footer{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;co
   const chips=[...document.querySelectorAll('.chips button')];
   const items=[...document.querySelectorAll('.work,.post,.papers li')];
   let cur=null;
+  const seen=new Set(),got=new Set();
+  const dom=[['xr','var(--xr-ink)'],['city','var(--city-ink)'],['ai','var(--ai-ink)'],['gov','var(--gov-ink)']];
+  const dots=document.getElementById('lgDots');
+  dom.forEach(([d,c])=>{const s=document.createElement('span');s.dataset.d=d;s.style.setProperty('--c',c);dots.appendChild(s);});
+  function award(id,txt){if(got.has(id))return;got.add(id);document.getElementById('lgGot').textContent=txt;}
+  function upd(){
+    document.getElementById('lgN').textContent=seen.size;
+    dots.querySelectorAll('span').forEach(s=>{const on=seen.has(s.dataset.d);s.classList.toggle('on',on);s.style.background=on?s.style.getPropertyValue('--c'):'transparent';});
+    if(seen.size===4)award('cross','— 4つの島を渡りきった。越境者の印を獲得');
+  }
   function setD(d){
     cur=(cur===d)?null:d;
     if(cur)document.body.dataset.domain=cur;else delete document.body.dataset.domain;
     gIs.forEach(g=>g.classList.toggle('on',g.dataset.d===cur));
+    if(cur){seen.add(cur);gIs.forEach(g=>g.classList.toggle('seen',seen.has(g.dataset.d)));upd();}
     chips.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.d===cur)));
     items.forEach(it=>it.classList.toggle('dim',!!cur&&!it.dataset.d.split(' ').includes(cur)));
   }
