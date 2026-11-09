@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>清水啓太郎 試作v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* v2 方針: 罫線・島・スケッチ・蛍光ペンをやめ、明朝の見出しと余白で組む。色は朱の1本だけ。領域色は小さな印にのみ使う */
+:root{
+  --paper:#F6F4EF; --ink:#16161A; --sub:#5F5D58; --line:#D8D4CB; --accent:#C8402A;
+  --xr:#3E6BA8; --city:#3F7F4A; --ai:#A9850F; --gov:#6E4F9E;
+  --serif:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --sans:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.9;letter-spacing:.02em;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(20px,5vw,56px)}
+.lbl{font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--sub)}
+
+/* ヘッダー */
+header.site{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:22px;flex-wrap:wrap}
+header.site .id{font-family:var(--serif);font-size:17px;font-weight:700;letter-spacing:.08em}
+nav ul{display:flex;gap:clamp(14px,2.4vw,28px);list-style:none;margin:0;padding:0;font-size:12.5px;flex-wrap:wrap;align-items:center}
+nav a:hover,nav a:focus-visible{color:var(--accent)}
+.lang{font-size:11px;color:var(--sub);letter-spacing:.1em}
+.lang button{all:unset;cursor:pointer;color:var(--sub);padding:0 2px}
+.lang button[aria-pressed="true"]{color:var(--ink);font-weight:700}
+.lang button:focus-visible{outline:2px solid var(--accent)}
+
+/* ヒーロー */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) clamp(170px,20vw,240px);gap:clamp(28px,6vw,96px);align-items:end;padding-block:clamp(56px,10vw,128px) clamp(40px,6vw,72px);border-bottom:1px solid var(--ink)}
+.hero .lbl{margin:0 0 20px}
+.hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(52px,9.2vw,112px);line-height:1.05;letter-spacing:.04em;margin:0}
+.hero h1 .en{display:block;font-family:var(--sans);font-weight:500;font-size:clamp(12px,1.2vw,14px);letter-spacing:.32em;text-transform:uppercase;color:var(--sub);margin-top:22px}
+.hero .role{margin:28px 0 0;font-size:14px;font-weight:700}
+.hero .sub{margin:2px 0 0;font-size:14px;color:var(--sub)}
+.hero figure{margin:0}
+.hero img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;filter:saturate(.88)}
+.hero figcaption{font-size:11px;color:var(--sub);margin-top:8px;letter-spacing:.06em}
+@media (max-width:720px){.hero{grid-template-columns:1fr}.hero figure{max-width:180px;grid-row:1}}
+
+/* 標語 */
+.motto{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,5vw,72px);padding-block:clamp(48px,7vw,88px);align-items:start}
+.motto p.big{font-family:var(--serif);font-weight:500;font-size:clamp(30px,4.4vw,52px);line-height:1.35;letter-spacing:.04em;margin:0}
+.motto p.big::after{content:"";display:block;width:56px;height:2px;background:var(--accent);margin-top:28px}
+.motto .lead{font-size:16px;line-height:2.1;margin:6px 0 0;max-width:30em}
+@media (max-width:760px){.motto{grid-template-columns:1fr}}
+
+/* 節見出し */
+section{padding-block:clamp(56px,8vw,104px) 0}
+.sh{display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:baseline;border-top:1px solid var(--ink);padding-top:14px;margin-bottom:clamp(28px,4vw,48px)}
+.sh .no{font-family:var(--serif);font-size:13px;color:var(--accent)}
+.sh h2{font-family:var(--serif);font-weight:700;font-size:clamp(22px,2.6vw,30px);letter-spacing:.06em;margin:0}
+.sh .lbl{justify-self:end}
+
+/* 越境（地図の代わり：4列と、それを横切る1本の線） */
+.cross{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid var(--line)}
+.cross::before{content:"";position:absolute;left:0;right:0;top:58px;height:2px;background:var(--accent);transform-origin:left;}
+@media (prefers-reduced-motion:no-preference){.cross::before{animation:draw 1.6s cubic-bezier(.2,.7,.2,1) both}@keyframes draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}}
+.col{padding:0 20px 28px;border-left:1px solid var(--line);transition:opacity .25s}
+.col:first-child{border-left:0;padding-left:0}
+.col button{all:unset;cursor:pointer;display:block;width:100%}
+.col button:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.col .yr{font-size:11px;letter-spacing:.14em;color:var(--sub);display:block;height:36px}
+.col .dot{display:block;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2px solid var(--accent);margin:15px 0 22px;position:relative;z-index:1}
+.col h3{font-family:var(--serif);font-weight:700;font-size:clamp(18px,1.9vw,22px);margin:0 0 10px;letter-spacing:.04em;display:flex;align-items:center;gap:10px}
+.col h3 i{width:8px;height:8px;border-radius:50%;flex:none}
+.col ul{list-style:none;margin:0;padding:0;font-size:13.5px;color:var(--sub);line-height:2}
+.col button[aria-pressed="true"] h3{color:var(--accent)}
+body[data-domain] .col:not(.on){opacity:.3}
+.cross-note{font-size:12px;color:var(--sub);margin:12px 0 0}
+@media (max-width:760px){.cross{grid-template-columns:1fr 1fr}.cross::before{display:none}.col{padding:0 14px 24px}.col:nth-child(3){border-left:0;padding-left:0}}
+
+/* 大事にしていること */
+.values{list-style:none;margin:0;padding:0;counter-reset:v}
+.value{display:grid;grid-template-columns:3.5em minmax(0,5fr) minmax(0,6fr);gap:clamp(16px,3vw,40px);padding:clamp(22px,3vw,34px) 0;border-top:1px solid var(--line);counter-increment:v;align-items:baseline}
+.value:first-child{border-top:0;padding-top:0}
+.value::before{content:counter(v,decimal-leading-zero);font-family:var(--serif);font-size:13px;color:var(--accent)}
+.value .q{font-family:var(--serif);font-weight:500;font-size:clamp(20px,2.3vw,27px);line-height:1.5;letter-spacing:.03em;margin:0;text-wrap:balance}
+.value .note{display:block;font-size:11px;letter-spacing:.14em;color:var(--sub);margin-bottom:6px}
+.value p.t{margin:0;color:var(--sub);font-size:14.5px;max-width:34em}
+@media (max-width:760px){.value{grid-template-columns:2.4em 1fr}.value p.t{grid-column:2}}
+
+/* つくったもの */
+.works{list-style:none;margin:0;padding:0;border-bottom:1px solid var(--line)}
+.work{border-top:1px solid var(--line);transition:opacity .25s}
+.work a{display:grid;grid-template-columns:3.5em minmax(0,5fr) minmax(0,6fr) auto;gap:clamp(16px,3vw,40px);padding:22px 0;align-items:baseline}
+.work .n{font-family:var(--serif);font-size:13px;color:var(--sub)}
+.work h3{text-wrap:balance;font-family:var(--serif);font-weight:700;font-size:clamp(18px,2vw,23px);margin:0;letter-spacing:.03em;line-height:1.45}
+.work p{margin:0;font-size:14px;color:var(--sub);line-height:1.85}
+.work .ds{display:flex;gap:6px;justify-self:end}
+.work .ds i,.post .ds i{width:7px;height:7px;border-radius:50%;display:inline-block}
+.work .arw{display:inline-block;margin-left:8px;color:var(--accent);opacity:0;transform:translateX(-6px);transition:.25s}
+.work a:hover h3,.work a:focus-visible h3{color:var(--accent)}
+.work a:hover .arw,.work a:focus-visible .arw{opacity:1;transform:none}
+@media (max-width:760px){.work a{grid-template-columns:2.4em 1fr}.work p,.work .ds{grid-column:2;justify-self:start}}
+body[data-domain] .dim{opacity:.22}
+.d-xr{background:var(--xr)}.d-city{background:var(--city)}.d-ai{background:var(--ai)}.d-gov{background:var(--gov)}.d-x{border:1px solid var(--sub)}
+
+/* 発信 */
+.channels{display:flex;flex-wrap:wrap;gap:8px 28px;margin:0 0 28px;font-size:13px}
+.channels a{display:inline-flex;gap:8px;align-items:baseline}
+.channels b{font-weight:700}
+.channels span{color:var(--sub);font-size:12px}
+.channels a:hover b{color:var(--accent)}
+.mfilter{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:6px;font-size:12px;letter-spacing:.08em}
+.mfilter button{all:unset;cursor:pointer;color:var(--sub);padding-bottom:3px;border-bottom:1px solid transparent}
+.mfilter button[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.mfilter button:focus-visible{outline:2px solid var(--accent)}
+.posts{list-style:none;margin:0;padding:0;border-bottom:1px solid var(--line)}
+.post{border-top:1px solid var(--line);transition:opacity .25s}
+.post[hidden]{display:none}
+.post a{display:grid;grid-template-columns:6.5em 5em minmax(0,1fr) auto;gap:20px;align-items:baseline;padding:16px 0}
+.post time{font-size:12px;color:var(--sub);font-variant-numeric:tabular-nums}
+.post .med{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--sub)}
+.post .ttl{font-size:15.5px;font-weight:500;line-height:1.7}
+.post a:hover .ttl,.post a:focus-visible .ttl{color:var(--accent)}
+.post .ds{display:flex;gap:6px}
+@media (max-width:640px){.post a{grid-template-columns:auto 1fr;row-gap:2px}.post .ttl{grid-column:1/-1}.post .ds{display:none}}
+.more{display:inline-block;margin-top:20px;font-size:13px;letter-spacing:.06em;border-bottom:1px solid var(--ink);padding-bottom:2px}
+.more:hover{color:var(--accent);border-color:var(--accent)}
+
+/* 研究 */
+.split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,5vw,72px)}
+.split .rlead{font-family:var(--serif);font-size:clamp(17px,1.8vw,20px);line-height:1.9;margin:0}
+.papers{list-style:none;margin:0;padding:0}
+.papers li{display:grid;grid-template-columns:3.5em minmax(0,1fr);gap:16px;padding:0 0 22px;margin-bottom:22px;border-bottom:1px solid var(--line);align-items:baseline;transition:opacity .25s}
+.papers .yr{font-family:var(--serif);font-size:14px;color:var(--accent)}
+.papers b{font-weight:500;display:block;font-size:15.5px;line-height:1.7}
+.papers a:hover b{color:var(--accent)}
+.papers .vn{font-size:12.5px;color:var(--sub)}
+@media (max-width:760px){.split{grid-template-columns:1fr}}
+
+/* この人について */
+.about p{margin:0 0 16px;font-size:15.5px;line-height:2.1;max-width:32em}
+.steps{list-style:none;margin:0;padding:0}
+.steps li{display:grid;grid-template-columns:9.5em 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
+.steps li:first-child{border-top:1px solid var(--line)}
+.steps b{font-family:var(--serif);font-weight:700;font-size:16px}
+.steps span{color:var(--sub)}
+
+/* お問い合わせ */
+.contact{padding-block:clamp(72px,10vw,128px) clamp(40px,6vw,64px);border-top:1px solid var(--ink);margin-top:clamp(72px,10vw,120px)}
+.contact .lbl{margin:0 0 18px}
+.contact .big{font-family:var(--serif);font-weight:700;font-size:clamp(34px,6vw,72px);letter-spacing:.04em;line-height:1.2;display:inline-flex;align-items:center;gap:.4em}
+.contact .big span{color:var(--accent);font-family:var(--sans);font-weight:400;transition:transform .25s}
+.contact .big:hover span{transform:translateX(8px)}
+.contact p{color:var(--sub);margin:18px 0 0;font-size:14px}
+.social{display:flex;gap:24px;font-size:13px;margin-top:28px;flex-wrap:wrap}
+.social a{border-bottom:1px solid var(--line)}
+.social a:hover{color:var(--accent);border-color:var(--accent)}
+footer{border-top:1px solid var(--line);padding-block:20px 40px;font-size:11px;color:var(--sub);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;letter-spacing:.06em}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <a class="id" href="#">清水 啓太郎</a>
+    <nav aria-label="メイン"><ul>
+      <li><a href="#values">考え方</a></li>
+      <li><a href="#works">つくったもの</a></li>
+      <li><a href="#writing">発信</a></li>
+      <li><a href="#research">研究</a></li>
+      <li><a href="about.html">この人について</a></li>
+      <li><a href="#contact">お問い合わせ</a></li>
+      <li><span class="lang" role="group" aria-label="Language"><button type="button" data-lang="ja" aria-pressed="true">JA</button> / <button type="button" data-lang="en" aria-pressed="false">EN</button></span></li>
+    </ul></nav>
+  </header>
+
+  <div class="hero">
+    <div>
+      <p class="lbl">Portfolio — XR / Digital Twin / Generative AI</p>
+      <h1>清水 啓太郎<span class="en">Keitaro Shimizu</span></h1>
+      <p class="role">株式会社Play Life Studio 代表取締役CEO</p>
+      <p class="sub">XR・デジタルツイン・生成AIを、産業と行政の現場へ。</p>
+    </div>
+    <figure><img src="img/portrait-color.jpg" alt="清水啓太郎の写真。木々を背に、紺のニットのポロシャツで微笑んでいる"></figure>
+  </div>
+
+  <div class="motto">
+    <p class="big"><span style="white-space:nowrap">領域を越えて、</span><span style="white-space:nowrap">つくる。</span></p>
+    <p class="lead">ゲームから研究へ、研究からプラットフォームへ、そして起業と行政へ。ひとつの領域に深く潜り、つかんだものを隣の領域へ持って渡ってきました。</p>
+  </div>
+
+  <div class="cross" role="group" aria-label="領域で絞り込む">
+    <div class="col" data-d="xr"><button type="button" data-d="xr" aria-pressed="false"><span class="yr">GAME / XR</span><span class="dot"></span><h3><i class="d-xr"></i>ゲーム・XR</h3></button>
+      <ul><li>XRFlowBuilder</li><li>Samurai Training</li><li>Playful Habits</li></ul></div>
+    <div class="col" data-d="city"><button type="button" data-d="city" aria-pressed="false"><span class="yr">CITY / INDUSTRY</span><span class="dot"></span><h3><i class="d-city"></i>都市・産業</h3></button>
+      <ul><li>PLATEAU SDK-Toolkits</li><li>Samurai Training</li></ul></div>
+    <div class="col" data-d="ai"><button type="button" data-d="ai" aria-pressed="false"><span class="yr">GENERATIVE AI</span><span class="dot"></span><h3><i class="d-ai"></i>生成AI</h3></button>
+      <ul><li>AI Talk Studio</li><li>読み聞かせ×会話エージェント</li></ul></div>
+    <div class="col" data-d="gov"><button type="button" data-d="gov" aria-pressed="false"><span class="yr">PUBLIC SECTOR</span><span class="dot"></span><h3><i class="d-gov"></i>行政</h3></button>
+      <ul><li>千葉県 インフラDXアドバイザー</li></ul></div>
+  </div>
+  <p class="cross-note">領域を選ぶと、その領域の取り組みと記事が浮かびます</p>
+
+  <section id="values">
+    <div class="sh"><span class="no">01</span><h2>大事にしていること</h2><span class="lbl">Values</span></div>
+    <ul class="values">
+      <li class="value"><div><span class="note">越境について</span><p class="q">越境とは、混ぜることではなく、新しい意味を生み出すこと。</p></div>
+        <p class="t">視点を重ねると、それまで見えなかった問いと価値が立ち上がる。大学で専攻の壁が消えた日から、ずっとそうやって領域を渡ってきた。</p></li>
+      <li class="value"><div><span class="note">ゲーミフィケーションについて</span><p class="q">「やらされる」を、「やりたい」に変える。</p></div>
+        <p class="t">食事も忘れてゲームに没頭した高校時代に知った。人は、仕組みしだいで夢中になれる。学び方が合わなければ、人は「できない人」に見える。ただそれだけのことだ。だから現場の学びや仕事を、遊びの仕組みで設計し直す。</p></li>
+      <li class="value"><div><span class="note">創造的ニヒリズム</span><p class="q">価値は、自分で創る。</p></div>
+        <p class="t">「選択と集中」「君の役割はこれだから」と言われ続けても、好奇心のほうを信じてきた。決められた意味がないなら、つくればいい。</p></li>
+      <li class="value"><div><span class="note">主体性</span><p class="q">一度きりの人生を、ゲームのように。</p></div>
+        <p class="t">社会人2年目、大企業も守ってはくれないと知った。成長は自分で設計するしかない。だから人生を自分でプレイする。</p></li>
+      <li class="value"><div><span class="note">幸せについて</span><p class="q">今に向き合い、今に夢中になる。</p></div>
+        <p class="t">横断歩道の白いところだけを渡る子どもは、先のことを考えず、目の前の一歩に集中している。本当の幸せは、そうやって今に向き合い、今の楽しさに没頭することだと思う。</p></li>
+      <li class="value"><div><span class="note">技術について</span><p class="q">技術の言葉を、相手の言葉に。</p></div>
+        <p class="t">技術は特別な人だけのものではない。エンジニアは課題と解決のあいだをつなぐ翻訳者だと思っている。</p></li>
+      <li class="value"><div><span class="note">つくる人として</span><p class="q">誰かが作るのを待たず、自分が作れるかもしれないと考える。</p></div>
+        <p class="t">好奇心に責任を持つこと。それが、産業と行政の現場に技術を置き続ける理由。</p></li>
+    </ul>
+  </section>
+
+  <section id="works">
+    <div class="sh"><span class="no">02</span><h2>つくったもの・取り組み</h2><span class="lbl">Work</span></div>
+    <ul class="works">
+      <li class="work" data-d="xr ai"><a href="works/xrflowbuilder.html"><span class="n">01</span><h3>XRFlowBuilder<span class="arw">→</span></h3><p>XR・AIの研修コンテンツをつくる制作プラットフォーム。専門知識がなくても、現場のシナリオを組める。</p><span class="ds"><i class="d-xr"></i><i class="d-ai"></i></span></a></li>
+      <li class="work" data-d="city xr"><a href="works/samurai-training.html"><span class="n">02</span><h3>Samurai Training<span class="arw">→</span></h3><p>産業現場の導入・オンボーディング。外国人材が現場で早く戦力になり、定着するまでを支える。</p><span class="ds"><i class="d-city"></i><i class="d-xr"></i></span></a></li>
+      <li class="work" data-d="ai"><a href="works/ai-talk-studio.html"><span class="n">03</span><h3>AI Talk Studio<span class="arw">→</span></h3><p>AIアバターが話す、研修・解説動画をつくるスタジオ。</p><span class="ds"><i class="d-ai"></i></span></a></li>
+      <li class="work" data-d="xr ai"><a href="works/playful-habits.html"><span class="n">04</span><h3>Playful Habits<span class="arw">→</span></h3><p>家族で取り組む、習慣化のアプリ。家族それぞれがアバターを持ち、小さな街で一緒に成長を楽しむ。</p><span class="ds"><i class="d-xr"></i><i class="d-ai"></i></span></a></li>
+      <li class="work" data-d="city gov xr"><a href="works/plateau-sdk-toolkits.html"><span class="n">05</span><h3>PLATEAU SDK-Toolkits for Unity<span class="arw">→</span></h3><p>国土交通省の3D都市モデルをUnityで扱えるようにする、オープンソースのツールキット。</p><span class="ds"><i class="d-city"></i><i class="d-gov"></i></span></a></li>
+      <li class="work" data-d="gov city"><a href="works/chiba-infra-dx.html"><span class="n">06</span><h3>千葉県 インフラDXアドバイザー<span class="arw">→</span></h3><p>県土整備部で、BIM/CIM・ICT施工の現場普及と職員研修を支援。</p><span class="ds"><i class="d-gov"></i><i class="d-city"></i></span></a></li>
+      <li class="work" data-d="ai xr"><a href="works/yomikikase-agent.html"><span class="n">07</span><h3>読み聞かせ×会話エージェントの研究<span class="arw">→</span></h3><p>絵本の読み聞かせに会話エージェントを組み合わせ、子どもとの対話を引き出す。</p><span class="ds"><i class="d-ai"></i><i class="d-xr"></i></span></a></li>
+    </ul>
+  </section>
+
+  <section id="writing">
+    <div class="sh"><span class="no">03</span><h2>発信</h2><span class="lbl">Writing &amp; Talks</span></div>
+    <div class="channels">
+      <a href="https://note.com/keitaro_shimizu"><b>note</b><span>記事・エッセイ</span></a>
+      <a href="#"><b>YouTube</b><span>動画（準備中）</span></a>
+      <a href="https://x.com/GIZAGIZAHEART"><b>X</b><span>@GIZAGIZAHEART</span></a>
+      <a href="#"><b>登壇</b><span>講演・イベント</span></a>
+    </div>
+    <div class="mfilter" role="group" aria-label="媒体で絞り込む">
+      <button type="button" data-m="all" aria-pressed="true">すべて</button>
+      <button type="button" data-m="note" aria-pressed="false">note</button>
+      <button type="button" data-m="youtube" aria-pressed="false">YouTube</button>
+      <button type="button" data-m="talk" aria-pressed="false">登壇</button>
+    </div>
+    <ul class="posts">
+      <li class="post" data-d="xr" data-m="note"><a href="https://note.com/keitaro_shimizu/n/n81a12c1e6318"><time>2025.10.25</time><span class="med">note</span><span class="ttl">VRで会議、新しいコミュニケーションのカタチ</span><span class="ds"><i class="d-xr"></i></span></a></li>
+      <li class="post" data-d="xr" data-m="note"><a href="https://note.com/keitaro_shimizu/n/n2f3692110820"><time>2025.10.05</time><span class="med">note</span><span class="ttl">ゲームで協調性は育める！ 幼い子ども向けデジタルツール研究の驚きの結論</span><span class="ds"><i class="d-xr"></i></span></a></li>
+      <li class="post" data-d="gov city" data-m="talk"><a href="#"><time>2025.10.02</time><span class="med">登壇</span><span class="ttl">千葉県 職員向け講演</span><span class="ds"><i class="d-gov"></i></span></a></li>
+      <li class="post" data-d="xr" data-m="note"><a href="https://note.com/keitaro_shimizu/n/n791f2452809c"><time>2025.08.31</time><span class="med">note</span><span class="ttl">Augmented Realityが切り拓く、ライトペインティングの未来</span><span class="ds"><i class="d-xr"></i></span></a></li>
+      <li class="post" data-d="x" data-m="note"><a href="https://note.com/keitaro_shimizu/n/n5cfdc8d6a5fc"><time>2025.01.22</time><span class="med">note</span><span class="ttl">技術ではなく"問い"が研究をつくる　CHI 2025参加から考える研究の価値</span><span class="ds"><i class="d-x"></i></span></a></li>
+      <li class="post" data-d="city" data-m="note"><a href="https://note.com/keitaro_shimizu/n/nc4d1bd381126"><time>2025.01.11</time><span class="med">note</span><span class="ttl">デジタルツイン開発を続ける際のプロジェクトマネジメント・推進手法 Part2</span><span class="ds"><i class="d-city"></i></span></a></li>
+    </ul>
+    <a class="more" href="#writing">発信をすべて見る →</a>
+  </section>
+
+  <section id="research">
+    <div class="sh"><span class="no">04</span><h2>研究・論文</h2><span class="lbl">Research</span></div>
+    <div class="split">
+      <p class="rlead">つくったものを、問いとして確かめる。VRと触覚の研究から始まり、いまは会話エージェントと子どもの対話を研究しています。</p>
+      <div>
+        <ul class="papers">
+          <li data-d="ai"><span class="yr">2026</span><div><a href="works/yomikikase-agent.html"><b>読み聞かせ時の親子間コミュニケーションに対する会話エージェントの質問戦略の効果検証</b></a><span class="vn">情報処理学会論文誌</span></div></li>
+          <li data-d="xr"><span class="yr">2011</span><div><b>Adaptive Parallax Autostereoscopic LED Display</b><span class="vn">ACM SIGGRAPH ASIA 2011 Emerging Technologies</span></div></li>
+          <li data-d="xr"><span class="yr">2011</span><div><b>RePro3D: Full-Parallax 3D Display with Haptic Feedback using Retro-Reflective Projection Technology</b><span class="vn">ISVRI 2011（Honorable Mention Award）</span></div></li>
+        </ul>
+        <a class="more" href="research.html">研究・論文をすべて見る →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="sh"><span class="no">05</span><h2>この人について</h2><span class="lbl">About</span></div>
+    <div class="split about">
+      <ol class="steps" aria-label="これまで渡ってきた領域">
+        <li><b>ゲーム</b><span>ゲームプログラマーとして、遊びをつくる</span></li>
+        <li><b>製品</b><span>PM・エンジニアとして、製品をつくる</span></li>
+        <li><b>研究</b><span>研究ディレクターとして、問いをつくる</span></li>
+        <li><b>プラットフォーム</b><span>開発基盤を、現場と都市へ広げる</span></li>
+        <li><b>起業・行政</b><span>会社をつくり、産業と行政の現場に実装する</span></li>
+      </ol>
+      <div>
+        <p>高校時代はオンラインゲームに没頭し、学校にもろくに行かなかった。そこで世界中の仲間と、自分の意志で何にでもなれる感覚を手に入れた。</p>
+        <p>ゲームプログラマー、エンジニア、研究ディレクター、プラットフォームの仕事を経て起業。部門がなくなったことも、共同創業者が去ったこともある。そのたびに、得たものを持って次の領域へ渡ってきた。</p>
+        <a class="more" href="about.html">これまでの物語を読む →</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="contact" id="contact">
+    <p class="lbl">Contact</p>
+    <a class="big" href="#contact">お問い合わせ<span>→</span></a>
+    <p>導入・共創・講演のご相談をお受けしています。</p>
+    <div class="social"><a href="https://x.com/GIZAGIZAHEART">@GIZAGIZAHEART</a><a href="https://note.com/keitaro_shimizu">note</a><a href="https://www.linkedin.com/in/keitaroshimizu">LinkedIn</a></div>
+  </div>
+
+  <footer><span>© Keitaro Shimizu</span><span>試作 v2 2026-11-10（デザイン確認用。リンク・文言は仮）</span></footer>
+</div>
+
+<script>
+(function(){
+  const cols=[...document.querySelectorAll('.col')];
+  const btns=[...document.querySelectorAll('.col button')];
+  const items=[...document.querySelectorAll('.work,.post,.papers li')];
+  let cur=null;
+  function setD(d){
+    cur=(cur===d)?null:d;
+    if(cur)document.body.dataset.domain=cur;else delete document.body.dataset.domain;
+    cols.forEach(c=>c.classList.toggle('on',c.dataset.d===cur));
+    btns.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.d===cur)));
+    items.forEach(it=>it.classList.toggle('dim',!!cur&&!it.dataset.d.split(' ').includes(cur)));
+  }
+  btns.forEach(b=>b.addEventListener('click',()=>setD(b.dataset.d)));
+  const mb=[...document.querySelectorAll('.mfilter button')];
+  mb.forEach(b=>b.addEventListener('click',()=>{const m=b.dataset.m;
+    mb.forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+    document.querySelectorAll('.post').forEach(p=>{p.hidden=(m!=='all'&&p.dataset.m!==m)});}));
+})();
+</script>
+<script src="js/i18n.js"></script>
+</body>
+</html>
