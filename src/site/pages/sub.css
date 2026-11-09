@@ -1,0 +1,33 @@
+:root{--paper:#FAF8F3;--ink:#1D1D1B;--pencil:#6E6C66;--rule:#E3DED3;--vermilion:#D9472B;
+--xr:#CBDDF3;--xr-ink:#3E6BA8;--city:#D2E8D3;--city-ink:#3F7F4A;--ai:#F4E6B0;--ai-ink:#9A7A12;--gov:#E2D7F0;--gov-ink:#6E4F9E;
+--font:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;--hand:"Klee One","Hiragino Mincho ProN",serif;color-scheme:light}
+*{box-sizing:border-box}
+html,body{background:var(--paper)}
+body{margin:0;color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.95;background-image:repeating-linear-gradient(to bottom,transparent 0 31px,var(--rule) 31px 32px)}
+a{color:inherit}
+.wrap{max-width:860px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+header.site{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:20px;border-bottom:1px solid var(--ink);flex-wrap:wrap;font-size:13px}
+header.site a{text-decoration:none}
+header.site a:hover{color:var(--vermilion)}
+.back{font-size:13px;color:var(--pencil)}
+.kicker{font-family:var(--hand);color:var(--vermilion);font-size:16px;margin:48px 0 4px}
+h1{font-weight:700;font-size:clamp(28px,4.4vw,44px);line-height:1.4;letter-spacing:.06em;margin:0;text-wrap:balance}
+.lede{font-size:clamp(16px,2vw,19px);font-weight:500;margin:16px 0 0;max-width:34em}
+h2{font-weight:700;font-size:clamp(19px,2.4vw,23px);letter-spacing:.06em;margin:56px 0 12px;display:inline-block;background:linear-gradient(transparent 0 85%,var(--vermilion) 85% 92%,transparent 92%)}
+p{max-width:36em}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:16px}
+.tag{font-size:12px;padding:1px 10px;border-radius:999px}
+.t-xr{background:var(--xr);color:var(--xr-ink)}.t-city{background:var(--city);color:var(--city-ink)}.t-ai{background:var(--ai);color:var(--ai-ink)}.t-gov{background:var(--gov);color:var(--gov-ink)}
+.fig{border:1px dashed var(--pencil);aspect-ratio:16/9;max-width:100%;display:grid;place-items:center;color:var(--pencil);font-size:13px;margin:24px 0;background:#fff}
+.facts{display:grid;grid-template-columns:8em 1fr;gap:6px 20px;margin:0;font-size:15px}
+.facts dt{color:var(--pencil)}.facts dd{margin:0}
+.todo{background:#FFF1C2;padding:0 4px;font-size:.9em}
+.chap{border-left:2px solid var(--vermilion);padding:4px 0 8px 24px;margin:0 0 8px;position:relative}
+.chap::before{content:"";position:absolute;left:-9px;top:14px;width:14px;height:14px;border-radius:50%;background:var(--paper);border:2px solid var(--vermilion)}
+.chap .era{font-size:13px;color:var(--pencil);letter-spacing:.06em}
+.chap h3{font-size:clamp(18px,2.2vw,21px);margin:2px 0 8px;letter-spacing:.04em}
+.chap .got{font-size:14px;margin-top:8px;display:flex;gap:16px;flex-wrap:wrap}
+.chap .got span{font-family:var(--hand);color:var(--vermilion)}
+.chap .got em{font-style:normal;color:var(--pencil)}
+footer{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;color:var(--pencil);margin-top:64px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+:focus-visible{outline:2px solid var(--vermilion);outline-offset:3px}

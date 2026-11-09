@@ -1,0 +1,12 @@
+/* 全ページ共通：ヘッダー・言語切替・フッター（ページ固有の CSS より後に読み込む） */
+html{scroll-behavior:smooth}
+header.site{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:20px;border-bottom:1px solid var(--ink);flex-wrap:wrap;font-size:13px}
+header.site .id{font-weight:700;font-size:15px;letter-spacing:.08em;text-decoration:none}
+header.site nav ul{display:flex;gap:clamp(12px,3vw,28px);list-style:none;margin:0;padding:0;font-size:13px;flex-wrap:wrap;align-items:center}
+header.site nav a{text-decoration:none}
+header.site a:hover,header.site a:focus-visible{color:var(--vermilion)}
+.lang{font-size:12px;color:var(--pencil)}
+.lang button{all:unset;cursor:pointer;color:var(--pencil);padding:0 2px}
+.lang button[aria-pressed="true"]{color:var(--ink);font-weight:700;border-bottom:2px solid var(--vermilion)}
+.lang button:focus-visible{outline:2px solid var(--vermilion)}
+footer.site-foot{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;color:var(--pencil);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:64px}

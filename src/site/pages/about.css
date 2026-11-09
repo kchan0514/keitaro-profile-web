@@ -1,0 +1,2 @@
+.lang button{all:unset;cursor:pointer;color:var(--pencil);padding:0 2px}.lang button[aria-pressed="true"]{color:var(--ink);font-weight:700;border-bottom:2px solid var(--vermilion)}.lang button:focus-visible{outline:2px solid var(--vermilion)}
+.intro{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:32px;align-items:end}.portrait{width:100%;max-width:100%;aspect-ratio:4/5;object-fit:cover;display:block}@media (max-width:640px){.intro{grid-template-columns:1fr}.portrait{max-width:240px}}
