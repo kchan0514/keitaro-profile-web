@@ -1,5 +1,6 @@
 // 試作 js/i18n.js から移した対訳表（日本語の文 → 英語）。英訳は仮訳
 export const D: Record<string, string> = {
+"経歴・仕事のつながり": "Career & professional network",
 "家族で取り組む、習慣化のアプリ。家族それぞれがアバターを持ち、小さな街で一緒に成長を楽しむ。": "A habit-building app for families. Everyone gets an avatar, and the family grows a small town together.",
 "島か印を選ぶと、その領域の取り組みと記事が浮かびます": "Pick an island or a dot to highlight the work and writing in that field",
 "得たもの": "Gained",

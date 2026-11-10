@@ -10,3 +10,4 @@ header.site a:hover,header.site a:focus-visible{color:var(--vermilion)}
 .lang button[aria-pressed="true"]{color:var(--ink);font-weight:700;border-bottom:2px solid var(--vermilion)}
 .lang button:focus-visible{outline:2px solid var(--vermilion)}
 footer.site-foot{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;color:var(--pencil);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:64px}
+.foot-sns{display:flex;gap:18px}.foot-sns a{text-decoration:none}.foot-sns a:hover{color:var(--vermilion)}

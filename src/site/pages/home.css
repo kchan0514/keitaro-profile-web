@@ -171,3 +171,7 @@ footer{border-top:1px solid var(--ink);padding-block:20px 40px;font-size:12px;co
 .cform-lead{color:var(--pencil);font-size:14px;margin:0 0 16px}
 #contact .social{margin-top:28px}
 @media (max-width:640px){.cform{grid-template-columns:1fr}}
+
+.hero .sns{display:flex;gap:18px;margin:12px 0 0;font-size:13px;letter-spacing:.04em}
+.hero .sns a{text-decoration:none;border-bottom:1px solid var(--rule)}
+.hero .sns a:hover{color:var(--vermilion);border-color:var(--vermilion)}

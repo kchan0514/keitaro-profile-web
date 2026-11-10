@@ -32,7 +32,7 @@ const HEADER = `<header class="site"><a class="id" href="{L}">清水 啓太郎</
 <li><a href="{L}#contact">お問い合わせ</a></li>
 <li><span class="lang" role="group" aria-label="Language"><button type="button" data-lang="ja">JA</button> / <button type="button" data-lang="en">EN</button></span></li>
 </ul></nav></header>`;
-const FOOTER = `<footer class="site-foot"><span>© Keitaro Shimizu</span><span>keitaro-shimizu.com</span></footer>`;
+const FOOTER = `<footer class="site-foot"><span>© Keitaro Shimizu</span><span class="foot-sns"><a href="https://x.com/GIZAGIZAHEART">X</a><a href="https://www.linkedin.com/in/keitaroshimizu">LinkedIn</a><a href="https://note.com/keitaro_shimizu">note</a></span></footer>`;
 
 /** 日本語の文を対訳表で英語に置き換える（試作 js/i18n.js と同じ方式） */
 function translate(root: HTMLElement) {
