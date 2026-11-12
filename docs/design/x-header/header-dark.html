@@ -1,0 +1,38 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&family=Klee+One:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#0A0A0A;--ink:#F2F2F0;--pencil:#8A8F8E;--vermilion:#5FE3CC;--xr:rgba(95,227,204,.10);--city:rgba(95,227,204,.07);--ai:rgba(95,227,204,.07);--gov:rgba(95,227,204,.10)}
+html,body{margin:0;width:1500px;height:500px;overflow:hidden;background:radial-gradient(ellipse 600px 380px at 1080px 250px,rgba(95,227,204,.10),transparent 70%),var(--paper)}
+.b{position:relative;width:1500px;height:500px;font-family:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN",sans-serif;color:var(--ink)}
+.txt{position:absolute;left:100px;top:110px}
+.motto{font-weight:500;font-size:46px;letter-spacing:.1em;margin:0;display:flex;align-items:center;gap:22px}
+.motto::before{content:"";width:46px;height:3px;background:var(--vermilion)}
+.sub{margin:20px 0 0 68px;font-size:20px;font-weight:500;letter-spacing:.06em;color:var(--pencil)}
+.url{position:absolute;left:168px;top:262px;font-size:17px;letter-spacing:.08em;color:var(--pencil)}
+svg{position:absolute;right:44px;top:62px;width:640px;height:370px}
+.base{stroke:none}.ring{fill:none;stroke:rgba(95,227,204,.22);stroke-width:1}.base{stroke:rgba(95,227,204,.45)!important;stroke-width:1}
+.label{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:22px;fill:var(--ink);letter-spacing:.06em}
+.route{fill:none;stroke:var(--vermilion);stroke-width:2.4;filter:drop-shadow(0 0 6px rgba(95,227,204,.8));stroke-dasharray:7 7;stroke-linecap:round}
+.stop{fill:var(--paper);stroke:var(--vermilion);stroke-width:2.4}
+.hand{font-family:"Klee One",serif;fill:var(--vermilion);font-size:24px}
+.safe .guide{position:absolute;border:2px dashed #09f}
+</style></head><body><div class="b">
+<div class="txt"><p class="motto">領域を越えて、つくる。</p><p class="sub">XR・デジタルツイン・生成AIを、産業と行政の現場へ。</p></div>
+<svg id="map" viewBox="80 20 900 520"></svg>
+<div class="url">keitaro-shimizu.com</div>
+</div>
+<script>
+const NS='http://www.w3.org/2000/svg',svg=document.getElementById('map');
+const el=(n,a,p=svg)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);p.appendChild(e);return e};
+let seed=7;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+const islands=[{name:'ゲーム・XR',cx:330,cy:170,r:150,fill:'var(--xr)'},{name:'都市・産業',cx:640,cy:165,r:150,fill:'var(--city)'},{name:'生成AI',cx:340,cy:400,r:145,fill:'var(--ai)'},{name:'行政',cx:650,cy:405,r:140,fill:'var(--gov)'}];
+const blob=(cx,cy,r,ph)=>{const pts=[];for(let i=0;i<90;i++){const t=i/90*Math.PI*2,k=1+.1*Math.sin(3*t+ph[0])+.06*Math.sin(5*t+ph[1])+.035*Math.sin(9*t+ph[2]);pts.push([cx+Math.cos(t)*r*k,cy+Math.sin(t)*r*k*.86])}return'M'+pts.map(p=>p[0].toFixed(1)+' '+p[1].toFixed(1)).join('L')+'Z'};
+islands.forEach(is=>{const g=el('g',{});const ph=[rnd()*6,rnd()*6,rnd()*6];el('path',{class:'base',d:blob(is.cx,is.cy,is.r,ph),fill:is.fill},g);
+for(let i=1;i<9;i++){const s=1-i*.105,off=(1-s)*18;el('path',{class:'ring',d:blob(is.cx+off*.6,is.cy+off*.9,is.r*s,ph.map((p,j)=>p+i*.12*(j+1)))},g)}
+el('text',{class:'label',x:is.cx-50,y:is.cy+70},g).textContent=is.name});
+el('path',{class:'route',d:'M150 70 C 220 80, 300 120, 345 185 C 390 250, 470 120, 560 120 C 640 120, 640 170, 655 190 C 600 260, 420 250, 380 330 C 350 390, 340 400, 352 415 C 420 470, 520 330, 600 360 C 660 380, 650 420, 668 430 C 720 470, 800 500, 900 520'});
+[[345,185],[560,120],[655,190],[380,330],[352,415],[600,360],[668,430]].forEach(p=>el('circle',{class:'stop',cx:p[0],cy:p[1],r:6}));
+el('path',{d:'M888 510 L902 521 L885 527',fill:'none',stroke:'var(--vermilion)','stroke-width':2.4,'stroke-linecap':'round'});
+el('text',{class:'hand',x:470,y:62}).textContent='深く';el('text',{class:'hand',x:820,y:500}).textContent='渡る';
+if(location.hash==='#safe'){const b=document.querySelector('.b');b.insertAdjacentHTML('beforeend','<div style="position:absolute;left:40px;top:300px;width:270px;height:270px;border-radius:50%;background:rgba(0,0,0,.35)"></div><div style="position:absolute;left:0;right:0;top:0;height:60px;background:rgba(0,120,255,.18)"></div><div style="position:absolute;left:0;right:0;bottom:0;height:60px;background:rgba(0,120,255,.18)"></div>')}
+</script></body></html>
