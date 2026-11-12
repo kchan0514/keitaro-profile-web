@@ -1,0 +1,67 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&family=Klee+One:wght@600&family=DotGothic16&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FAF8F3;--ink:#1D1D1B;--pencil:#6E6C66;--vermilion:#D9472B}
+html,body{margin:0;width:1500px;height:500px;overflow:hidden;background:var(--paper)}
+.b{position:relative;width:1500px;height:500px;font-family:"Zen Kaku Gothic New",sans-serif;color:var(--ink)}
+.txt{position:absolute;left:100px;top:112px}
+.motto{font-weight:700;font-size:46px;letter-spacing:.1em;margin:0;display:flex;align-items:center;gap:22px}
+.motto::before{content:"";width:22px;height:22px;background:var(--vermilion);box-shadow:inset -5px -5px 0 rgba(0,0,0,.18)}
+.sub{margin:20px 0 0 68px;font-size:20px;font-weight:500;letter-spacing:.06em;color:var(--pencil)}
+.url{position:absolute;left:168px;top:262px;font-family:"DotGothic16",monospace;font-size:18px;letter-spacing:.08em;color:var(--pencil)}
+svg{position:absolute;right:30px;top:18px;width:760px;height:450px}
+.lbl{font-family:"DotGothic16",monospace;font-size:19px;fill:var(--ink)}
+.lblbg{fill:#fff;stroke:var(--ink);stroke-width:2}
+.hand{font-family:"Klee One",serif;fill:var(--vermilion);font-size:22px}
+</style></head><body><div class="b">
+<div class="txt"><p class="motto">領域を越えて、つくる。</p><p class="sub">XR・デジタルツイン・生成AIを、産業と行政の現場へ。</p></div>
+<div class="url">keitaro-shimizu.com</div>
+<svg id="v"></svg></div>
+<script>
+const NS='http://www.w3.org/2000/svg',svg=document.getElementById('v'),S=21;
+const P=(x,y,z)=>[(x-y)*S*.866,(x+y)*S*.5-z*S];
+const sh=(h,f)=>{const n=parseInt(h.slice(1),16);return'rgb('+[n>>16,(n>>8)&255,n&255].map(c=>Math.round(c*f)).join(',')+')'};
+const cubes=[];const add=(x,y,z,c,top)=>cubes.push({x,y,z,c,top:top||c});
+const box=(x0,y0,z0,w,d,h,c,top)=>{for(let x=x0;x<x0+w;x++)for(let y=y0;y<y0+d;y++)for(let z=z0;z<z0+h;z++)add(x,y,z,c,z===z0+h-1?top:c)};
+const DIRT='#B89A72',DIRT2='#9C7E58';
+function island(ox,oy,grass){
+  box(ox,oy,0,6,6,1,DIRT,grass);
+  box(ox+1,oy+1,-1,4,4,1,DIRT);
+  box(ox+2,oy+2,-2,2,2,1,DIRT2);
+  add(ox+2,oy+3,-3,DIRT2);
+}
+island(0,0,'#A9C9EE');island(10,0,'#A6D7A9');island(0,10,'#F2DA82');island(10,10,'#CDB8EA');
+// 橋（板）
+const PL='#D9B98A';
+for(let x=6;x<10;x++)add(x,2,0,PL);for(let y=6;y<10;y++)add(12,y,0,PL);for(let x=6;x<10;x++)add(x,12,0,PL);for(let y=6;y<10;y++)add(2,y,0,PL);
+// ゲーム・XR：ゲート（枠）と宝箱
+const GT='#3E6BA8';box(2,1,1,1,1,3,GT);box(4,1,1,1,1,3,GT);box(3,1,3,1,1,1,GT);add(3,1,1,'#7FE0F5');add(3,1,2,'#7FE0F5');
+add(1,4,1,'#C98A3C','#E0A852');
+// 都市・産業：ビル群
+box(11,1,1,1,1,4,'#9AA3AD','#C4CBD3');box(13,1,1,1,1,3,'#9AA3AD','#C4CBD3');box(11,3,1,1,1,2,'#9AA3AD','#C4CBD3');box(14,3,1,1,1,1,'#E3E6EA');
+// 生成AI：浮かぶ光るブロックと木
+add(3,12,3,'#F2B33D','#FFD877');add(3,12,1,'#E8E2D0');
+box(1,14,1,1,1,2,'#8A5A33');box(0,13,3,2,2,1,'#5FAE63','#7CC77F');
+// 行政：庁舎
+box(12,12,1,3,2,2,'#F4F2EE','#FFFFFF');box(13,12,3,1,1,1,'#D9472B','#E8624A');
+add(10,15,1,'#8A5A33');add(10,15,2,'#5FAE63','#7CC77F');
+// キャラクター（橋の上）
+add(8,2,1,'#2E3A5C');add(8,2,2,'#D9472B');add(8,2,3,'#F0C8A0','#F0C8A0');
+// 雲
+const CL='#FFFFFF';box(7,-5,6,3,1,1,CL);add(8,-5,7,CL);box(17,6,5,2,1,1,CL);
+cubes.sort((a,b)=>(a.x+a.y+a.z)-(b.x+b.y+b.z)||a.z-b.z);
+const poly=(pts,f)=>{const e=document.createElementNS(NS,'polygon');e.setAttribute('points',pts.map(p=>p.join(',')).join(' '));e.setAttribute('fill',f);e.setAttribute('stroke','rgba(29,29,27,.35)');e.setAttribute('stroke-width','.8');e.setAttribute('stroke-linejoin','round');svg.appendChild(e)};
+let mnx=1e9,mny=1e9,mxx=-1e9,mxy=-1e9;
+cubes.forEach(({x,y,z,c,top})=>{
+  const A=P(x,y,z+1),B=P(x+1,y,z+1),C=P(x+1,y+1,z+1),D=P(x,y+1,z+1),E=P(x+1,y,z),F=P(x+1,y+1,z),G=P(x,y+1,z);
+  poly([A,B,C,D],top);poly([D,C,F,G],sh(c,.82));poly([B,E,F,C],sh(c,.66));
+  [A,B,C,D,E,F,G].forEach(([px,py])=>{mnx=Math.min(mnx,px);mny=Math.min(mny,py);mxx=Math.max(mxx,px);mxy=Math.max(mxy,py)});
+});
+const label=(t,x,y,z)=>{const[px,py]=P(x,y,z);const g=document.createElementNS(NS,'g');svg.appendChild(g);
+  const tx=document.createElementNS(NS,'text');tx.setAttribute('class','lbl');tx.setAttribute('x',px);tx.setAttribute('y',py);tx.setAttribute('text-anchor','middle');tx.textContent=t;g.appendChild(tx);
+  const bb=tx.getBBox();const r=document.createElementNS(NS,'rect');['x','y','width','height'].forEach((k,i)=>r.setAttribute(k,[bb.x-9,bb.y-4,bb.width+18,bb.height+8][i]));r.setAttribute('class','lblbg');g.insertBefore(r,tx)};
+label('ゲーム・XR',0,-2,2.6);label('都市・産業',16.5,0.5,2.2);label('生成AI',-1.5,15.5,1.3);label('行政',16,15,0.6);
+const hand=(t,x,y,z)=>{const[px,py]=P(x,y,z);const e=document.createElementNS(NS,'text');e.setAttribute('class','hand');e.setAttribute('x',px);e.setAttribute('y',py);e.textContent=t;svg.appendChild(e)};
+hand('渡る',7.6,0.6,3.6);
+const pad=34;svg.setAttribute('viewBox',[mnx-pad,mny-pad,mxx-mnx+pad*2,mxy-mny+pad*2].join(' '));
+</script></body></html>
