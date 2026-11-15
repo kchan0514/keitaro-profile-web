@@ -1,7 +1,10 @@
 import { useEffect, useMemo, useRef } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import homeHtml from './pages/home.html?raw';
-import homeCss from './pages/home.css?raw';
+import headerHtml from './pages/arch-header.html?raw';
+import footerHtml from './pages/arch-footer.html?raw';
+import homeHtml from './pages/arch-home.html?raw';
+import homeStyle from './pages/arch-style.css?raw';
+import homeJourney from './pages/arch-journey.css?raw';
 import aboutHtml from './pages/about.html?raw';
 import aboutCss from './pages/about.css?raw';
 import researchHtml from './pages/research.html?raw';
@@ -10,32 +13,25 @@ import yomiHtml from './pages/yomikikase.html?raw';
 import yomiCss from './pages/yomikikase.css?raw';
 import subCss from './pages/sub.css?raw';
 import { D, A } from './dict';
-import { initHome } from './home';
+import { initArchHome } from './archHome';
 import './common.css';
 
 type PageKey = 'home' | 'about' | 'research' | 'yomikikase';
 
-const PAGES: Record<PageKey, { html: string; css: string; title: [string, string] }> = {
-  home: { html: homeHtml, css: homeCss, title: ['清水啓太郎｜Keitaro Shimizu', 'Keitaro Shimizu｜清水啓太郎'] },
-  about: { html: aboutHtml, css: subCss + aboutCss, title: ['この人について｜清水啓太郎', 'About｜Keitaro Shimizu'] },
-  research: { html: researchHtml, css: subCss + researchCss, title: ['研究・論文｜清水啓太郎', 'Research｜Keitaro Shimizu'] },
-  yomikikase: { html: yomiHtml, css: subCss + yomiCss, title: ['読み聞かせ×会話エージェントの研究｜清水啓太郎', 'Read-aloud × conversational agents｜Keitaro Shimizu'] },
+// トップは採用デザイン（design/approved/build.py で生成）。下層ページは本文を残し、ヘッダー・フッターを共通化
+const PAGES: Record<PageKey, { html: string; css: string; wrap: string; title: [string, string] }> = {
+  home: { html: homeHtml, css: homeStyle + homeJourney, wrap: 'arch', title: ['清水啓太郎 | 領域を越えて、つくる。', 'Keitaro Shimizu | Dive deep. Build beyond.'] },
+  about: { html: aboutHtml, css: subCss + aboutCss, wrap: 'wrap', title: ['この人について｜清水啓太郎', 'About｜Keitaro Shimizu'] },
+  research: { html: researchHtml, css: subCss + researchCss, wrap: 'wrap', title: ['研究・論文｜清水啓太郎', 'Research｜Keitaro Shimizu'] },
+  yomikikase: { html: yomiHtml, css: subCss + yomiCss, wrap: 'wrap', title: ['読み聞かせ×会話エージェントの研究｜清水啓太郎', 'Read-aloud × conversational agents｜Keitaro Shimizu'] },
 };
 
-const HEADER = `<header class="site"><a class="id" href="{L}">清水 啓太郎</a>
-<nav aria-label="メイン"><ul>
-<li><a href="{L}#values">考え方</a></li>
-<li><a href="{L}#works">つくったもの</a></li>
-<li><a href="{L}#writing">発信</a></li>
-<li><a href="{L}#research">研究</a></li>
-<li><a href="{L}/about">この人について</a></li>
-<li><a href="{L}#contact">お問い合わせ</a></li>
-<li><span class="lang" role="group" aria-label="Language"><button type="button" data-lang="ja">JA</button> / <button type="button" data-lang="en">EN</button></span></li>
-</ul></nav></header>`;
-const FOOTER = `<footer class="site-foot"><span>© Keitaro Shimizu</span><span class="foot-sns"><a href="https://x.com/GIZAGIZAHEART">X</a><a href="https://www.linkedin.com/in/keitaroshimizu">LinkedIn</a><a href="https://note.com/keitaro_shimizu">note</a></span></footer>`;
-
-/** 日本語の文を対訳表で英語に置き換える（試作 js/i18n.js と同じ方式） */
-function translate(root: HTMLElement) {
+/** 英語表示：data-en を持つ要素は差し替え、それ以外は日本語の文を対訳表で置き換える */
+function translate(root: HTMLElement, useDict: boolean) {
+  root.querySelectorAll<HTMLElement>('[data-en]').forEach((el) => {
+    el.innerHTML = el.dataset.en!;
+  });
+  if (!useDict) return;
   const tw = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
     acceptNode: (n) => (/^(SCRIPT|STYLE)$/.test(n.parentNode?.nodeName ?? '') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT),
   });
@@ -59,14 +55,15 @@ export default function SitePage({ page }: { page: PageKey }) {
   const location = useLocation();
   const ref = useRef<HTMLDivElement>(null);
   const p = PAGES[page];
-  const html = useMemo(() => (HEADER + p.html + FOOTER).split('{L}').join(`/${lang}`), [p, lang]);
+  const html = useMemo(() => (headerHtml + p.html + footerHtml).split('{L}').join(`/${lang}`), [p, lang]);
 
   useEffect(() => {
     const root = ref.current;
     if (!root) return;
-    root.querySelectorAll<HTMLButtonElement>('[data-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
-    const cleanup = page === 'home' ? initHome(root, lang) : undefined;
-    if (lang === 'en') translate(root);
+    if (lang === 'en') translate(root, page !== 'home');
+    const t = root.querySelector<HTMLButtonElement>('[data-lang-toggle]');
+    if (t) t.textContent = lang === 'en' ? 'EN / JP' : 'JP / EN';
+    const cleanup = page === 'home' ? initArchHome(root, lang) : undefined;
     document.documentElement.lang = lang;
     document.title = p.title[lang === 'en' ? 1 : 0];
     return cleanup;
@@ -82,9 +79,8 @@ export default function SitePage({ page }: { page: PageKey }) {
 
   function onClick(e: React.MouseEvent<HTMLDivElement>) {
     const t = e.target as HTMLElement;
-    const lb = t.closest<HTMLButtonElement>('[data-lang]');
-    if (lb) {
-      const to = lb.dataset.lang!;
+    if (t.closest('[data-lang-toggle]')) {
+      const to = lang === 'en' ? 'ja' : 'en';
       const rest = location.pathname.replace(/^\/(ja|en)/, '');
       navigate(`/${to}${rest}${location.hash}`);
       return;
@@ -104,7 +100,7 @@ export default function SitePage({ page }: { page: PageKey }) {
   return (
     <>
       <style>{p.css}</style>
-      <div className="wrap" ref={ref} onClick={onClick} dangerouslySetInnerHTML={{ __html: html }} />
+      <div className={p.wrap} ref={ref} onClick={onClick} dangerouslySetInnerHTML={{ __html: html }} />
     </>
   );
 }

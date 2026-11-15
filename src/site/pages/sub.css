@@ -1,9 +1,9 @@
-:root{--paper:#FAF8F3;--ink:#1D1D1B;--pencil:#6E6C66;--rule:#E3DED3;--vermilion:#D9472B;
+:root{--paper:#F6F3E8;--ink:#182F31;--pencil:#5E6B66;--rule:#DCD9CC;--vermilion:#B9643F;
 --xr:#CBDDF3;--xr-ink:#3E6BA8;--city:#D2E8D3;--city-ink:#3F7F4A;--ai:#F4E6B0;--ai-ink:#9A7A12;--gov:#E2D7F0;--gov-ink:#6E4F9E;
---font:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;--hand:"Klee One","Hiragino Mincho ProN",serif;color-scheme:light}
+--font:Arial,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;--hand:"Klee One","Hiragino Mincho ProN",serif;color-scheme:light}
 *{box-sizing:border-box}
 html,body{background:var(--paper)}
-body{margin:0;color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.95;background-image:repeating-linear-gradient(to bottom,transparent 0 31px,var(--rule) 31px 32px)}
+body{margin:0;color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.95;}
 a{color:inherit}
 .wrap{max-width:860px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
 header.site{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:20px;border-bottom:1px solid var(--ink);flex-wrap:wrap;font-size:13px}

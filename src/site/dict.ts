@@ -12,7 +12,6 @@ export const D: Record<string, string> = {
 "この人について": "About",
 "お問い合わせ": "Contact",
 "清水 啓太郎": "Keitaro Shimizu",
-"Keitaro Shimizu": "清水 啓太郎",
 "株式会社Play Life Studio 代表取締役CEO": "CEO, Play Life Studio Inc.",
 "XR・デジタルツイン・生成AIを、産業と行政の現場へ。": "Bringing XR, digital twins and generative AI to industry and government.",
 "領域を越えて、つくる。": "Crossing fields, making things.",

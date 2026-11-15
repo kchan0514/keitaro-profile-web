@@ -69,3 +69,9 @@
 - git identity はこのリポジトリのみ `kchan0514 <k.taroooo@gmail.com>`（既存履歴に合わせた）
 - `out/` はビルド出力（未追跡・未 ignore）
 - everyonelearns（思想サイト）は 2026-08-02 で実装前のまま停止 → 個人サイトとの役割の食い合いは当面なし
+
+## 2026-11-15 採用デザイン「越境する群島」を本番反映
+- 採用：GPT-6 で作った「越境する群島」デザイン（6島の画像＋6領域・年表・実績42件→40件）。原本は `output/keitaro-approved-design/`、生成スクリプトは `design/approved/build.py`（`python3 -I design/approved/build.py` で `src/site/pages/arch-*.html` を再生成）
+- 決定（Keitaro 2026-11-15）：①受託の取引先名は業界名に置換 ②所属先（NVIDIA）は肩書きと年表の社名のみ。仕事の中身2件と登壇イベント名は削除 ③トップのみ差し替え、about / research / 読み聞かせページは残してヘッダー・フッター・配色を新デザインに統一
+- 追加：発信欄（note 最新5件・X・LinkedIn）、お問い合わせは readdy に送信、自社プロダクト3件の説明と公式リンク
+- 残課題：「Talk with Us」ウィジェットの扱い／自社プロダクトの開始時期（今は「提供中」）／研究ページ・読み聞かせページの英語版／note 記事一覧の自動更新
