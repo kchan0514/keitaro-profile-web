@@ -184,7 +184,7 @@ export const D: Record<string, string> = {
 "読み聞かせと会話エージェントに関する発表": "Talk on read-aloud and conversational agents"
 };
 export const A: Record<string, string> = {
-"清水啓太郎の写真。木々を背に、紺のニットのポロシャツで微笑んでいる": "Photo of Keitaro Shimizu smiling in a navy knit polo, trees behind him",
+"清水啓太郎の写真。グレーの壁を背に、紺のシャツで微笑んでいる": "Photo of Keitaro Shimizu smiling in a navy shirt against a gray wall",
 "越境マップ。4つの領域と、それを渡る線": "Border-crossing map: four fields and the line that crosses them",
 "領域で絞り込む": "Filter by field",
 "媒体で絞り込む": "Filter by medium",
