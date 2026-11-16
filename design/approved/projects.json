@@ -198,10 +198,10 @@
     "fields": "public industry xr",
     "org_ja": "千葉県庁・県土整備部",
     "org_en": "Chiba Prefectural Government",
-    "role_ja": "技術アドバイザリー",
-    "role_en": "Technical advisory",
-    "body_ja": "兼業会計年度職員として、3D都市モデル・XRの活用提案、技術検討、庁内調整、実証支援、職員向け発信を担当。",
-    "body_en": "As a concurrent fiscal-year employee, advised on 3D city models and XR, technical evaluation, internal coordination, pilots and staff education."
+    "role_ja": "インフラDXアドバイザー",
+    "role_en": "Infrastructure DX Advisor",
+    "body_ja": "インフラDXアドバイザー（兼業の会計年度職員）として、建設・土木分野のDXを、技術・企画・外部連携の面から支援。<br>・BIM/CIM、3D都市モデル（PLATEAU）の導入・活用支援<br>・ICT施工やスライド条項など、制度を解説する職員向け動画・資料の企画制作<br>・デジタルツインの活用検討（防災・施工・点検・合意形成）<br>・民間企業・スタートアップとの連携推進<br>・職員向け研修・講演の企画と登壇<br>・マスコットキャラクター「港千陽」を3Dで制作し、YouTubeで技術を発信<br>DXを技術の導入ではなく業務の再設計と捉え、実証で終わらせず運用・定着まで設計することを重視しました。",
+    "body_en": "As Infrastructure DX Advisor (a concurrent fiscal-year role), supported digital transformation in civil engineering and construction across technology, planning and external partnerships.<br>・Adoption and use of BIM/CIM and 3D city models (PLATEAU)<br>・Explainer videos and materials for staff on ICT construction and contract rules<br>・Digital-twin use cases for disaster prevention, construction, inspection and consensus building<br>・Collaboration with private companies and startups<br>・Planning and delivering training and talks for staff<br>・Created a 3D mascot character to share technology on YouTube<br>Treated DX as redesigning work rather than adopting tools, and designed beyond pilots through to everyday operation."
   },
   {
     "date": "研究テーマ",
