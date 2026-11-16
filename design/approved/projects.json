@@ -49,14 +49,14 @@
   },
   {
     "date": "2014.09–2015.02",
-    "title_ja": "新規創造活動プロジェクト",
-    "title_en": "New product exploration",
+    "title_ja": "新規事業の探索",
+    "title_en": "New business exploration",
     "fields": "product",
     "org_ja": "ソニー",
     "org_en": "Sony",
     "role_ja": "チームリード・試作",
     "role_en": "Team leadership & prototyping",
-    "body_ja": "新製品・サービス開発プロジェクトのチームリーダーを担当。",
+    "body_ja": "新しい製品・サービスを探索するチームを率いる。",
     "body_en": "Led a team exploring new products and services."
   },
   {
@@ -73,15 +73,15 @@
   },
   {
     "date": "2016.02–2016.06",
-    "title_ja": "大型新作RPGのゲームシステム",
-    "title_en": "Game systems for a large-scale RPG",
+    "title_ja": "家庭用ゲームのシステム開発",
+    "title_en": "Console game systems",
     "fields": "game product",
     "org_ja": "スクウェア・エニックス",
     "org_en": "Square Enix",
-    "role_ja": "エンジン・システム開発",
-    "role_en": "Engine & systems development",
-    "body_ja": "サウンドインタフェース、トロフィー機能、デバッグ機能などを開発。",
-    "body_en": "Developed sound interfaces, trophy features and debugging features."
+    "role_ja": "システム開発",
+    "role_en": "Systems development",
+    "body_ja": "ゲームエンジンまわりの機能を開発。",
+    "body_en": "Developed engine-level game features."
   },
   {
     "date": "2016.07–2016.09",
@@ -121,39 +121,39 @@
   },
   {
     "date": "2017.02–2017.05",
-    "title_ja": "360度コンテンツ用ライブラリ",
-    "title_en": "360° content library",
+    "title_ja": "360度コンテンツの開発基盤",
+    "title_en": "360° content foundation",
     "fields": "product xr",
     "org_ja": "リコー",
     "org_en": "Ricoh",
     "role_ja": "開発・海外連携",
     "role_en": "Development & international collaboration",
-    "body_ja": "米国子会社のベンチャー組織へ360度コンテンツ用ライブラリを提供。",
-    "body_en": "Provided a 360° content library to a US subsidiary venture team."
+    "body_ja": "360度コンテンツを扱うライブラリを開発し、海外チームと連携。",
+    "body_en": "Built a library for 360° content in collaboration with an overseas team."
   },
   {
     "date": "2017.10–2018.03",
-    "title_ja": "クラウド画像処理API",
-    "title_en": "Cloud image-processing API",
+    "title_ja": "クラウドAPIの開発",
+    "title_en": "Cloud API development",
     "fields": "product",
     "org_ja": "リコー",
     "org_en": "Ricoh",
     "role_ja": "サーバーサイド開発",
     "role_en": "Server-side development",
-    "body_ja": "自社クラウドAPIプラットフォームの画像処理APIを実装。",
-    "body_en": "Implemented image-processing APIs for an internal cloud platform."
+    "body_ja": "画像処理を中心としたサーバーサイド開発。",
+    "body_en": "Server-side development focused on image processing."
   },
   {
     "date": "2018.04–2019.02",
-    "title_ja": "THETA 開発戦略・体制づくり",
-    "title_en": "THETA development strategy & organization",
+    "title_ja": "アプリの開発戦略・体制づくり",
+    "title_en": "App strategy & development organization",
     "fields": "product",
     "org_ja": "リコー",
     "org_en": "Ricoh",
     "role_ja": "技術戦略・開発体制",
     "role_en": "Technical strategy & organization",
-    "body_ja": "アプリ戦略・プロセス改善と、theta360.comの開発体制・委託先移管を推進。",
-    "body_en": "Advanced app strategy, process improvement and the transition of theta360.com development partners."
+    "body_ja": "アプリの戦略づくりと、開発プロセス・体制の改善を推進。",
+    "body_en": "Drove app strategy and improvements to development processes and teams."
   },
   {
     "date": "2019.03–2019.05",
@@ -169,51 +169,51 @@
   },
   {
     "date": "2019–2022 在籍時",
-    "title_ja": "AR Cloud 海外共同研究",
-    "title_en": "AR Cloud international research",
+    "title_ja": "AR Cloud の研究開発",
+    "title_en": "AR Cloud R&D",
     "fields": "xr product",
     "org_ja": "博報堂／博報堂DY",
     "org_en": "Hakuhodo / Hakuhodo DY",
     "role_ja": "PM・研究開発・実装",
     "role_en": "PM, research & implementation",
-    "body_ja": "コロンビア大学・NYC Media Labと連携し、SLAMを用いるUnity SDKとクラウド基盤の開発を推進。",
-    "body_en": "Collaborated with Columbia University and NYC Media Lab on a SLAM-based Unity SDK and cloud infrastructure."
+    "body_ja": "海外の研究機関と連携し、AR向けの開発キットとクラウド基盤を研究開発。",
+    "body_en": "Researched and developed AR toolkits and cloud infrastructure with overseas research partners."
   },
   {
     "date": "2019.11–2020.06",
-    "title_ja": "SLAM / Unity SDK・サーバー",
-    "title_en": "SLAM / Unity SDK & server",
+    "title_ja": "AR向け開発キット・サーバー",
+    "title_en": "AR toolkit & server",
     "fields": "xr product",
     "org_ja": "博報堂／博報堂DY",
     "org_en": "Hakuhodo / Hakuhodo DY",
     "role_ja": "技術設計・PM・実装",
     "role_en": "Architecture, PM & implementation",
-    "body_ja": "AR用SDK、API、AWS基盤の設計・開発とチーム運営。",
-    "body_en": "Designed and developed AR SDKs, APIs and AWS infrastructure, and managed the team."
+    "body_ja": "AR用の開発キットとサーバー基盤の設計・開発、チーム運営。",
+    "body_en": "Designed and built AR toolkits and server infrastructure, and ran the team."
   },
   {
     "date": "2020.06–2021.03",
-    "title_ja": "AR図書室ナビゲーション",
-    "title_en": "AR library navigation",
+    "title_ja": "ARナビゲーションの研究",
+    "title_en": "AR navigation research",
     "fields": "xr",
     "org_ja": "博報堂／博報堂DY",
     "org_en": "Hakuhodo / Hakuhodo DY",
     "role_ja": "UX研究・PM・実装",
     "role_en": "UX research, PM & implementation",
-    "body_ja": "行動文脈に応じた情報提示を検証するiPad向けARアプリを開発。",
-    "body_en": "Built an iPad AR application to explore context-aware navigation experiences."
+    "body_ja": "状況に応じて情報を出し分けるARナビゲーションを試作・検証。",
+    "body_en": "Prototyped and evaluated context-aware AR navigation."
   },
   {
     "date": "2020.06–2021.05",
-    "title_ja": "位置連動ARコンテンツ配信",
-    "title_en": "Location-based AR distribution",
+    "title_ja": "ARコンテンツ配信基盤",
+    "title_en": "AR content delivery platform",
     "fields": "xr product",
     "org_ja": "博報堂／博報堂DY",
     "org_en": "Hakuhodo / Hakuhodo DY",
     "role_ja": "テックリード",
     "role_en": "Technical lead",
-    "body_ja": "配信基盤の戦略、技術選定、クライアント・サーバーのアーキテクチャを策定。",
-    "body_en": "Defined strategy, technology choices and client/server architecture for AR distribution."
+    "body_ja": "配信基盤の技術選定とアーキテクチャ設計。",
+    "body_en": "Technology selection and architecture for a delivery platform."
   },
   {
     "date": "2019–2022 在籍時",
@@ -229,27 +229,27 @@
   },
   {
     "date": "2021–2022 在籍時",
-    "title_ja": "研究開発組織の戦略・業務基盤",
-    "title_en": "R&D strategy & operating systems",
+    "title_ja": "研究開発組織の運営",
+    "title_en": "R&D organization",
     "fields": "product",
     "org_ja": "博報堂／博報堂DY",
     "org_en": "Hakuhodo / Hakuhodo DY",
     "role_ja": "組織戦略・開発PM",
     "role_en": "Organizational strategy & PM",
-    "body_ja": "組織・採用・運営戦略と、研究開発管理プロセスの刷新・システム化を推進。",
-    "body_en": "Advanced organizational, hiring and operating strategies and redesigned R&D management processes and systems."
+    "body_ja": "組織・採用・運営の戦略と、研究開発の管理プロセス改善。",
+    "body_en": "Organizational, hiring and operating strategy, and better R&D management processes."
   },
   {
     "date": "2021–2022 在籍時",
-    "title_ja": "テレビデータ×マーケティングDX",
-    "title_en": "TV data & marketing DX",
+    "title_ja": "マーケティングのデータ活用",
+    "title_en": "Marketing data",
     "fields": "product ai",
     "org_ja": "博報堂／博報堂DY",
     "org_en": "Hakuhodo / Hakuhodo DY",
     "role_ja": "データ分析・要件定義",
     "role_en": "Data analysis & requirements",
-    "body_ja": "テレビ放映データと小売施策を連携するプラットフォームの分析・要件定義。",
-    "body_en": "Analyzed data and defined requirements for a platform connecting TV broadcasts and retail initiatives."
+    "body_ja": "データを使ったマーケティング基盤の分析・要件定義。",
+    "body_en": "Analysis and requirements for a data-driven marketing platform."
   },
   {
     "date": "2023.04–2024.01",
@@ -265,27 +265,27 @@
   },
   {
     "date": "2023.01–2024.03",
-    "title_ja": "自動車HMI・VR販売システム",
-    "title_en": "Automotive HMI & VR sales systems",
+    "title_ja": "モビリティ領域のXR開発",
+    "title_en": "XR for mobility",
     "fields": "industry xr product",
     "org_ja": "Unity Technologies Japan",
     "org_en": "Unity Technologies Japan",
     "role_ja": "PM・技術設計",
     "role_en": "PM & technical design",
-    "body_ja": "車内外ディスプレイを使うHMIと、VR空間でのパワーユニット販売システムの開発を管理。",
-    "body_en": "Managed development of vehicle HMI displays and a VR power-unit sales system."
+    "body_ja": "車載表示やVRを使う顧客案件のプロジェクト管理と技術設計。",
+    "body_en": "Project management and technical design for in-vehicle display and VR client projects."
   },
   {
     "date": "2023.02–2023.09",
-    "title_ja": "HMD用Androidフレームワーク調査",
-    "title_en": "Android framework study for HMDs",
+    "title_ja": "XRデバイスの技術調査",
+    "title_en": "XR device research",
     "fields": "xr product",
     "org_ja": "Unity Technologies Japan",
     "org_en": "Unity Technologies Japan",
     "role_ja": "技術調査・PM",
     "role_en": "Technical research & PM",
-    "body_ja": "HMDの操作・グラフィックス表現におけるAndroid採用の実現性を調査。",
-    "body_en": "Investigated the feasibility of Android for HMD interaction and graphics."
+    "body_ja": "XRデバイス向けソフトウェア基盤の技術調査。",
+    "body_en": "Technical research on software foundations for XR devices."
   },
   {
     "date": "2022.11–2024.04",
@@ -337,123 +337,123 @@
   },
   {
     "date": "2017.05–2017.06",
-    "title_ja": "テーマパークのナビゲーション",
-    "title_en": "Theme-park navigation app",
+    "title_ja": "スマートフォンアプリ開発",
+    "title_en": "Smartphone app development",
     "fields": "product",
     "org_ja": "個人受託／Webサービス企業",
     "org_en": "Independent / web-service company",
     "role_ja": "Android開発",
     "role_en": "Android development",
-    "body_ja": "開発フレームワーク移植、リファクタリング、UI改善。",
-    "body_en": "Framework migration, refactoring and UI improvement."
+    "body_ja": "Androidアプリの改修とUI改善。",
+    "body_en": "Android app refactoring and UI improvements."
   },
   {
     "date": "2017.07–2019.01",
-    "title_ja": "3D広告SDK・360度ビューアー",
-    "title_en": "3D advertising SDK & 360° viewer",
+    "title_ja": "広告向けSDK・ビューアー",
+    "title_en": "Advertising SDK & viewer",
     "fields": "product xr",
     "org_ja": "個人受託／広告テック企業",
     "org_en": "Independent / ad-tech company",
     "role_ja": "Android SDK開発",
     "role_en": "Android SDK development",
-    "body_ja": "3D広告向けSDKと360度コンテンツのスマートフォンビューアーを開発。",
-    "body_en": "Developed an advertising SDK and a smartphone viewer for 360° content."
+    "body_ja": "スマートフォン向けSDKと360度ビューアーの開発。",
+    "body_en": "Developed a smartphone SDK and a 360° viewer."
   },
   {
     "date": "2019.04–2019.12",
-    "title_ja": "触覚素材を使ったVRデモ",
-    "title_en": "Haptic-material VR demo",
+    "title_ja": "触覚を使ったVRデモ",
+    "title_en": "Haptic VR demo",
     "fields": "xr industry",
     "org_ja": "個人受託／自動車部品メーカー",
     "org_en": "Independent / automotive supplier",
     "role_ja": "VR開発",
     "role_en": "VR development",
-    "body_ja": "触覚提示技術とVRゴーグル・ハンドセンサーを組み合わせたデモを開発。",
-    "body_en": "Developed a demo combining haptic technology, VR and hand tracking."
+    "body_ja": "触覚技術とVRを組み合わせたデモを開発。",
+    "body_en": "Developed a demo combining haptics and VR."
   },
   {
     "date": "2020.11–2021.03",
-    "title_ja": "画像認識による駐車場入庫管理",
-    "title_en": "Vision-based parking entry detection",
+    "title_ja": "画像認識による車両検知",
+    "title_en": "Vision-based vehicle detection",
     "fields": "ai industry",
     "org_ja": "個人受託／IoTスタートアップ",
     "org_en": "Independent / IoT startup",
     "role_ja": "モデル作成・実装",
     "role_en": "Model development & implementation",
-    "body_ja": "YOLO・Jetsonを使うナンバープレート検出・入庫判定モジュールを開発。",
-    "body_en": "Built license-plate detection and vehicle-entry modules using YOLO and Jetson."
+    "body_ja": "エッジAIを使った画像認識モジュールを開発。",
+    "body_en": "Built image-recognition modules running on edge AI."
   },
   {
     "date": "2021.11–2022.05",
-    "title_ja": "旅行予約サービスのAI・CRM",
-    "title_en": "AI & CRM for travel booking",
+    "title_ja": "AIレコメンド・CRM",
+    "title_en": "AI recommendations & CRM",
     "fields": "ai product",
     "org_ja": "個人受託／旅行サービス企業",
     "org_en": "Independent / travel-service company",
     "role_ja": "プロダクトマネジメント",
     "role_en": "Product management",
-    "body_ja": "旅行予約サービスのAIレコメンド・CRMについて要件定義と開発管理。",
-    "body_en": "Defined requirements and managed AI recommendation and CRM development for a travel booking service."
+    "body_ja": "AIレコメンドとCRMの要件定義・開発管理。",
+    "body_en": "Requirements and development management for AI recommendations and CRM."
   },
   {
     "date": "2022.07–2023.03",
-    "title_ja": "GIS・防災AR",
-    "title_en": "GIS & disaster-preparedness AR",
+    "title_ja": "防災向けARアプリ",
+    "title_en": "Disaster-preparedness AR",
     "fields": "xr industry public",
     "org_ja": "個人受託／地理空間スタートアップ",
     "org_en": "Independent / geospatial startup",
     "role_ja": "ARアプリ開発",
     "role_en": "AR application development",
-    "body_ja": "Cesium・3D Tilesなどを利用し、自治体の災害対策に向けたARアプリを開発。",
-    "body_en": "Developed AR applications for local-government disaster preparedness with Cesium and 3D Tiles."
+    "body_ja": "3D地図データを使った防災向けARアプリを開発。",
+    "body_en": "Developed disaster-preparedness AR apps using 3D map data."
   },
   {
     "date": "2022.04–2024.03",
-    "title_ja": "歴史的建築のデジタルアーカイブ",
-    "title_en": "Digital archives of historic architecture",
+    "title_ja": "建築の3Dデジタルアーカイブ",
+    "title_en": "3D architectural archives",
     "fields": "xr industry",
     "org_ja": "受託／国立大学",
     "org_en": "Contract / national university",
     "role_ja": "撮像・3D復元・Web構築",
     "role_en": "Capture, reconstruction & web development",
-    "body_ja": "フォトグラメトリー撮像、3D復元、Webアーカイブの構築を担当。",
-    "body_en": "Captured photogrammetry, reconstructed buildings in 3D and built web archives."
+    "body_ja": "撮影から3D復元、Web公開までを担当。",
+    "body_en": "Handled capture, 3D reconstruction and web publishing."
   },
   {
     "date": "2023.09–2024.02",
-    "title_ja": "社内コミュニケーション基盤",
-    "title_en": "Internal communication platform",
+    "title_ja": "業務用コミュニケーションアプリ",
+    "title_en": "Business communication app",
     "fields": "product",
     "org_ja": "受託／通信業界",
     "org_en": "Contract / Telecommunications",
     "role_ja": "設計・開発推進",
     "role_en": "Architecture & delivery",
-    "body_ja": "スマートフォンアプリ、ダッシュボード、マルチテナントDB、AWS基盤を設計し海外開発チームと推進。",
-    "body_en": "Designed apps, dashboards, multitenant databases and AWS infrastructure with an overseas development team."
+    "body_ja": "アプリ・管理画面・クラウド基盤の設計と、海外チームでの開発推進。",
+    "body_en": "Designed the app, dashboard and cloud infrastructure, and led delivery with an overseas team."
   },
   {
     "date": "2024.06–2025.01",
-    "title_ja": "医療系VRの技術戦略",
-    "title_en": "Technical strategy for medical VR",
+    "title_ja": "医療VRの技術支援",
+    "title_en": "Medical VR technical support",
     "fields": "xr product",
     "org_ja": "医療系VRスタートアップ",
     "org_en": "Medical VR startup",
     "role_ja": "外部CTO",
     "role_en": "External CTO",
-    "body_ja": "技術戦略、要件定義、プロジェクト管理とVR開発の技術リード。",
-    "body_en": "Technical strategy, requirements, project management and VR engineering leadership."
+    "body_ja": "技術戦略から開発リードまでを支援。",
+    "body_en": "Supported everything from technical strategy to engineering leadership."
   },
   {
     "date": "2024.11–2025.01",
-    "title_ja": "建設デジタルツイン",
-    "title_en": "Construction digital twins",
+    "title_ja": "建設分野のデジタルツイン",
+    "title_en": "Digital twins for construction",
     "fields": "industry xr",
     "org_ja": "大手建設会社",
     "org_en": "Major construction company",
     "role_ja": "開発リード・技術戦略支援",
     "role_en": "Engineering lead & strategy support",
-    "body_ja": "Unityとバックエンドによるデジタルツインの実装確認、開発リード、技術戦略を支援。",
-    "body_en": "Reviewed implementation, led development and supported strategy for a Unity-based digital twin."
+    "body_ja": "デジタルツイン開発の技術リードと戦略支援。",
+    "body_en": "Technical lead and strategy support for digital-twin development."
   },
   {
     "date": "2024.11–2026.03",
