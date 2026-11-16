@@ -12,30 +12,6 @@
     "body_en": "Research on 3D displays and haptic interaction; collaborative work presented at ISVRI 2011 and SIGGRAPH Asia 2011."
   },
   {
-    "date": "2012.06–2014.02",
-    "title_ja": "Google TV Smart Stick",
-    "title_en": "Google TV Smart Stick",
-    "fields": "product",
-    "org_ja": "ソニー",
-    "org_en": "Sony",
-    "role_ja": "ソフトウェア開発",
-    "role_en": "Software development",
-    "body_ja": "ホームエンタテインメント機器のソフトウェア、UI・仕様設計に携わる。",
-    "body_en": "Software development and UI/specification design for home entertainment hardware."
-  },
-  {
-    "date": "2014.03–2014.08",
-    "title_ja": "4Kメディアプレーヤー",
-    "title_en": "4K media player",
-    "fields": "product",
-    "org_ja": "ソニー",
-    "org_en": "Sony",
-    "role_ja": "ソフトウェア開発",
-    "role_en": "Software development",
-    "body_ja": "製品ソフトウェアの開発を担当。",
-    "body_en": "Developed product software."
-  },
-  {
     "date": "2014.09–2015.02",
     "title_ja": "BRAVIA / Android TV",
     "title_en": "BRAVIA / Android TV",
@@ -46,18 +22,6 @@
     "role_en": "Software development",
     "body_ja": "Android TVとしてのテレビ開発に参画。",
     "body_en": "Contributed to television development using Android TV."
-  },
-  {
-    "date": "2014.09–2015.02",
-    "title_ja": "新規事業の探索",
-    "title_en": "New business exploration",
-    "fields": "product",
-    "org_ja": "ソニー",
-    "org_en": "Sony",
-    "role_ja": "チームリード・試作",
-    "role_en": "Team leadership & prototyping",
-    "body_ja": "新しい製品・サービスを探索するチームを率いる。",
-    "body_en": "Led a team exploring new products and services."
   },
   {
     "date": "2015.03–2016.01",
@@ -84,30 +48,6 @@
     "body_en": "Developed sound interfaces, trophy features and debugging features."
   },
   {
-    "date": "2016.07–2016.09",
-    "title_ja": "FINAL FANTASY XIV",
-    "title_en": "FINAL FANTASY XIV",
-    "fields": "game product",
-    "org_ja": "スクウェア・エニックス",
-    "org_en": "Square Enix",
-    "role_ja": "サーバー開発・運用",
-    "role_en": "Server development & operations",
-    "body_ja": "ゲームサーバー開発・運用とデータベース管理用Webツールの開発に携わる。",
-    "body_en": "Contributed to game server development and operations, and built web tools for database administration."
-  },
-  {
-    "date": "2016.10–2017.03",
-    "title_ja": "THETA 店頭・イベントデモ",
-    "title_en": "THETA retail & event demos",
-    "fields": "product xr",
-    "org_ja": "リコー",
-    "org_en": "Ricoh",
-    "role_ja": "PM・実装",
-    "role_en": "PM & implementation",
-    "body_ja": "360度カメラの操作UIとデモシステムを設計・開発。",
-    "body_en": "Designed and developed a demo system and camera-control UI."
-  },
-  {
     "date": "2017–2019",
     "title_ja": "THETA 画像・映像編集アプリ",
     "title_en": "THETA photo & video editing apps",
@@ -118,42 +58,6 @@
     "role_en": "Project management",
     "body_ja": "画像・映像編集アプリの開発を管理。",
     "body_en": "Managed editing-app development."
-  },
-  {
-    "date": "2017.02–2017.05",
-    "title_ja": "360度コンテンツの開発基盤",
-    "title_en": "360° content foundation",
-    "fields": "product xr",
-    "org_ja": "リコー",
-    "org_en": "Ricoh",
-    "role_ja": "開発・海外連携",
-    "role_en": "Development & international collaboration",
-    "body_ja": "360度コンテンツを扱うライブラリを開発し、海外チームと連携。",
-    "body_en": "Built a library for 360° content in collaboration with an overseas team."
-  },
-  {
-    "date": "2017.10–2018.03",
-    "title_ja": "クラウドAPIの開発",
-    "title_en": "Cloud API development",
-    "fields": "product",
-    "org_ja": "リコー",
-    "org_en": "Ricoh",
-    "role_ja": "サーバーサイド開発",
-    "role_en": "Server-side development",
-    "body_ja": "画像処理を中心としたサーバーサイド開発。",
-    "body_en": "Server-side development focused on image processing."
-  },
-  {
-    "date": "2018.04–2019.02",
-    "title_ja": "アプリの開発戦略・体制づくり",
-    "title_en": "App strategy & development organization",
-    "fields": "product",
-    "org_ja": "リコー",
-    "org_en": "Ricoh",
-    "role_ja": "技術戦略・開発体制",
-    "role_en": "Technical strategy & organization",
-    "body_ja": "アプリの戦略づくりと、開発プロセス・体制の改善を推進。",
-    "body_en": "Drove app strategy and improvements to development processes and teams."
   },
   {
     "date": "2019.03–2019.05",
@@ -180,42 +84,6 @@
     "body_en": "Researched and developed AR toolkits and cloud infrastructure with overseas research partners."
   },
   {
-    "date": "2019.11–2020.06",
-    "title_ja": "AR向け開発キット・サーバー",
-    "title_en": "AR toolkit & server",
-    "fields": "xr product",
-    "org_ja": "博報堂／博報堂DY",
-    "org_en": "Hakuhodo / Hakuhodo DY",
-    "role_ja": "技術設計・PM・実装",
-    "role_en": "Architecture, PM & implementation",
-    "body_ja": "AR用の開発キットとサーバー基盤の設計・開発、チーム運営。",
-    "body_en": "Designed and built AR toolkits and server infrastructure, and ran the team."
-  },
-  {
-    "date": "2020.06–2021.03",
-    "title_ja": "ARナビゲーションの研究",
-    "title_en": "AR navigation research",
-    "fields": "xr",
-    "org_ja": "博報堂／博報堂DY",
-    "org_en": "Hakuhodo / Hakuhodo DY",
-    "role_ja": "UX研究・PM・実装",
-    "role_en": "UX research, PM & implementation",
-    "body_ja": "状況に応じて情報を出し分けるARナビゲーションを試作・検証。",
-    "body_en": "Prototyped and evaluated context-aware AR navigation."
-  },
-  {
-    "date": "2020.06–2021.05",
-    "title_ja": "ARコンテンツ配信基盤",
-    "title_en": "AR content delivery platform",
-    "fields": "xr product",
-    "org_ja": "博報堂／博報堂DY",
-    "org_en": "Hakuhodo / Hakuhodo DY",
-    "role_ja": "テックリード",
-    "role_en": "Technical lead",
-    "body_ja": "配信基盤の技術選定とアーキテクチャ設計。",
-    "body_en": "Technology selection and architecture for a delivery platform."
-  },
-  {
     "date": "2019–2022 在籍時",
     "title_ja": "Little Planet 共同研究",
     "title_en": "Little Planet collaborative research",
@@ -228,30 +96,6 @@
     "body_en": "Managed specifications, data design, development and operations for AR attractions exploring children’s abilities and growth."
   },
   {
-    "date": "2021–2022 在籍時",
-    "title_ja": "研究開発組織の運営",
-    "title_en": "R&D organization",
-    "fields": "product",
-    "org_ja": "博報堂／博報堂DY",
-    "org_en": "Hakuhodo / Hakuhodo DY",
-    "role_ja": "組織戦略・開発PM",
-    "role_en": "Organizational strategy & PM",
-    "body_ja": "組織・採用・運営の戦略と、研究開発の管理プロセス改善。",
-    "body_en": "Organizational, hiring and operating strategy, and better R&D management processes."
-  },
-  {
-    "date": "2021–2022 在籍時",
-    "title_ja": "マーケティングのデータ活用",
-    "title_en": "Marketing data",
-    "fields": "product ai",
-    "org_ja": "博報堂／博報堂DY",
-    "org_en": "Hakuhodo / Hakuhodo DY",
-    "role_ja": "データ分析・要件定義",
-    "role_en": "Data analysis & requirements",
-    "body_ja": "データを使ったマーケティング基盤の分析・要件定義。",
-    "body_en": "Analysis and requirements for a data-driven marketing platform."
-  },
-  {
     "date": "2023.04–2024.01",
     "title_ja": "PLATEAU SDK-Toolkits for Unity",
     "title_en": "PLATEAU SDK-Toolkits for Unity",
@@ -262,30 +106,6 @@
     "role_en": "Project management",
     "body_ja": "Rendering・Sandbox・Map・ARの4つのToolkit開発で、提案、関係省庁・自治体との調整、グローバルチーム連携、リリースを推進。",
     "body_en": "Managed proposals, government coordination, global teams and releases for Rendering, Sandbox, Map and AR Toolkits."
-  },
-  {
-    "date": "2023.01–2024.03",
-    "title_ja": "モビリティ領域のXR開発",
-    "title_en": "XR for mobility",
-    "fields": "industry xr product",
-    "org_ja": "Unity Technologies Japan",
-    "org_en": "Unity Technologies Japan",
-    "role_ja": "PM・技術設計",
-    "role_en": "PM & technical design",
-    "body_ja": "車載表示やVRを使う顧客案件のプロジェクト管理と技術設計。",
-    "body_en": "Project management and technical design for in-vehicle display and VR client projects."
-  },
-  {
-    "date": "2023.02–2023.09",
-    "title_ja": "XRデバイスの技術調査",
-    "title_en": "XR device research",
-    "fields": "xr product",
-    "org_ja": "Unity Technologies Japan",
-    "org_en": "Unity Technologies Japan",
-    "role_ja": "技術調査・PM",
-    "role_en": "Technical research & PM",
-    "body_ja": "XRデバイス向けソフトウェア基盤の技術調査。",
-    "body_en": "Technical research on software foundations for XR devices."
   },
   {
     "date": "2022.11–2024.04",
@@ -336,66 +156,6 @@
     "body_en": "A studio for training and explainer videos presented by AI avatars. <a href=\"https://playlife-studio.com/lp/ai-talk-studio/\">Website ↗</a>"
   },
   {
-    "date": "2017.05–2017.06",
-    "title_ja": "スマートフォンアプリ開発",
-    "title_en": "Smartphone app development",
-    "fields": "product",
-    "org_ja": "個人受託／Webサービス企業",
-    "org_en": "Independent / web-service company",
-    "role_ja": "Android開発",
-    "role_en": "Android development",
-    "body_ja": "Androidアプリの改修とUI改善。",
-    "body_en": "Android app refactoring and UI improvements."
-  },
-  {
-    "date": "2017.07–2019.01",
-    "title_ja": "広告向けSDK・ビューアー",
-    "title_en": "Advertising SDK & viewer",
-    "fields": "product xr",
-    "org_ja": "個人受託／広告テック企業",
-    "org_en": "Independent / ad-tech company",
-    "role_ja": "Android SDK開発",
-    "role_en": "Android SDK development",
-    "body_ja": "スマートフォン向けSDKと360度ビューアーの開発。",
-    "body_en": "Developed a smartphone SDK and a 360° viewer."
-  },
-  {
-    "date": "2019.04–2019.12",
-    "title_ja": "触覚を使ったVRデモ",
-    "title_en": "Haptic VR demo",
-    "fields": "xr industry",
-    "org_ja": "個人受託／自動車部品メーカー",
-    "org_en": "Independent / automotive supplier",
-    "role_ja": "VR開発",
-    "role_en": "VR development",
-    "body_ja": "触覚技術とVRを組み合わせたデモを開発。",
-    "body_en": "Developed a demo combining haptics and VR."
-  },
-  {
-    "date": "2020.11–2021.03",
-    "title_ja": "画像認識による車両検知",
-    "title_en": "Vision-based vehicle detection",
-    "fields": "ai industry",
-    "org_ja": "個人受託／IoTスタートアップ",
-    "org_en": "Independent / IoT startup",
-    "role_ja": "モデル作成・実装",
-    "role_en": "Model development & implementation",
-    "body_ja": "エッジAIを使った画像認識モジュールを開発。",
-    "body_en": "Built image-recognition modules running on edge AI."
-  },
-  {
-    "date": "2021.11–2022.05",
-    "title_ja": "AIレコメンド・CRM",
-    "title_en": "AI recommendations & CRM",
-    "fields": "ai product",
-    "org_ja": "個人受託／旅行サービス企業",
-    "org_en": "Independent / travel-service company",
-    "role_ja": "プロダクトマネジメント",
-    "role_en": "Product management",
-    "body_ja": "AIレコメンドとCRMの要件定義・開発管理。",
-    "body_en": "Requirements and development management for AI recommendations and CRM."
-  },
-  {
     "date": "2022.07–2023.03",
     "title_ja": "防災向けARアプリ",
     "title_en": "Disaster-preparedness AR",
@@ -406,30 +166,6 @@
     "role_en": "AR application development",
     "body_ja": "3D地図データを使った防災向けARアプリを開発。",
     "body_en": "Developed disaster-preparedness AR apps using 3D map data."
-  },
-  {
-    "date": "2022.04–2024.03",
-    "title_ja": "建築の3Dデジタルアーカイブ",
-    "title_en": "3D architectural archives",
-    "fields": "xr industry",
-    "org_ja": "受託／国立大学",
-    "org_en": "Contract / national university",
-    "role_ja": "撮像・3D復元・Web構築",
-    "role_en": "Capture, reconstruction & web development",
-    "body_ja": "撮影から3D復元、Web公開までを担当。",
-    "body_en": "Handled capture, 3D reconstruction and web publishing."
-  },
-  {
-    "date": "2023.09–2024.02",
-    "title_ja": "業務用コミュニケーションアプリ",
-    "title_en": "Business communication app",
-    "fields": "product",
-    "org_ja": "受託／通信業界",
-    "org_en": "Contract / Telecommunications",
-    "role_ja": "設計・開発推進",
-    "role_en": "Architecture & delivery",
-    "body_ja": "アプリ・管理画面・クラウド基盤の設計と、海外チームでの開発推進。",
-    "body_en": "Designed the app, dashboard and cloud infrastructure, and led delivery with an overseas team."
   },
   {
     "date": "2024.06–2025.01",

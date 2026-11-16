@@ -79,3 +79,4 @@
 ### 2026-11-16 実績の抽象化
 - 方針（Keitaro指示）: LinkedIn に載っている会社・肩書き・期間と、発売済み製品・発表済み研究・自社プロダクト・千葉県の仕事は具体のまま。それ以外の23件はタイトル・本文を抽象化（顧客名・技術名・提携先名を削る）
 - 編集元: design/approved/build.py の rows。LinkedIn の詳細は自動取得不可（ログイン必須）のため、手元の 00_important_context/portfolio/linkedin_profile.md を基準にした
+- 2026-11-16 追記: 実績を代表作18件に絞った（build.py の KEEP リスト）。FF16 は名前を出してよい（Keitaro指示）
