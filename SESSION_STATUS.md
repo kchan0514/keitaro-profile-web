@@ -81,3 +81,4 @@
 - 編集元: design/approved/build.py の rows。LinkedIn の詳細は自動取得不可（ログイン必須）のため、手元の 00_important_context/portfolio/linkedin_profile.md を基準にした
 - 2026-11-16 追記: 実績を代表作18件に絞った（build.py の KEEP リスト）。FF16 は名前を出してよい（Keitaro指示）
 - 2026-11-16 追記: about の7章に「くわしく読む」モーダル（本文は本人の note 記事のみを材料／関連 note リンク付き）。千葉県は2026年3月終了として過去形に。第2章・第3章は材料となる note がないため未設置
+- 2026-11-16 Xヘッダーをトップ（越境する群島）に合わせて作成：docs/design/x-header/x-header-archipelago@2x.png（3000×1000）。Xへのアップロードは本人
