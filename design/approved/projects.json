@@ -73,15 +73,15 @@
   },
   {
     "date": "2016.02–2016.06",
-    "title_ja": "家庭用ゲームのシステム開発",
-    "title_en": "Console game systems",
+    "title_ja": "FINAL FANTASY XVI",
+    "title_en": "FINAL FANTASY XVI",
     "fields": "game product",
     "org_ja": "スクウェア・エニックス",
     "org_en": "Square Enix",
     "role_ja": "システム開発",
     "role_en": "Systems development",
-    "body_ja": "ゲームエンジンまわりの機能を開発。",
-    "body_en": "Developed engine-level game features."
+    "body_ja": "サウンドインタフェース、トロフィー機能、デバッグ機能などを開発。",
+    "body_en": "Developed sound interfaces, trophy features and debugging features."
   },
   {
     "date": "2016.07–2016.09",
