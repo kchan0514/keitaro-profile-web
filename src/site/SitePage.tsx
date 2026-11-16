@@ -79,6 +79,16 @@ export default function SitePage({ page }: { page: PageKey }) {
 
   function onClick(e: React.MouseEvent<HTMLDivElement>) {
     const t = e.target as HTMLElement;
+    // about の「くわしく読む」モーダル：開く・閉じるボタン、背景クリックで閉じる
+    const opener = t.closest<HTMLElement>('[data-modal-open]');
+    if (opener) {
+      document.getElementById(opener.dataset.modalOpen!)?.closest('dialog')?.showModal();
+      return;
+    }
+    if (t.closest('[data-modal-close]') || t.tagName === 'DIALOG') {
+      (t.closest('dialog') as HTMLDialogElement | null)?.close();
+      return;
+    }
     if (t.closest('[data-lang-toggle]')) {
       const to = lang === 'en' ? 'ja' : 'en';
       const rest = location.pathname.replace(/^\/(ja|en)/, '');

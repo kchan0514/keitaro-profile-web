@@ -1,2 +1,16 @@
 .lang button{all:unset;cursor:pointer;color:var(--pencil);padding:0 2px}.lang button[aria-pressed="true"]{color:var(--ink);font-weight:700;border-bottom:2px solid var(--vermilion)}.lang button:focus-visible{outline:2px solid var(--vermilion)}
-.intro{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:32px;align-items:end}.portrait{width:100%;max-width:100%;aspect-ratio:4/5;object-fit:cover;display:block}@media (max-width:640px){.intro{grid-template-columns:1fr}.portrait{max-width:240px}}
+.intro{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:32px;align-items:end}.portrait{width:100%;max-width:100%;aspect-ratio:4/5;object-fit:cover;display:block}@media (max-width:640px){.intro{grid-template-columns:1fr}.portrait{max-width:240px}}/* 章の「くわしく読む」モーダル */
+.more{margin-top:12px;background:none;border:1px solid var(--ink);border-radius:30px;padding:7px 16px;font:inherit;font-size:13px;color:var(--ink);cursor:pointer}
+.more:hover{background:var(--ink);color:var(--paper)}
+.story-modal{border:0;padding:0;max-width:640px;width:calc(100% - 32px);max-height:calc(100dvh - 48px);background:var(--paper);color:var(--ink);border-radius:4px 28px 4px 4px;box-shadow:0 20px 60px #0004}
+.story-modal::backdrop{background:#182f3199}
+.sm-inner{padding:36px 32px 32px;position:relative}
+.sm-inner h3{margin:6px 0 18px;font-size:22px;line-height:1.5}
+.sm-body p{font-size:15px;line-height:2;margin:0 0 14px}
+.sm-close{position:absolute;top:14px;right:16px;background:none;border:0;font-size:26px;line-height:1;color:var(--ink);cursor:pointer;padding:6px}
+.sm-notes{border-top:1px solid var(--rule);margin-top:22px;padding-top:16px}
+.sm-notes h4{font-size:12px;letter-spacing:.08em;color:var(--pencil);margin:0 0 8px}
+.sm-notes ul{list-style:none;margin:0;padding:0}
+.sm-notes li{padding:8px 0;border-bottom:1px solid var(--rule);font-size:14px;line-height:1.6}
+.sm-notes a{color:var(--ink);text-decoration:none}.sm-notes a:hover{color:var(--vermilion);text-decoration:underline}
+@media(max-width:640px){.sm-inner{padding:30px 20px 24px}.sm-inner h3{font-size:19px}.sm-body p{font-size:14px}}
